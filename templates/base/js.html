@@ -1,0 +1,24 @@
+{% load static %}
+
+<!-- Bootstrap and necessary plugins -->
+<script src="{% static 'dist/vendors/js/jquery.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/popper.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dist/vendors/js/pace.min.js' %}"></script>
+
+<!-- Plugins and scripts required by all views -->
+<!--Chart JS is commented out due to console errors-->
+<!--<script src="{% static 'dist/vendors/js/Chart.min.js' %}"></script>-->
+
+<!-- CoreUI main scripts -->
+
+<script src="{% static 'dist/js/app.js' %}"></script>
+
+<!-- Plugins and scripts required by this views -->
+
+<!-- Custom scripts required by this view -->
+<script src="{% static 'dist/js/views/main.js' %}"></script>
+
+{% block script %}
+
+{% endblock %}
