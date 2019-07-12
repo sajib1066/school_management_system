@@ -8,7 +8,7 @@ class Designation(models.Model):
         return self.name
 
 class Department(models.Model):
-    name = models.CharField(max_length=100, unique=true)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class District(models.Model):
 
 class Upazilla(models.Model):
     district = models.ForeignKey(District, on_delete=models.CASCADE)
-    name = models.CharField(max_length=45, unique=true)
+    name = models.CharField(max_length=45, unique=True)
 
     def __str__(self):
         return self.name
@@ -34,13 +34,13 @@ class Union(models.Model):
         return self.name
 
 class AddressInfo(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE)
-    union = models.ForeignKey(Union, on_delete=models.CASCADE)
-    address = models.TextField()
+    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
+    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE, null=True)
+    union = models.ForeignKey(Union, on_delete=models.CASCADE, null=True)
+    village = models.TextField()
 
     def __str__(self):
-        return self.district
+        return self.village
 
 class EducationInfo(models.Model):
     name_of_exam = models.CharField(max_length=100)
@@ -72,13 +72,12 @@ class JobInfo(models.Model):
     category = models.CharField(choices=category_choice, max_length=45)
     joning_date = models.DateField()
     institute_name = models.CharField(max_length=100)
-    designation = models.ForeignKey(Designation, on_delete=models.CASCADE)
+    job_designation = models.ForeignKey(Designation, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     scale = models.IntegerField()
     grade_of_post = models.CharField(max_length=45)
     first_time_scale_due_year = models.IntegerField()
     second_time_scale_due_year = models.IntegerField()
-    first_time_scale_due_year = models.IntegerField()
     promotion_due_year = models.IntegerField()
     recreation_leave_due_year = models.IntegerField()
     expected_retirement_year = models.IntegerField()
@@ -133,11 +132,11 @@ class PersonalInfo(models.Model):
         ('single', 'Single')
     )
     marital_status = models.CharField(choices=marital_status_choice, max_length=10)
-    address = models.ForeignKey(AddressInfo, on_delete=models.CASCADE)
-    education = models.ForeignKey(EducationInfo, on_delete=models.CASCADE)
-    training = models.ForeignKey(TrainingInfo, on_delete=models.CASCADE)
-    job = models.ForeignKey(JobInfo, on_delete=models.CASCADE)
-    experience = models.ForeignKey(ExperienceInfo, on_delete=models.CASCADE)
+    address = models.ForeignKey(AddressInfo, on_delete=models.CASCADE, null=True)
+    education = models.ForeignKey(EducationInfo, on_delete=models.CASCADE, null=True)
+    training = models.ForeignKey(TrainingInfo, on_delete=models.CASCADE, null=True)
+    job = models.ForeignKey(JobInfo, on_delete=models.CASCADE, null=True)
+    experience = models.ForeignKey(ExperienceInfo, on_delete=models.CASCADE, null=True)
 
 
     def __str__(self):

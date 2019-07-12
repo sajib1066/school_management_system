@@ -1,0 +1,7 @@
+<option value="">---------</option>
+{% for upazilla in upazilla %}
+<option value="{{ upazilla.pk }}">{{ upazilla.name }}</option>
+{% endfor %}
+{% for union in union %}
+<option value="{{ union.pk }}">{{ union.name }}</option>
+{% endfor %}
