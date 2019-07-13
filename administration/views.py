@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
-from .forms import AdminLoginForm
+from teacher.models import Department, Designation
+from .forms import *
 
 def admin_login(request):
     forms = AdminLoginForm()
@@ -21,3 +22,25 @@ def admin_login(request):
 def admin_logout(request):
     logout(request)
     return redirect('home')
+
+def add_department(request):
+    forms = AddDepartmentForm()
+    if request.method == 'POST':
+        forms = AddDepartmentForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('add-department')
+    department = Department.objects.all()
+    context = {'forms': forms, 'department': department}
+    return render(request, 'administration/add-department.html', context)
+
+def add_designation(request):
+    forms = AddDesignationForm()
+    if request.method == 'POST':
+        forms = AddDesignationForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('designation')
+    designation = Designation.objects.all()
+    context = {'forms': forms, 'designation': designation}
+    return render(request, 'administration/designation.html', context)

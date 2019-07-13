@@ -3,12 +3,38 @@ from django.db import models
 # Create your models here.
 class Designation(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
 class Department(models.Model):
     name = models.CharField(max_length=100, unique=True)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class ClassInfo(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class Section(models.Model):
+    name = models.CharField(max_length=45, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class Session(models.Model):
+    name = models.CharField(max_length=45, unique=True)
+
+    def __str__(self):
+        return self.name
+
+class Shift(models.Model):
+    name = models.IntegerField(unique=True)
 
     def __str__(self):
         return self.name
@@ -138,6 +164,12 @@ class PersonalInfo(models.Model):
     job = models.ForeignKey(JobInfo, on_delete=models.CASCADE, null=True)
     experience = models.ForeignKey(ExperienceInfo, on_delete=models.CASCADE, null=True)
 
+
+    def __str__(self):
+        return self.name
+
+class GuideTeacher(models.Model):
+    name = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
