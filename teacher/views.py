@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from . import forms
-from .models import District, Upazilla, Union
+from .models import District, Upazilla, Union, PersonalInfo
 
 # Create your views here.
 
@@ -63,4 +63,6 @@ def teacher_registration(request):
 
 
 def teacher_list(request):
-    return render(request, 'teacher/teacher-list.html')
+    teacher = PersonalInfo.objects.all()
+    context = {'teacher': teacher}
+    return render(request, 'teacher/teacher-list.html', context)

@@ -2,5 +2,95 @@
 {% load static %}
 
 {% block content %}
-
+  <div class="animated fadeIn">
+      <div class="card">
+          <div class="card-header">
+              <i class="fa fa-edit"></i> DataTables
+              <div class="card-header-actions">
+                  <a class="card-header-action" href="https://datatables.net" target="_blank">
+                      <small class="text-muted">docs</small>
+                  </a>
+              </div>
+          </div>
+          <div class="card-body">
+              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                  <div class="row">
+                      <div class="col-sm-12 col-md-6">
+                          <div class="dataTables_length" id="DataTables_Table_0_length">
+                              <label>Show
+                                  <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
+                                      <option value="10">10</option>
+                                      <option value="25">25</option>
+                                      <option value="50">50</option>
+                                      <option value="100">100</option>
+                                  </select> entries</label>
+                          </div>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                          <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                              <label>Search:
+                                  <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0">
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12">
+                          <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
+                              <thead>
+                                  <tr role="row">
+                                      <th>Id</th>
+                                      <th>Name</th>
+                                      <th>Gender</th>
+                                      <th>Nationality</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {% for teacher in teacher %}
+                                    <tr role="row" class="odd">
+                                        <td>{{ teacher.id }}</td>
+                                        <td>{{ teacher.name }}</td>
+                                        <td>{{ teacher.gender }}</td>
+                                        <td>
+                                            <span class="badge badge-warning">{{ teacher.nationality }}</span>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="#">
+                                                <i class="fa fa-search-plus"></i>
+                                            </a>
+                                            <a class="btn btn-info" href="#">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-danger" href="#">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                  {% endfor %}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-12 col-md-5">
+                          <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 10 of 32 entries</div>
+                      </div>
+                      <div class="col-sm-12 col-md-7">
+                          <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                              <ul class="pagination">
+                                  <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                  <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                  <li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                  <li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                                  <li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                                  <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">Next</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 {% endblock %}
