@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">District Register Form</div>
+    <div class="card-body">
+      <form class="" action="" method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>District List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>District Name</th>
+                      <th>Register Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for district in district %}
+                    <tr>
+                        <td>{{ district.id }}</td>
+                        <td>{{ district.name }}</td>
+                        <td>{{ district.date }}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}

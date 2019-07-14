@@ -20,3 +20,29 @@ class AddDesignationForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class DistrictForm(forms.ModelForm):
+    class Meta:
+        model = models.District
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class UpazillaForm(forms.ModelForm):
+    class Meta:
+        model = models.Upazilla
+        fields = '__all__'
+        widgets = {
+            'district': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+class UnionForm(forms.ModelForm):
+    class Meta:
+        model = models.Union
+        fields = '__all__'
+        widgets = {
+            'upazilla': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.Select(attrs={'class': 'form-control'}),
+        }

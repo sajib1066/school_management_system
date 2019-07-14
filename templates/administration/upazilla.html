@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Upazilla Register Form</div>
+    <div class="card-body">
+      <form class="" action="" method="post" id="upazilla" data-upazilla-url={% url 'load-upazilla' %}>
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+        $("#id_district").change(function () {
+          var url = $("#upazilla").attr("data-upazilla-url");
+          var districtId = $(this).val();
+
+          $.ajax({
+            url: url,
+            data: {
+              'district': districtId
+            },
+            success: function (data) {
+              $("#id_upazilla").html(data);
+            }
+          });
+
+        });
+      </script>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Upazilla List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Upazilla Name</th>
+                      <th>Register Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for upazilla in upazilla %}
+                    <tr>
+                        <td>{{ upazilla.id }}</td>
+                        <td>{{ upazilla.name }}</td>
+                        <td>{{ upazilla.date }}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}
