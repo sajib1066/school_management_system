@@ -33,7 +33,7 @@ class AddressInfoForm(forms.ModelForm):
             'district': forms.Select(attrs={'class': 'form-control'}),
             'upazilla': forms.Select(attrs={'class': 'form-control'}),
             'union': forms.Select(attrs={'class': 'form-control'}),
-            'village': forms.Textarea(attrs={'class': 'form-control'}),
+            'village': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
         def __init__(self, *args, **kwargs):

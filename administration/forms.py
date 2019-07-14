@@ -35,7 +35,7 @@ class UpazillaForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'district': forms.Select(attrs={'class': 'form-control'}),
-            'name': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class UnionForm(forms.ModelForm):
@@ -44,5 +44,5 @@ class UnionForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'upazilla': forms.Select(attrs={'class': 'form-control'}),
-            'name': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
         }

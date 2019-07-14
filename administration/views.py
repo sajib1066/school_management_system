@@ -47,6 +47,8 @@ def add_designation(request):
 
 def load_upazilla(request):
     district_id = request.GET.get('district')
+    print('....................')
+    print(district_id)
     upazilla = Upazilla.objects.filter(district_id=district_id).order_by('name')
     context = {
         'upazilla': upazilla
