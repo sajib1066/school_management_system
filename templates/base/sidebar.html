@@ -11,10 +11,6 @@
                  <i class="nav-icon icon-puzzle"></i>Administration</a>
              <ul class="nav-dropdown-items">
                  <li class="nav-item">
-                     <a class="nav-link" href="{% url 'add-department' %}">
-                         <i class="nav-icon icon-puzzle"></i>Add Department</a>
-                 </li>
-                 <li class="nav-item">
                      <a class="nav-link" href="{% url 'designation' %}">
                          <i class="nav-icon icon-puzzle"></i>Add Designation</a>
                  </li>
@@ -33,6 +29,35 @@
              </ul>
            </li>
            <!-- Administration Section END -->
+
+           <!-- Academic Section START -->
+           <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Academic</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'add-department' %}">
+                      <i class="nav-icon icon-puzzle"></i>Add Department</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create-class' %}">
+                      <i class="nav-icon icon-puzzle"></i>Create Class</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create-section' %}">
+                      <i class="nav-icon icon-puzzle"></i>Create Section</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create-session' %}">
+                      <i class="nav-icon icon-puzzle"></i>Create Session</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'create-shift' %}">
+                      <i class="nav-icon icon-puzzle"></i>Create Shift</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Academic Section END -->
 
            <!-- Teacher Section START -->
            <li class="nav-item nav-dropdown">
@@ -56,10 +81,6 @@
              <a class="nav-link nav-dropdown-toggle" href="#">
                  <i class="nav-icon icon-puzzle"></i>Class</a>
              <ul class="nav-dropdown-items">
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="nav-icon icon-puzzle"></i>Create Class</a>
-                 </li>
                  <li class="nav-item">
                      <a class="nav-link" href="#">
                          <i class="nav-icon icon-puzzle"></i>Section Registration</a>

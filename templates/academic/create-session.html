@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Session Register Form</div>
+    <div class="card-body">
+      <form class="" action="" method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Session List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Session Name</th>
+                      <th>Register Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for session in session %}
+                    <tr>
+                        <td>{{ session.id }}</td>
+                        <td>{{ session.name }}</td>
+                        <td>{{ session.date }}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}

@@ -1,67 +1,8 @@
 from django.db import models
 
+from academic.models import Department, ClassInfo, Section, Session, Shift
+from administration.models import Designation, District, Upazilla, Union
 # Create your models here.
-class Designation(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-class Department(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-class ClassInfo(models.Model):
-    name = models.CharField(max_length=10, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Section(models.Model):
-    name = models.CharField(max_length=45, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Session(models.Model):
-    name = models.CharField(max_length=45, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Shift(models.Model):
-    name = models.IntegerField(unique=True)
-
-    def __str__(self):
-        return self.name
-
-class District(models.Model):
-    name = models.CharField(max_length=45, unique=True)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-class Upazilla(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
-    name = models.CharField(max_length=45, unique=True)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-class Union(models.Model):
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE)
-    name = models.CharField(max_length=45, unique=True)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
 class AddressInfo(models.Model):
     district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
     upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE, null=True)

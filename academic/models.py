@@ -1,30 +1,37 @@
 from django.db import models
 
 # Create your models here.
-class Designation(models.Model):
+class Department(models.Model):
     name = models.CharField(max_length=100, unique=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
-class District(models.Model):
+
+class ClassInfo(models.Model):
+    name = models.CharField(max_length=45, unique=True)
+    display_name = models.CharField(max_length=10, unique=True)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class Section(models.Model):
     name = models.CharField(max_length=45, unique=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
-class Upazilla(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
-    name = models.CharField(max_length=45, unique=True)
+class Session(models.Model):
+    name = models.IntegerField(unique=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
-class Union(models.Model):
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE)
+class Shift(models.Model):
     name = models.CharField(max_length=45, unique=True)
     date = models.DateField(auto_now_add=True)
 

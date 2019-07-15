@@ -1,5 +1,6 @@
 from django import forms
 from . import models
+from academic.models import Department
 
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
@@ -113,4 +114,12 @@ class ExperienceInfoForm(forms.ModelForm):
             'institute_name': forms.TextInput(attrs={'class': 'form-control'}),
             'designation': forms.TextInput(attrs={'class': 'form-control'}),
             'trainer': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+class AddDesignationForm(forms.ModelForm):
+    class Meta:
+        model = models.Designation
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
         }

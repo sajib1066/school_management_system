@@ -23,16 +23,6 @@ def admin_logout(request):
     logout(request)
     return redirect('home')
 
-def add_department(request):
-    forms = AddDepartmentForm()
-    if request.method == 'POST':
-        forms = AddDepartmentForm(request.POST)
-        if forms.is_valid():
-            forms.save()
-            return redirect('add-department')
-    department = Department.objects.all()
-    context = {'forms': forms, 'department': department}
-    return render(request, 'administration/add-department.html', context)
 
 def add_designation(request):
     forms = AddDesignationForm()
