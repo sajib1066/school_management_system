@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Guide Teacher Register Form</div>
+    <div class="card-body">
+      <form class="" action="" method="post">
+        {% csrf_token %}
+        {{ forms.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Guide Teacher List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Guide Teacher Name</th>
+                      <th>Register Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for gt in guide_teacher %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ gt.name }}</td>
+                        <td>{{ gt.date }}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}
