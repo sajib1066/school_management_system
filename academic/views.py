@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from .forms import *
 from .models import *
+from teacher.models import ClassRegistration
 # Create your views here.
 def add_department(request):
     forms = DepartmentForm()
@@ -69,3 +70,17 @@ def create_shift(request):
         'shift': shift
     }
     return render(request, 'academic/create-shift.html', context)
+
+def class_registration(request):
+    forms = ClassRegistrationForm()
+    if request.method == 'POST':
+        forms = ClassRegistrationForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('class-registration')
+    register_class = ClassRegistration.objects.all()
+    context = {
+        'forms': forms,
+        'register_class': register_class
+    }
+    return render(request, 'academic/class-registration.html', context)
