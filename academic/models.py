@@ -8,7 +8,6 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
-
 class ClassInfo(models.Model):
     name = models.CharField(max_length=45, unique=True)
     display_name = models.CharField(max_length=10, unique=True)
