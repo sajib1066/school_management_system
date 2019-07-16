@@ -128,5 +128,8 @@ class ClassRegistration(models.Model):
     guide_teacher = models.ForeignKey(GuideTeacher, on_delete=models.CASCADE, null=True)
     date = models.DateField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ['class_name', 'section', 'shift', 'guide_teacher']
+
     def __str__(self):
         return str(self.class_name)
