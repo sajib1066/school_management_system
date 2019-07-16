@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Class Name</th>
+                      <th>Section</th>
+                      <th>Session</th>
+                      <th>Shift</th>
+                      <th>Department</th>
+                      <th>Guide Teacher</th>
+                      <th>Register Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for cls in register_class %}
+                    <tr>
+                        <td>{{ cls.id }}</td>
+                        <td>{{ cls.class_name }}</td>
+                        <td>{{ cls.section }}</td>
+                        <td>{{ cls.session }}</td>
+                        <td>{{ cls.shift }}</td>
+                        <td>{{ cls.department }}</td>
+                        <td>{{ cls.guide_teacher }}</td>
+                        <td>{{ cls.date }}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}

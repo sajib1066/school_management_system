@@ -77,13 +77,14 @@ def class_registration(request):
         forms = ClassRegistrationForm(request.POST)
         if forms.is_valid():
             forms.save()
-            return redirect('class-registration')
-    register_class = ClassRegistration.objects.all()
-    context = {
-        'forms': forms,
-        'register_class': register_class
-    }
+            return redirect('class-list')
+    context = {'forms': forms}
     return render(request, 'academic/class-registration.html', context)
+
+def class_list(request):
+    register_class = ClassRegistration.objects.all()
+    context = {'register_class': register_class}
+    return render(request, 'academic/class-list.html', context)
 
 def create_guide_teacher(request):
     forms = GuideTeacherForm()

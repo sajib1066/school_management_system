@@ -59,10 +59,6 @@
                   <a class="nav-link" href="{% url 'guide-teacher' %}">
                       <i class="nav-icon icon-puzzle"></i>Guide Teacher</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'class-registration' %}">
-                      <i class="nav-icon icon-puzzle"></i>Class Registration</a>
-              </li>
             </ul>
           </li>
           <!-- Academic Section END -->
@@ -89,14 +85,14 @@
              <a class="nav-link nav-dropdown-toggle" href="#">
                  <i class="nav-icon icon-puzzle"></i>Class</a>
              <ul class="nav-dropdown-items">
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="nav-icon icon-puzzle"></i>Section Registration</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="nav-icon icon-puzzle"></i>Class List</a>
-                 </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="{% url 'class-registration' %}">
+                       <i class="nav-icon icon-puzzle"></i>Class Registration</a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" href="{% url 'class-list' %}">
+                       <i class="nav-icon icon-puzzle"></i>Class List</a>
+               </li>
              </ul>
            </li>
            <!-- Class Section END -->
