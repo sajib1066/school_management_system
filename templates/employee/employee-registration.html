@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">Teacher Registration Form</div>
+    <div class="card-body">
+      <form action="" method="post" enctype="multipart/form-data" id="TeacherRegistrationForm" data-upazilla-url={% url 'load-upazilla' %}>
+
+        <div class="card">
+          <div class="card-header">Personal Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Address Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ address_forms.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Education Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ education_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Training Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ training_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Job Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ job_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Experience Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ experience_form.as_p }}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+        $("#id_district").change(function () {
+          var url = $("#TeacherRegistrationForm").attr("data-upazilla-url");
+          var districtId = $(this).val();
+
+          $.ajax({
+            url: url,
+            data: {
+              'district': districtId
+            },
+            success: function (data) {
+              $("#id_upazilla").html(data);
+            }
+          });
+
+        });
+        $("#id_upazilla").change(function () {
+          var url = $("#TeacherRegistrationForm").attr("data-upazilla-url");
+          var upazillaId = $(this).val();
+
+          $.ajax({
+            url: url,
+            data: {
+              'upazilla': upazillaId
+            },
+            success: function (data) {
+              $("#id_union").html(data);
+            }
+          });
+
+        });
+      </script>
+    </div>
+  </div>
+{% endblock %}
