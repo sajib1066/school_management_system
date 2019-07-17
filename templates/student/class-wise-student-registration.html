@@ -14,7 +14,7 @@
                       <th>Shift</th>
                       <th>Department</th>
                       <th>Guide Teacher</th>
-                      <th>Register Date</th>
+                      <th>Action</th>
                   </tr>
               </thead>
               <tbody>
@@ -27,7 +27,14 @@
                         <td>{{ cls.shift }}</td>
                         <td>{{ cls.department }}</td>
                         <td>{{ cls.guide_teacher }}</td>
-                        <td>{{ cls.date }}</td>
+                        <td>
+                          <a class="btn btn-success" href="{% url 'student-registration' cls.id %}">
+                              <i class="fa fa-search-plus"></i>
+                          </a>
+                          <a class="btn btn-info" href="{% url 'student-list' cls.id %}">
+                              <i class="fa fa-eye"></i>
+                          </a>
+                        </td>
                     </tr>
                   {% endfor %}
               </tbody>

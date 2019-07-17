@@ -49,7 +49,7 @@
                               <tbody>
                                   {% for teacher in teacher %}
                                     <tr role="row" class="odd">
-                                        <td>{{ teacher.id }}</td>
+                                        <td>{{ forloop.counter }}</td>
                                         <td>{{ teacher.name }}</td>
                                         <td>{{ teacher.gender }}</td>
                                         <td>
