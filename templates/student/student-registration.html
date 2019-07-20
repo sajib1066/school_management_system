@@ -3,7 +3,7 @@
   <div class="card">
     <div class="card-header">Student Register Form</div>
     <div class="card-body">
-      <form class="" action="" method="post">
+      <form class="" action="" method="post" enctype="multipart/form-data" id="StudentRegistrationForm" data-upazilla-url={% url 'load-upazilla' %}>
         <div class="card">
           <div class="card-header">Academic Information</div>
           <div class="card-body">
@@ -19,46 +19,79 @@
           <div class="card-header">Personal Information</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ personal_info_form.as_p }}
           </div>
         </div>
         <div class="card">
           <div class="card-header">Address Information</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ student_address_info_form.as_p }}
           </div>
         </div>
         <div class="card">
           <div class="card-header">Guardian Information</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ guardian_info_form.as_p }}
           </div>
         </div>
         <div class="card">
           <div class="card-header">In Case Of Emergency Contact Details</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ emergency_contact_details_form.as_p }}
           </div>
         </div>
         <div class="card">
           <div class="card-header">Previous Academic Information</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ previous_academic_info_form.as_p }}
           </div>
         </div>
         <div class="card">
           <div class="card-header">Previous Academic Certificate</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ forms.as_p }}
+            {{ previoud_academic_certificate_form.as_p }}
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+        $("#id_district").change(function () {
+          var url = $("#StudentRegistrationForm").attr("data-upazilla-url");
+          var districtId = $(this).val();
+
+          $.ajax({
+            url: url,
+            data: {
+              'district': districtId
+            },
+            success: function (data) {
+              $("#id_upazilla").html(data);
+            }
+          });
+
+        });
+        $("#id_upazilla").change(function () {
+          var url = $("#StudentRegistrationForm").attr("data-upazilla-url");
+          var upazillaId = $(this).val();
+
+          $.ajax({
+            url: url,
+            data: {
+              'upazilla': upazillaId
+            },
+            success: function (data) {
+              $("#id_union").html(data);
+            }
+          });
+
+        });
+      </script>
     </div>
   </div>
 {% endblock %}
