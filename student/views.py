@@ -24,13 +24,13 @@ def class_wise_student_registration(request):
 
 def student_registration(request, class_id):
     cr = ClassRegistration.objects.get(id=class_id)
-    academic_info_form = AcademicInfoForm()
-    personal_info_form = PersonalInfoForm()
-    student_address_info_form = StudentAddressInfoForm()
-    guardian_info_form = GuardianInfoForm()
-    emergency_contact_details_form = EmergencyContactDetailsForm()
-    previous_academic_info_form = PreviousAcademicInfoForm()
-    previoud_academic_certificate_form = PreviousAcademicCertificateForm()
+    academic_info_form = AcademicInfoForm(request.POST or None)
+    personal_info_form = PersonalInfoForm(request.POST or None, request.FILES)
+    student_address_info_form = StudentAddressInfoForm(request.POST or None)
+    guardian_info_form = GuardianInfoForm(request.POST or None)
+    emergency_contact_details_form = EmergencyContactDetailsForm(request.POST or None)
+    previous_academic_info_form = PreviousAcademicInfoForm(request.POST or None)
+    previoud_academic_certificate_form = PreviousAcademicCertificateForm(request.POST or None)
 
     if request.method == 'POST':
         academic_info_form = AcademicInfoForm(request.POST)
@@ -61,7 +61,7 @@ def student_registration(request, class_id):
             previous_academic_certificate_info = previous_academic_certificate_form.save(commit=False)
             previous_academic_certificate_info.previous_academic_certificate = academic_info
             previous_academic_certificate_info.save()
-            return redirect('student-list')
+            return redirect('student-list', class_id=class_id)
 
     context = {
         'academic_info_form': academic_info_form,

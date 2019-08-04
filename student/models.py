@@ -142,7 +142,7 @@ class PreviousAcademicCertificate(models.Model):
     other_certificate = models.FileField(upload_to='documents/', blank=True)
 
 class AcademicInfo(models.Model):
-    class_info = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
+    class_info = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE, null=True)
     roll = models.IntegerField()
     personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
     address_info = models.ForeignKey(StudentAddressInfo, on_delete=models.CASCADE, null=True)
