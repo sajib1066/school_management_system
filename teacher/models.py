@@ -113,7 +113,7 @@ class PersonalInfo(models.Model):
         return self.name
 
 class GuideTeacher(models.Model):
-    name = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
+    name = models.OneToOneField(PersonalInfo, on_delete=models.CASCADE, null=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
