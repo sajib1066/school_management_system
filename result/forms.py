@@ -11,4 +11,5 @@ class SubjectRegistrationForm(forms.ModelForm):
             'subject_name': forms.TextInput(attrs={'class': 'form-control'}),
             'subject_code': forms.NumberInput(attrs={'class': 'form-control'}),
             'marks': forms.NumberInput(attrs={'class': 'form-control'}),
+            'pass_mark': forms.NumberInput(attrs={'class': 'form-control'}),
         }
