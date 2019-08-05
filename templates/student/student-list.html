@@ -18,16 +18,9 @@
                   </tr>
               </thead>
               <tbody>
-                  {% for cls in register_class %}
+                  {% for std in student %}
                     <tr>
-                        <td>{{ cls.id }}</td>
-                        <td>{{ cls.class_name }}</td>
-                        <td>{{ cls.section }}</td>
-                        <td>{{ cls.session }}</td>
-                        <td>{{ cls.shift }}</td>
-                        <td>{{ cls.department }}</td>
-                        <td>{{ cls.guide_teacher }}</td>
-                        <td>{{ cls.date }}</td>
+                        <td>{{ std.id }}</td>
                     </tr>
                   {% endfor %}
               </tbody>
