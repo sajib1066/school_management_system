@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from teacher.models import ClassRegistration
 from .forms import SubjectRegistrationForm
@@ -13,5 +13,10 @@ def class_list(request):
 def add_subject(request, class_id):
     cls = ClassRegistration.objects.get(id=class_id)
     form  = SubjectRegistrationForm()
+    if request.method == 'POST':
+        form = SubjectRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
     context = {'form': form, 'cls': cls}
     return render(request, 'result/add-subject.html', context)
