@@ -33,22 +33,18 @@ def teacher_registration(request):
         job_form = forms.JobInfoForm(request.POST)
         experience_form = forms.ExperienceInfoForm(request.POST)
         if form.is_valid() and address_form.is_valid() and education_form.is_valid() and training_form.is_valid() and job_form.is_valid() and experience_form.is_valid():
-            personal_info = form.save()
-            address_info = address_form.save(commit=False)
-            address_info.address = personal_info
-            address_info.save()
-            education_info = education_form.save(commit=False)
-            education_info.education = personal_info
-            education_info.save()
-            training_info = training_form.save(commit=False)
-            training_info.training = personal_info
-            training_info.save()
-            job_info = job_form.save(commit=False)
-            job_info.job = personal_info
-            job_info.save()
-            experience_info = experience_form.save(commit=False)
-            experience_info.experience = personal_info
-            experience_info.save()
+            address_info = address_form.save()
+            education_info = education_form.save()
+            training_info = training_form.save()
+            job_info = job_form.save()
+            experience_info = experience_form.save()
+            personal_info = form.save(commit=False)
+            personal_info.address = address_info
+            personal_info.education = education_info
+            personal_info.training = training_info
+            personal_info.job = job_info
+            personal_info.experience = experience_info
+            personal_info.save()
             return redirect('teacher-list')
 
     context = {
