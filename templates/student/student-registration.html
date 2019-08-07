@@ -7,10 +7,6 @@
         <div class="card">
           <div class="card-header">Academic Information</div>
           <div class="card-body">
-            <b>Class: {{ cr.class_name }}</b>
-            <b>Shift: {{ cr.shift }}</b>
-            <b>Section: {{ cr.section }}</b>
-            <b>Session: {{ cr.session }}</b>
             {% csrf_token %}
             {{ academic_info_form.as_p }}
           </div>
@@ -54,7 +50,7 @@
           <div class="card-header">Previous Academic Certificate</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ previoud_academic_certificate_form.as_p }}
+            {{ previous_academic_certificate_form.as_p }}
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

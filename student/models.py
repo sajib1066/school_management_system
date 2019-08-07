@@ -46,9 +46,9 @@ class PersonalInfo(models.Model):
         return self.name
 
 class StudentAddressInfo(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE, null=True)
-    union = models.ForeignKey(Union, on_delete=models.CASCADE, null=True)
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE)
+    union = models.ForeignKey(Union, on_delete=models.CASCADE)
     village = models.TextField()
 
     def __str__(self):
@@ -142,7 +142,7 @@ class PreviousAcademicCertificate(models.Model):
     other_certificate = models.FileField(upload_to='documents/', blank=True)
 
 class AcademicInfo(models.Model):
-    class_info = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE, null=True)
+    class_info = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
     roll = models.IntegerField()
     personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
     address_info = models.ForeignKey(StudentAddressInfo, on_delete=models.CASCADE, null=True)
