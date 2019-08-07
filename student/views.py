@@ -24,7 +24,7 @@ def class_wise_student_registration(request):
 
 def student_registration(request):
     academic_info_form = AcademicInfoForm(request.POST or None)
-    personal_info_form = PersonalInfoForm(request.POST or None, request.FILES)
+    personal_info_form = PersonalInfoForm(request.POST or None, request.FILES or None)
     student_address_info_form = StudentAddressInfoForm(request.POST or None)
     guardian_info_form = GuardianInfoForm(request.POST or None)
     emergency_contact_details_form = EmergencyContactDetailsForm(request.POST or None)
