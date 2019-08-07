@@ -151,5 +151,8 @@ class AcademicInfo(models.Model):
     previous_academic_info = models.ForeignKey(PreviousAcademicInfo, on_delete=models.CASCADE, null=True)
     previous_academic_certificate = models.ForeignKey(PreviousAcademicCertificate, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        unique_together = ['class_info', 'roll']
+
     def __str__(self):
         return str(self.roll)
