@@ -60,8 +60,8 @@ def student_registration(request):
     }
     return render(request, 'student/student-registration.html', context)
 
-def student_list(request, class_id):
-    cls = ClassRegistration.objects.get(id=class_id)
+def student_list(request):
+    #cls = ClassRegistration.objects.get(id=class_id)
     student = AcademicInfo.objects.all()
     context = {'student': student}
     return render(request, 'student/student-list.html', context)
