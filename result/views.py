@@ -10,20 +10,23 @@ def add_subject(request):
         form = SubjectRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('subject-list')
     context = {'form': form}
     return render(request, 'result/add-subject.html', context)
 
 def subject_list(request):
-    form = ClassSelectForm()
-    cls = ClassRegistration.objects.all()
-    cl = request.POST.get('selectClass')
-
-    if request.method == 'GET':
-        form = ClassSelectForm()
-    else:
-        clsa = ClassRegistration.objects.get(cl=cl)
-        sub = SubjectRegistration.objects.filter(select_class=clsa)
+    form = ClassSelectForm(request.GET or None)
+    select_class = request.GET.get('select_class', None)
+    if select_class:
+        cls = ClassRegistration.objects.get(id=select_class)
+        subjects = SubjectRegistration.objects.filter(select_class=cls)
+        context = {'form': form, 'subjects': subjects}
+        return render(request, 'result/subject-list.html', context)
 
     context = {'form': form}
     return render(request, 'result/subject-list.html', context)
+
+def mark_entry(request):
+    form = ClassSelectForm()
+    context = {'form': form}
+    return render(request, 'result/mark-entry.html', context)

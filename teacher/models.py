@@ -143,4 +143,5 @@ class ClassRegistration(models.Model):
         unique_together = ['class_name', 'section', 'shift', 'guide_teacher']
 
     def __str__(self):
-        return '%s %s' % (self.class_name, self.section)
+        # return '%s %s' % (self.class_name, self.section)
+        return str(self.class_name)

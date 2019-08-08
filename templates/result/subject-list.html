@@ -3,14 +3,15 @@
   <div class="card">
     <div class="card-header"><i class="fa fa-align-justify"></i>Select Class</div>
     <div class="card-body">
-      <form name="selectClass" action="" method="post">
+      <form class="" action="" method="get">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Go To Subject List</button>
+        <!-- <button type="submit" class="btn btn-primary">Go To Subject List</button> -->
+        <input class="btn btn-success" type="submit" value="Submit" />
       </form>
     </div>
   </div>
-  </div>
+  {% if subjects %}
   <div class="card">
       <div class="card-header">
           <i class="fa fa-align-justify"></i>Class List</div>
@@ -27,7 +28,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <!-- {% for sub in sub %}
+                  {% for sub in subjects %}
                     <tr>
                         <td>{{ sub.id }}</td>
                         <td>{{ sub.subject_name }}</td>
@@ -35,7 +36,7 @@
                         <td>{{ sub.marks }}</td>
                         <td>{{ sub.pass_mark }}</td>
                         <td>
-                          <a class="btn btn-success" title="Add Subject" href="{% url 'add-subject' cls.id %}">
+                          <a class="btn btn-success" title="Add Subject" href="">
                               <i class="fa fa-search-plus"></i>
                           </a>
                           <a class="btn btn-info" title="View Subject List" href="">
@@ -43,9 +44,10 @@
                           </a>
                         </td>
                     </tr>
-                  {% endfor %} -->
+                  {% endfor %}
               </tbody>
           </table>
       </div>
   </div>
+  {% endif %}
 {% endblock %}
