@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from teacher.models import ClassRegistration
 from .forms import SubjectRegistrationForm, ClassSelectForm
 from .models import SubjectRegistration
+from student.models import AcademicInfo
 
 def add_subject(request):
     form  = SubjectRegistrationForm()
@@ -27,6 +28,12 @@ def subject_list(request):
     return render(request, 'result/subject-list.html', context)
 
 def mark_entry(request):
-    form = ClassSelectForm()
+    form = ClassSelectForm(request.GET or None)
+    select_class = request.GET.get('select_class', None)
+    if select_class:
+        cls = ClassRegistration.objects.get(id=select_class)
+        student = AcademicInfo.objects.filter(class_info=cls)
+        context = {'form': form, 'student': student}
+        return render(request, 'result/mark-entry.html', context)
     context = {'form': form}
     return render(request, 'result/mark-entry.html', context)
