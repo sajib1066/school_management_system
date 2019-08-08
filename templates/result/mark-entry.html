@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header"><i class="fa fa-align-justify"></i>Select Class</div>
+    <div class="card-body">
+      <form name="selectClass" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Go To Subject List</button>
+      </form>
+    </div>
+  </div>
+  </div>
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Subject Name</th>
+                      <th>Subject Code</th>
+                      <th>Marks</th>
+                      <th>Pass Marks</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- {% for sub in sub %}
+                    <tr>
+                        <td>{{ sub.id }}</td>
+                        <td>{{ sub.subject_name }}</td>
+                        <td>{{ sub.subject_code }}</td>
+                        <td>{{ sub.marks }}</td>
+                        <td>{{ sub.pass_mark }}</td>
+                        <td>
+                          <a class="btn btn-success" title="Add Subject" href="{% url 'add-subject' cls.id %}">
+                              <i class="fa fa-search-plus"></i>
+                          </a>
+                          <a class="btn btn-info" title="View Subject List" href="">
+                              <i class="fa fa-eye"></i>
+                          </a>
+                        </td>
+                    </tr>
+                  {% endfor %} -->
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}
