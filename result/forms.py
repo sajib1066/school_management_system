@@ -1,5 +1,4 @@
 from django import forms
-
 from .models import SubjectRegistration, ClassRegistration
 
 class SubjectRegistrationForm(forms.ModelForm):
@@ -15,5 +14,9 @@ class SubjectRegistrationForm(forms.ModelForm):
             'pass_mark': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
-class ClassSelectForm(forms.Form):
+class ClassSelectSubjectListForm(forms.Form):
+    select_class = forms.ModelChoiceField(queryset=ClassRegistration.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+
+
+class ClassSelectMarkEntryForm(forms.Form):
     select_class = forms.ModelChoiceField(queryset=ClassRegistration.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))

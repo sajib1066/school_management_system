@@ -1,0 +1,164 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="col-md-9">
+
+    <h2>Live demo</h2>
+
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+        <div class="dataTables_length" id="DataTables_Table_0_length">
+            <label>Show
+                <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select> entries</label>
+        </div>
+        <div id="DataTables_Table_0_filter" class="dataTables_filter">
+            <label>Search:
+                <input type="search" class="" aria-controls="DataTables_Table_0"> <a href="#" class="clear-search">Clear</a></label>
+        </div>
+        <table class="display datatable dataTable no-footer" data-source-url="/x-editable-columns/" data-result-counter-id="id_count" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width: 847px;">
+            <thead>
+                <tr role="row">
+                    <th data-name="id" data-sortable="true" data-visible="true" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 72px;" aria-label="ID: activate to sort column ascending">ID</th>
+                    <th data-name="headline" data-sortable="true" data-visible="true" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 190px;" aria-label="Headline: activate to sort column ascending">Headline</th>
+                    <th data-name="blog" data-sortable="true" data-visible="true" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 181px;" aria-label="Blog: activate to sort column ascending">Blog</th>
+                    <th data-name="published-date" data-sortable="true" data-visible="true" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 260px;" aria-label="Published date: activate to sort column ascending">Published date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="1" role="row" class="odd">
+                    <td>1</td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="Hello World 1" data-placeholder="" data-name="headline" data-url="/x-editable-columns/" data-pk="1" data-type="text" class="editable editable-click">Hello World 1</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="First Blog" data-placeholder="" data-name="blog" data-url="/x-editable-columns/" data-pk="1" data-type="text" class="editable editable-click">First Blog</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="2013-01-01" data-placeholder="" data-name="pub_date" data-url="/x-editable-columns/" data-pk="1" data-type="date" class="editable editable-click">2013-01-01</a></td>
+                </tr>
+                <tr id="2" role="row" class="even">
+                    <td>2</td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="test" data-placeholder="" data-name="headline" data-url="/x-editable-columns/" data-pk="2" data-type="text" class="editable editable-click">test</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="First Blog" data-placeholder="" data-name="blog" data-url="/x-editable-columns/" data-pk="2" data-type="text" class="editable editable-click">First Blog</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="2013-02-01" data-placeholder="" data-name="pub_date" data-url="/x-editable-columns/" data-pk="2" data-type="date" class="editable editable-click">2013-02-01</a></td>
+                </tr>
+                <tr id="3" role="row" class="odd">
+                    <td>3</td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="tes" data-placeholder="" data-name="headline" data-url="/x-editable-columns/" data-pk="3" data-type="text" class="editable editable-click">tes</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="First Blog" data-placeholder="" data-name="blog" data-url="/x-editable-columns/" data-pk="3" data-type="text" class="editable editable-click">First Blog</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="2013-01-01" data-placeholder="" data-name="pub_date" data-url="/x-editable-columns/" data-pk="3" data-type="date" class="editable editable-click">2013-01-01</a></td>
+                </tr>
+                <tr id="4" role="row" class="even">
+                    <td>4</td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="" data-placeholder="" data-name="headline" data-url="/x-editable-columns/" data-pk="4" data-type="text" class="editable editable-click editable-empty">Empty</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="First Blog" data-placeholder="" data-name="blog" data-url="/x-editable-columns/" data-pk="4" data-type="text" class="editable editable-click">First Blog</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="2013-01-01" data-placeholder="" data-name="pub_date" data-url="/x-editable-columns/" data-pk="4" data-type="date" class="editable editable-click">2013-01-01</a></td>
+                </tr>
+                <tr id="5" role="row" class="odd">
+                    <td>5</td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="" data-placeholder="" data-name="headline" data-url="/x-editable-columns/" data-pk="5" data-type="text" class="editable editable-click editable-empty">Empty</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="First Blog" data-placeholder="" data-name="blog" data-url="/x-editable-columns/" data-pk="5" data-type="text" class="editable editable-click">First Blog</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="2013-01-01" data-placeholder="" data-name="pub_date" data-url="/x-editable-columns/" data-pk="5" data-type="date" class="editable editable-click">2013-01-01</a></td>
+                </tr>
+                <tr id="6" role="row" class="even">
+                    <td>6</td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="" data-placeholder="" data-name="headline" data-url="/x-editable-columns/" data-pk="6" data-type="text" class="editable editable-click editable-empty">Empty</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="Second Blog" data-placeholder="" data-name="blog" data-url="/x-editable-columns/" data-pk="6" data-type="text" class="editable editable-click">Second Blog</a></td>
+                    <td><a href="#" data-xeditable="xeditable" data-value="2013-01-01" data-placeholder="" data-name="pub_date" data-url="/x-editable-columns/" data-pk="6" data-type="date" class="editable editable-click">2013-01-01</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 6 of 6 entries</div>
+        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous">Previous</a><span><a class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">Next</a></div>
+    </div>
+
+    <br>
+    <br>
+    <h2>Description</h2>
+
+    <p></p>
+
+    <p>The <a href="http://vitalets.github.io/x-editable/">x-editable</a> javascript tool is a way to turn table cells into interactive forms that can post incremental updates over ajax. x-editable supports Bootstrap, jQueryUI, and plain jQuery. It requires its own specific initialization to take place after the datatable has populated itself with data.</p>
+
+    <p>To enable x-editable columns, inherit your view from <code>XEditableDatatableView</code> instead of the plain <code>DatatableView</code>. The x-editable variant has ajax responders built into it so that the incremental updates can be received, validated, and responded to. Choices lists are also fetched over ajax by the x-editable Javascript library, so this specialized view also responds to those.</p>
+
+    <p>Next, use the <code>datatableview.helpers.make_xeditable</code> function as a callback for the columns that should become interactive. You can customize the helper's behavior, but by default, <code>make_xeditable</code> will try to pick reasonable defaults for the field type. This callback returns a <code>&lt;a&gt;</code> tag with <code>data-*</code> API attributes on it that the x-editable javascript knows how to read.</p>
+
+    <p>Finally, on your template you will need to include a special initialization to make sure that the frontend understands how to handle what you've set up. The global Javascript object <code>datatableview</code> has a member called <code>make_xeditable</code> (named after the helper function you use in the column definitions), which is a factory that returns a callback for the dataTables.js <code>fnRowCallback</code> hook. See the implementation snippets below.</p>
+
+    <br>
+    <br>
+    <h2>Implementation in code</h2>
+
+    <div>
+        <div id="highlighter_802825" class="syntaxhighlighter  python">
+            <div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="gutter">
+                            <div class="line number1 index0 alt2">1</div>
+                            <div class="line number2 index1 alt1">2</div>
+                            <div class="line number3 index2 alt2">3</div>
+                            <div class="line number4 index3 alt1">4</div>
+                            <div class="line number5 index4 alt2">5</div>
+                            <div class="line number6 index5 alt1">6</div>
+                            <div class="line number7 index6 alt2">7</div>
+                            <div class="line number8 index7 alt1">8</div>
+                            <div class="line number9 index8 alt2">9</div>
+                            <div class="line number10 index9 alt1">10</div>
+                        </td>
+                        <td class="code">
+                            <div class="container">
+                                <div class="line number1 index0 alt2"><code class="python keyword">class</code> <code class="python plain">XEditableColumnsDatatableView(XEditableDatatableView):</code></div>
+                                <div class="line number2 index1 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">model </code><code class="python keyword">=</code> <code class="python plain">Entry</code></div>
+                                <div class="line number3 index2 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">datatable_options </code><code class="python keyword">=</code> <code class="python plain">{</code></div>
+                                <div class="line number4 index3 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python string">'columns'</code><code class="python plain">: [</code></div>
+                                <div class="line number5 index4 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python string">'id'</code><code class="python plain">,</code></div>
+                                <div class="line number6 index5 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">(</code><code class="python string">"Headline"</code><code class="python plain">, </code><code class="python string">'headline'</code><code class="python plain">, helpers.make_xeditable),</code></div>
+                                <div class="line number7 index6 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">(</code><code class="python string">"Blog"</code><code class="python plain">, </code><code class="python string">'blog'</code><code class="python plain">, helpers.make_xeditable),</code></div>
+                                <div class="line number8 index7 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">(</code><code class="python string">"Published date"</code><code class="python plain">, </code><code class="python string">'pub_date'</code><code class="python plain">, helpers.make_xeditable),</code></div>
+                                <div class="line number9 index8 alt2"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">]</code></div>
+                                <div class="line number10 index9 alt1"><code class="python spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="python plain">}</code></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div id="highlighter_884885" class="syntaxhighlighter  javascript">
+            <div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="gutter">
+                            <div class="line number1 index0 alt2">1</div>
+                            <div class="line number2 index1 alt1">2</div>
+                            <div class="line number3 index2 alt2">3</div>
+                            <div class="line number4 index3 alt1">4</div>
+                            <div class="line number5 index4 alt2">5</div>
+                            <div class="line number6 index5 alt1">6</div>
+                            <div class="line number7 index6 alt2">7</div>
+                            <div class="line number8 index7 alt1">8</div>
+                            <div class="line number9 index8 alt2">9</div>
+                        </td>
+                        <td class="code">
+                            <div class="container">
+                                <div class="line number1 index0 alt2"><code class="javascript comments">// Page javascript</code></div>
+                                <div class="line number2 index1 alt1"><code class="javascript plain">datatableview.auto_initialize = </code><code class="javascript keyword">false</code><code class="javascript plain">;</code></div>
+                                <div class="line number3 index2 alt2"><code class="javascript plain">$(</code><code class="javascript keyword">function</code><code class="javascript plain">(){</code></div>
+                                <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">var</code> <code class="javascript plain">xeditable_options = {};</code></div>
+                                <div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">datatableview.initialize($(</code><code class="javascript string">'.datatable'</code><code class="javascript plain">), {</code></div>
+                                <div class="line number6 index5 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">fnRowCallback: datatableview.make_xeditable(xeditable_options),</code></div>
+                                <div class="line number7 index6 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">});</code></div>
+                                <div class="line number8 index7 alt1"><code class="javascript plain">})</code></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

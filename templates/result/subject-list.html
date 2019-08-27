@@ -36,7 +36,7 @@
                         <td>{{ sub.marks }}</td>
                         <td>{{ sub.pass_mark }}</td>
                         <td>
-                          <a class="btn btn-success" title="Add Subject" href="">
+                          <a class="btn btn-success" title="Add Subject" href="{% url 'mark-table' sub.subject_name %}">
                               <i class="fa fa-search-plus"></i>
                           </a>
                           <a class="btn btn-info" title="View Subject List" href="">
