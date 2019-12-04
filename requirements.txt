@@ -1,4 +1,4 @@
-Django==2.2.4
+Django==2.2.8
 Pillow==6.2.0
 pytz==2019.1
 sqlparse==0.3.0
