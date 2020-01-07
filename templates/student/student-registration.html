@@ -1,93 +1,91 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
   <div class="card">
     <div class="card-header">Student Register Form</div>
     <div class="card-body">
       <form class="" action="" method="post" enctype="multipart/form-data" id="StudentRegistrationForm" data-upazilla-url={% url 'load-upazilla' %}>
-        <div class="card">
-          <div class="card-header">Academic Information</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ academic_info_form.as_p }}
+        <div class="academic_info">
+          <div class="card">
+            <div class="card-header">Academic Information</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ academic_info_form.as_p }}
+            </div>
           </div>
+          <button id="academic_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
-        <div class="card">
-          <div class="card-header">Personal Information</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ personal_info_form.as_p }}
+
+        <div class="personal_info">
+          <div class="card">
+            <div class="card-header">Personal Information</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ personal_info_form.as_p }}
+            </div>
           </div>
+          <button id="personal_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
-        <div class="card">
-          <div class="card-header">Address Information</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ student_address_info_form.as_p }}
+
+        <div class="address_info">
+          <div class="card">
+            <div class="card-header">Address Information</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ student_address_info_form.as_p }}
+            </div>
           </div>
+          <button id="address_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
-        <div class="card">
-          <div class="card-header">Guardian Information</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ guardian_info_form.as_p }}
+
+        <div class="guardian_info">
+          <div class="card">
+            <div class="card-header">Guardian Information</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ guardian_info_form.as_p }}
+            </div>
           </div>
+          <button id="guardian_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
-        <div class="card">
-          <div class="card-header">In Case Of Emergency Contact Details</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ emergency_contact_details_form.as_p }}
+
+        <div class="emergency_contact_info">
+          <div class="card">
+            <div class="card-header">In Case Of Emergency Contact Details</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ emergency_contact_details_form.as_p }}
+            </div>
           </div>
+          <button id="emergency_contact_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
-        <div class="card">
-          <div class="card-header">Previous Academic Information</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ previous_academic_info_form.as_p }}
+
+        <div class="previous_academic_info">
+          <div class="card">
+            <div class="card-header">Previous Academic Information</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ previous_academic_info_form.as_p }}
+            </div>
           </div>
+          <button id="previous_academic_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
-        <div class="card">
-          <div class="card-header">Previous Academic Certificate</div>
-          <div class="card-body">
-            {% csrf_token %}
-            {{ previous_academic_certificate_form.as_p }}
+
+        <div class="previous_academic_certificate">
+          <div class="card">
+            <div class="card-header">Previous Academic Certificate</div>
+            <div class="card-body">
+              {% csrf_token %}
+              {{ previous_academic_certificate_form.as_p }}
+            </div>
           </div>
+          <!-- <button id="" type="button" class="btn btn-primary pull-right">Next</button> -->
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
       </form>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script>
-        $("#id_district").change(function () {
-          var url = $("#StudentRegistrationForm").attr("data-upazilla-url");
-          var districtId = $(this).val();
-
-          $.ajax({
-            url: url,
-            data: {
-              'district': districtId
-            },
-            success: function (data) {
-              $("#id_upazilla").html(data);
-            }
-          });
-
-        });
-        $("#id_upazilla").change(function () {
-          var url = $("#StudentRegistrationForm").attr("data-upazilla-url");
-          var upazillaId = $(this).val();
-
-          $.ajax({
-            url: url,
-            data: {
-              'upazilla': upazillaId
-            },
-            success: function (data) {
-              $("#id_union").html(data);
-            }
-          });
-
-        });
-      </script>
+      <script src="{% static 'src/js/registration.js' %}"></script>
+      <script src="{% static 'src/js/address.js' %}"></script>
     </div>
   </div>
 {% endblock %}

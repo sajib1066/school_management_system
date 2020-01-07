@@ -1,0 +1,24 @@
+.personal_info {
+  display: none;
+}
+.address_info {
+  display: none;
+}
+.guardian_info {
+  display: none;
+}
+.emergency_contact_info {
+  display: none;
+}
+.previous_academic_info {
+  display: none;
+}
+.previous_academic_certificate {
+  display: none;
+}
+.address_info {
+  display: none;
+}
+#submit {
+  display: none;
+}
