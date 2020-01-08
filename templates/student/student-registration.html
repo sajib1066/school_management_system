@@ -24,6 +24,7 @@
               {{ personal_info_form.as_p }}
             </div>
           </div>
+          <button id="personal_info_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>
           <button id="personal_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
 
@@ -35,6 +36,7 @@
               {{ student_address_info_form.as_p }}
             </div>
           </div>
+          <button id="address_info_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>
           <button id="address_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
 
@@ -46,6 +48,7 @@
               {{ guardian_info_form.as_p }}
             </div>
           </div>
+          <button id="guardian_info_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>
           <button id="guardian_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
 
@@ -57,6 +60,7 @@
               {{ emergency_contact_details_form.as_p }}
             </div>
           </div>
+          <button id="emergency_contact_info_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>
           <button id="emergency_contact_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
 
@@ -68,6 +72,7 @@
               {{ previous_academic_info_form.as_p }}
             </div>
           </div>
+          <button id="previous_academic_info_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>
           <button id="previous_academic_info_btn" type="button" class="btn btn-primary pull-right">Next</button>
         </div>
 
@@ -79,9 +84,11 @@
               {{ previous_academic_certificate_form.as_p }}
             </div>
           </div>
+          <button id="previous_academic_certificate_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>
           <!-- <button id="" type="button" class="btn btn-primary pull-right">Next</button> -->
+          <button id="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
         </div>
-        <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+
       </form>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="{% static 'src/js/registration.js' %}"></script>
