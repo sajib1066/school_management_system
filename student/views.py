@@ -65,3 +65,10 @@ def student_list(request):
     student = AcademicInfo.objects.all()
     context = {'student': student}
     return render(request, 'student/student-list.html', context)
+
+def student_profile(request, student_id):
+    student = AcademicInfo.objects.get(id=student_id)
+    context = {
+        'student': student
+    }
+    return render(request, 'student/student-profile.html', context)
