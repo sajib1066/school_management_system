@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Student Register Form</div>
+    <div class="card-body">
+      <form class="" action="" method="post" enctype="multipart/form-data" id="StudentRegistrationForm" data-upazilla-url={% url 'load-upazilla' %}>
+        <div class="card">
+          <div class="card-header">Academic Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ academic_info_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Personal Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ personal_info_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Address Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ student_address_info_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Guardian Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ guardian_info_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">In Case Of Emergency Contact Details</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ emergency_contact_details_form.as_p }}
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Previous Academic Information</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ previous_academic_info_form.as_p }}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Previous Academic Certificate</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ previous_academic_certificate_form.as_p }}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Student</button>
+      </form>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="{% static 'src/js/registration.js' %}"></script>
+      <script src="{% static 'src/js/address.js' %}"></script>
+    </div>
+  </div>
+{% endblock %}
