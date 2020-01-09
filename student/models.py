@@ -156,6 +156,7 @@ class AcademicInfo(models.Model):
     emergency_contact_info = models.ForeignKey(EmergencyContactDetails, on_delete=models.CASCADE, null=True)
     previous_academic_info = models.ForeignKey(PreviousAcademicInfo, on_delete=models.CASCADE, null=True)
     previous_academic_certificate = models.ForeignKey(PreviousAcademicCertificate, on_delete=models.CASCADE, null=True)
+    date = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False)
 
     class Meta:
