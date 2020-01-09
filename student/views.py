@@ -47,7 +47,7 @@ def student_registration(request):
             academic_info.previous_academic_info = s5
             academic_info.previous_academic_certificate = s6
             academic_info.save()
-            return redirect('home')
+            return redirect('student-list')
 
     context = {
         'academic_info_form': academic_info_form,
@@ -61,8 +61,7 @@ def student_registration(request):
     return render(request, 'student/student-registration.html', context)
 
 def student_list(request):
-    #cls = ClassRegistration.objects.get(id=class_id)
-    student = AcademicInfo.objects.filter(is_delete=False)
+    student = AcademicInfo.objects.filter(is_delete=False).order_by('-id')
     context = {'student': student}
     return render(request, 'student/student-list.html', context)
 
