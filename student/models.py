@@ -144,12 +144,19 @@ class PreviousAcademicCertificate(models.Model):
 class AcademicInfo(models.Model):
     class_info = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
     roll = models.IntegerField()
+    status_select = (
+        ('not enroll', 'Not Enroll'),
+        ('regular', 'Regular'),
+        ('irregular', 'Irregular'),
+    )
+    status = models.CharField(choices=status_select, default=1, max_length=15)
     personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
     address_info = models.ForeignKey(StudentAddressInfo, on_delete=models.CASCADE, null=True)
     guardian_info = models.ForeignKey(GuardianInfo, on_delete=models.CASCADE, null=True)
     emergency_contact_info = models.ForeignKey(EmergencyContactDetails, on_delete=models.CASCADE, null=True)
     previous_academic_info = models.ForeignKey(PreviousAcademicInfo, on_delete=models.CASCADE, null=True)
     previous_academic_certificate = models.ForeignKey(PreviousAcademicCertificate, on_delete=models.CASCADE, null=True)
+    is_delete = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ['class_info', 'roll']
