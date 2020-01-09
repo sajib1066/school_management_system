@@ -106,7 +106,7 @@ class GuardianInfo(models.Model):
         return self.guardian_name
 
 class EmergencyContactDetails(models.Model):
-    name = models.CharField(max_length=100)
+    emergency_guardian_name = models.CharField(max_length=100)
     address = models.TextField()
     relationship_choice = (
         ('Father', 'Father'),
@@ -146,8 +146,10 @@ class AcademicInfo(models.Model):
     roll = models.IntegerField()
     status_select = (
         ('not enroll', 'Not Enroll'),
+        ('enrolled', 'Enrolled'),
         ('regular', 'Regular'),
         ('irregular', 'Irregular'),
+        ('passed', 'Passed'),
     )
     status = models.CharField(choices=status_select, default='not enroll', max_length=15)
     personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
