@@ -149,7 +149,7 @@ class AcademicInfo(models.Model):
         ('regular', 'Regular'),
         ('irregular', 'Irregular'),
     )
-    status = models.CharField(choices=status_select, default=1, max_length=15)
+    status = models.CharField(choices=status_select, default='not enroll', max_length=15)
     personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
     address_info = models.ForeignKey(StudentAddressInfo, on_delete=models.CASCADE, null=True)
     guardian_info = models.ForeignKey(GuardianInfo, on_delete=models.CASCADE, null=True)
