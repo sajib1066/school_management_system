@@ -62,7 +62,7 @@ def student_registration(request):
 
 def student_list(request):
     #cls = ClassRegistration.objects.get(id=class_id)
-    student = AcademicInfo.objects.all()
+    student = AcademicInfo.objects.filter(is_delete=False)
     context = {'student': student}
     return render(request, 'student/student-list.html', context)
 
@@ -118,3 +118,9 @@ def student_edit(request, student_id):
         'previous_academic_certificate_form': previous_academic_certificate_form
     }
     return render(request, 'student/student-edit.html', context)
+
+def student_delete(request, student_id):
+    student = AcademicInfo.objects.get(id=student_id)
+    student.is_delete = True
+    student.save()
+    return redirect('student-list')
