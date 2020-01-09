@@ -5,7 +5,7 @@ from .models import *
 class AcademicInfoForm(forms.ModelForm):
     class Meta:
         model = AcademicInfo
-        exclude = ['personal_info', 'address_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate']
+        exclude = ['status', 'personal_info', 'address_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete']
         widgets = {
             'class_info': forms.Select(attrs={'class': 'form-control'}),
             'roll': forms.TextInput(attrs={'class': 'form-control'}),
@@ -87,7 +87,7 @@ class EmergencyContactDetailsForm(forms.ModelForm):
         model = EmergencyContactDetails
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'emergency_guardian_name': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={'class': 'form-control'}),
             'relationship_with_student': forms.Select(attrs={'class': 'form-control'}),
             'phone_no': forms.TextInput(attrs={'class': 'form-control'}),
