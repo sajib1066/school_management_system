@@ -43,6 +43,7 @@
                                       <th>Name</th>
                                       <th>Roll</th>
                                       <th>Class</th>
+                                      <th>Status</th>
                                       <th>Actions</th>
                                   </tr>
                               </thead>
@@ -53,6 +54,7 @@
                                         <td>{{ student.personal_info.name }}</td>
                                         <td>{{ student.roll }}</td>
                                         <td>{{ student.class_info }}</td>
+                                        <td>{{ student.status }}</td>
                                         <td>
                                             <a class="btn btn-success" href="{% url 'student-profile' student.id %}">
                                                 <i class="fa fa-search-plus"></i>
