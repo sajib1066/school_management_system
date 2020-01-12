@@ -59,6 +59,12 @@ def teacher_registration(request):
 
 
 def teacher_list(request):
-    teacher = PersonalInfo.objects.all()
+    teacher = PersonalInfo.objects.filter(is_delete=False)
     context = {'teacher': teacher}
     return render(request, 'teacher/teacher-list.html', context)
+
+def teacher_delete(request, teacher_id):
+    teacher = PersonalInfo.objects.get(id=teacher_id)
+    teacher.is_delete = True
+    teacher.save()
+    return redirect('teacher-list')
