@@ -118,7 +118,8 @@ class PersonalInfo(models.Model):
     training = models.ForeignKey(TrainingInfo, on_delete=models.CASCADE, null=True)
     job = models.ForeignKey(JobInfo, on_delete=models.CASCADE, null=True)
     experience = models.ForeignKey(ExperienceInfo, on_delete=models.CASCADE, null=True)
-
+    is_delete = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
