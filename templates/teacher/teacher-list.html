@@ -56,7 +56,7 @@
                                             <span class="badge badge-warning">{{ teacher.nationality }}</span>
                                         </td>
                                         <td>
-                                            <a class="btn btn-success" href="#">
+                                            <a class="btn btn-success" href="{% url 'teacher-profile' teacher.id %}">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
                                             <a class="btn btn-info" href="#">

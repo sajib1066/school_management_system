@@ -63,6 +63,13 @@ def teacher_list(request):
     context = {'teacher': teacher}
     return render(request, 'teacher/teacher-list.html', context)
 
+def teacher_profile(request, teacher_id):
+    teacher = PersonalInfo.objects.get(id=teacher_id)
+    context = {
+        'teacher': teacher
+    }
+    return render(request, 'teacher/teacher-profile.html', context)
+
 def teacher_delete(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     teacher.is_delete = True
