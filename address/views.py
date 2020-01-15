@@ -30,7 +30,7 @@ def add_district(request):
             return redirect('district')
     district = District.objects.all()
     context = {'forms': forms, 'district': district}
-    return render(request, 'administration/district.html', context)
+    return render(request, 'address/district.html', context)
 
 def add_upazilla(request):
     forms = UpazillaForm()
@@ -41,7 +41,7 @@ def add_upazilla(request):
             return redirect('upazilla')
     upazilla = Upazilla.objects.all()
     context = {'forms': forms, 'upazilla': upazilla}
-    return render(request, 'administration/upazilla.html', context)
+    return render(request, 'address/upazilla.html', context)
 
 def add_union(request):
     forms = UnionForm()
@@ -52,5 +52,5 @@ def add_union(request):
             return redirect('union')
     union = Union.objects.all()
     context = {'forms': forms, 'union': union}
-    return render(request, 'administration/union.html', context)
+    return render(request, 'address/union.html', context)
 
