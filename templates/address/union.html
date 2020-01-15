@@ -1,13 +1,18 @@
 {% extends 'base/base.html' %}
+{% load static %}
+
 {% block content %}
   <div class="card">
     <div class="card-header">Union Register Form</div>
     <div class="card-body">
-      <form class="" action="" method="post">
+      <form class="" action="" method="post" id="StudentRegistrationForm" data-upazilla-url={% url 'load-upazilla' %}>
         {% csrf_token %}
         {{ forms.as_p }}
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="{% static 'src/js/registration.js' %}"></script>
+      <script src="{% static 'src/js/address.js' %}"></script>
     </div>
   </div>
 
