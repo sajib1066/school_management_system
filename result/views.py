@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from teacher.models import ClassRegistration
+from academic.models import ClassRegistration
 from .forms import SubjectRegistrationForm, ClassSelectMarkEntryForm, ClassSelectSubjectListForm
 from .models import SubjectRegistration
 from student.models import AcademicInfo

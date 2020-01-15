@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-
 from .forms import *
 from .models import *
-from teacher.models import ClassRegistration
-# Create your views here.
+from academic.models import ClassRegistration
+
+
+
 def add_department(request):
     forms = DepartmentForm()
     if request.method == 'POST':

@@ -1,6 +1,6 @@
 from django.db import models
 
-from teacher.models import ClassRegistration
+from academic.models import ClassRegistration
 
 # Create your models here.
 

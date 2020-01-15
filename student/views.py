@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from teacher.models import ClassRegistration
-# Create your views here.
+from academic.models import ClassRegistration
 from .forms import *
 from .models import *
 

@@ -1,7 +1,8 @@
 from django import forms
-
 from . import models
-from teacher.models import ClassRegistration, GuideTeacher
+from teacher.models import GuideTeacher
+from academic.models import ClassRegistration
+
 
 class DepartmentForm(forms.ModelForm):
     class Meta:

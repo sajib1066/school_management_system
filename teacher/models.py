@@ -1,5 +1,5 @@
 from django.db import models
-from academic.models import Department, ClassInfo, Section, Session, Shift
+from academic.models import Department
 from administration.models import Designation
 from address.models import District, Upazilla, Union
 
@@ -131,19 +131,3 @@ class GuideTeacher(models.Model):
 
     def __str__(self):
         return str(self.name)
-
-class ClassRegistration(models.Model):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
-    class_name = models.ForeignKey(ClassInfo, on_delete=models.CASCADE, null=True)
-    section = models.ForeignKey(Section, on_delete=models.CASCADE, null=True)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
-    shift = models.ForeignKey(Shift, on_delete=models.CASCADE, null=True)
-    guide_teacher = models.ForeignKey(GuideTeacher, on_delete=models.CASCADE, null=True)
-    date = models.DateField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ['class_name', 'section', 'shift', 'guide_teacher']
-
-    def __str__(self):
-        # return '%s %s' % (self.class_name, self.section)
-        return str(self.class_name)
