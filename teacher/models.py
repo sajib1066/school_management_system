@@ -1,8 +1,9 @@
 from django.db import models
-
 from academic.models import Department, ClassInfo, Section, Session, Shift
-from administration.models import Designation, District, Upazilla, Union
-# Create your models here.
+from administration.models import Designation
+from address.models import District, Upazilla, Union
+
+
 class AddressInfo(models.Model):
     district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
     upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE, null=True)

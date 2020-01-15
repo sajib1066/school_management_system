@@ -1,8 +1,7 @@
 from django.db import models
 
 from teacher.models import ClassRegistration
-from administration.models import District, Upazilla, Union
-# Create your models here.
+from address.models import District, Upazilla, Union
 
 class PersonalInfo(models.Model):
     name = models.CharField(max_length=100)
