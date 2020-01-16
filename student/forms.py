@@ -8,7 +8,7 @@ class AcademicInfoForm(forms.ModelForm):
         exclude = ['status', 'personal_info', 'address_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete']
         widgets = {
             'class_info': forms.Select(attrs={'class': 'form-control'}),
-            'roll': forms.TextInput(attrs={'class': 'form-control'}),
+            'registration_no': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class PersonalInfoForm(forms.ModelForm):

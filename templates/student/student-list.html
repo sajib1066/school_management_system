@@ -41,9 +41,10 @@
                                   <tr role="row">
                                       <th>Id</th>
                                       <th>Name</th>
-                                      <th>Roll</th>
+                                      <th>Reg No</th>
                                       <th>Class</th>
                                       <th>Status</th>
+                                      <th>Date</th>
                                       <th>Actions</th>
                                   </tr>
                               </thead>
@@ -52,9 +53,10 @@
                                     <tr role="row" class="odd">
                                         <td>{{ forloop.counter }}</td>
                                         <td>{{ student.personal_info.name }}</td>
-                                        <td>{{ student.roll }}</td>
+                                        <td>{{ student.registration_no }}</td>
                                         <td>{{ student.class_info }}</td>
                                         <td>{{ student.status }}</td>
+                                        <td>{{ student.date }}</td>
                                         <td>
                                             <a class="btn btn-success" href="{% url 'student-profile' student.id %}">
                                                 <i class="fa fa-search-plus"></i>

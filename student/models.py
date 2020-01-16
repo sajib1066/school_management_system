@@ -119,7 +119,7 @@ class EmergencyContactDetails(models.Model):
     email = models.EmailField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.emergency_guardian_name
 
 class PreviousAcademicInfo(models.Model):
     institute_name = models.CharField(max_length=100)
@@ -157,8 +157,8 @@ class AcademicInfo(models.Model):
     emergency_contact_info = models.ForeignKey(EmergencyContactDetails, on_delete=models.CASCADE, null=True)
     previous_academic_info = models.ForeignKey(PreviousAcademicInfo, on_delete=models.CASCADE, null=True)
     previous_academic_certificate = models.ForeignKey(PreviousAcademicCertificate, on_delete=models.CASCADE, null=True)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
     is_delete = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.roll)
+        return str(self.registration_no)
