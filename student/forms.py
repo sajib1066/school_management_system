@@ -111,3 +111,6 @@ class PreviousAcademicCertificateForm(forms.ModelForm):
     class Meta:
         model = PreviousAcademicCertificate
         fields = '__all__'
+
+class StudentSearchForm(forms.Form):
+    registration_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control form-control-sm", 'placeholder': 'Registration No', 'aria-controls': 'DataTables_Table_0'}))

@@ -1,0 +1,156 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="card">
+            <div class="card-header">
+                <h2>Search Student</h2>
+            </div>
+            <div class="card-body">
+                <form action="" method="GET">
+                    {% csrf_token %}
+                    <label>Search:
+                        <!-- <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0"> -->
+                        {{ search.registration_no }}
+                    </label>
+                </form>
+                {{ student.registration_no }}
+            </div>
+        </div>
+    </div>
+
+    {% if student %}
+        <div class="card">
+            <div class="card-header">
+            <div class="row">
+                <img style="height:100px; width:100px; border-radius:50%; margin:auto" src="{{ student.personal_info.photo.url }}" alt="Photo">
+            </div>
+            </div>
+            <div class="card-body">
+            <div class="address_information">
+                <div class="row">
+                <h2 class="mx-auto">Academic Information</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>Class  : {{ student.class_info }}</pre>
+                    <pre>Registration No: {{ student.registration_no }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            <div class="personal_information">
+                <div class="row">
+                <h2 class="mx-auto">Personal Information</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>Name                : {{ student.personal_info.name }}</pre>
+                    <pre>Blood Group         : {{ student.personal_info.blood_group }}</pre>
+                    <pre>Date of Birth       : {{ student.personal_info.date_of_birth }}</pre>
+                    <pre>Gender              : {{ student.personal_info.gender }}</pre>
+                    <pre>Phone No            : {{ student.personal_info.phone_no }}</pre>
+                    <pre>Email               : {{ student.personal_info.email }}</pre>
+                    <pre>Birth Certificate No: {{ student.personal_info.birth_certificate_no }}</pre>
+                    <pre>Religion            : {{ student.personal_info.religion }}</pre>
+                    <pre>Nationality         : {{ student.personal_info.nationality }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            <div class="address_information">
+                <div class="row">
+                <h2 class="mx-auto">Address Information</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>District: {{ student.address_info.district }}</pre>
+                    <pre>Upazilla: {{ student.address_info.upazilla }}</pre>
+                    <pre>Union   : {{ student.address_info.union }}</pre>
+                    <pre>Village : {{ student.address_info.village }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            <div class="address_information">
+                <div class="row">
+                <h2 class="mx-auto">Guardian Information</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>Father`s Name            : {{ student.guardian_info.father_name }}</pre>
+                    <pre>Father`s Phone No        : {{ student.guardian_info.father_phone_no }}</pre>
+                    <pre>Father`s Occupation      : {{ student.guardian_info.father_occupation }}</pre>
+                    <pre>Father`s Yearly Income   : {{ student.guardian_info.father_yearly_income }}</pre>
+                    <pre>Mother`s Name            : {{ student.guardian_info.mother_name }}</pre>
+                    <pre>Mother`s Phone No        : {{ student.guardian_info.mother_phone_no }}</pre>
+                    <pre>Mother`s Occupation      : {{ student.guardian_info.mother_occupation }}</pre>
+                    <pre>Guardian Name            : {{ student.guardian_info.guardian_name }}</pre>
+                    <pre>Guardian Phone No        : {{ student.guardian_info.guardian_phone_no }}</pre>
+                    <pre>Guardian Email           : {{ student.guardian_info.guardian_email }}</pre>
+                    <pre>Relationship with Student: {{ student.guardian_info.relationship_with_student }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            <div class="emergency_contact_information">
+                <div class="row">
+                <h2 class="mx-auto">Emergency Contact Information</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>Name                     : {{ student.emergency_contact_info.name }}</pre>
+                    <pre>Address                  : {{ student.emergency_contact_info.address }}</pre>
+                    <pre>Relationship with Student: {{ student.emergency_contact_info.relationship_with_student }}</pre>
+                    <pre>Phone No                 : {{ student.emergency_contact_info.phone_no }}</pre>
+                    <pre>Email                    : {{ student.emergency_contact_info.email }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            <div class="emergency_contact_information">
+                <div class="row">
+                <h2 class="mx-auto">Previous Academic Information</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>Institute Name: {{ student.previous_academic_info.institute_name }}</pre>
+                    <pre>Name of Exam  : {{ student.previous_academic_info.name_of_exam }}</pre>
+                    <pre>Group         : {{ student.previous_academic_info.group }}</pre>
+                    <pre>Grade/Gpa     : {{ student.previous_academic_info.gpa }}</pre>
+                    <pre>Board Roll    : {{ student.previous_academic_info.board_roll }}</pre>
+                    <pre>Passing Year  : {{ student.previous_academic_info.passing_year }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            <div class="previous_academic_information">
+                <div class="row">
+                <h2 class="mx-auto">Necessary Documents</h2>
+                </div>
+                <hr>
+                <div class="row">
+                <div style="font-size:24px; margin-left: 30px">
+                    <pre>Birth Certificate : {{ student.previous_academic_certificate.birth_certificate }}</pre>
+                    <pre>Release Letter    : {{ student.previous_academic_certificate.release_letter }}</pre>
+                    <pre>Testimonial       : {{ student.previous_academic_certificate.testimonial }}</pre>
+                    <pre>Marksheet         : {{ student.previous_academic_certificate.marksheet }}</pre>
+                    <pre>Stipen Certificate: {{ student.previous_academic_certificate.stipen_certificate }}</pre>
+                    <pre>Other Certificate : {{ student.previous_academic_certificate.other_certificate }}</pre>
+                </div>
+                </div>
+            </div>
+        
+            </div>
+        </div>
+    {% else %}
+        <h2>No Student Found. Please try again!</h2>
+    {% endif %}
+{% endblock %}

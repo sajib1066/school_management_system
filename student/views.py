@@ -122,3 +122,20 @@ def student_delete(request, student_id):
     student.is_delete = True
     student.save()
     return redirect('student-list')
+
+def student_search(request):
+    try:
+        search = StudentSearchForm()
+        registration = request.GET.get('registration_no' or None)
+        student = AcademicInfo.objects.get(registration_no=registration)
+        context = {
+            'search': search,
+            'student': student
+        }
+        return render(request, 'student/student-search.html', context)
+    except Exception as e:
+        print(e)
+    context = {
+            'search': search
+        }
+    return render(request, 'student/student-search.html', context)
