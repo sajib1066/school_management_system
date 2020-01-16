@@ -134,7 +134,11 @@ def student_search(request):
         }
         return render(request, 'student/student-search.html', context)
     except Exception as e:
-        print(e)
+        context = {
+            'search': search,
+            'err': e
+        }
+        return render(request, 'student/student-search.html', context)
     context = {
             'search': search
         }

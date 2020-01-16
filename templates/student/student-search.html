@@ -13,7 +13,7 @@
                         {{ search.registration_no }}
                     </label>
                 </form>
-                {{ student.registration_no }}
+                {{ err }}
             </div>
         </div>
     </div>
@@ -148,7 +148,7 @@
         
             </div>
         </div>
-    {% else %}
+    {% elif err %}
         <h2>No Student Found. Please try again!</h2>
     {% endif %}
 {% endblock %}
