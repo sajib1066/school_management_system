@@ -1,6 +1,6 @@
 from django.db import models
 
-from academic.models import ClassRegistration
+from academic.models import ClassInfo
 from address.models import District, Upazilla, Union
 
 class PersonalInfo(models.Model):
@@ -141,8 +141,8 @@ class PreviousAcademicCertificate(models.Model):
     other_certificate = models.FileField(upload_to='documents/', blank=True)
 
 class AcademicInfo(models.Model):
-    class_info = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
-    roll = models.IntegerField()
+    class_info = models.ForeignKey(ClassInfo, on_delete=models.CASCADE)
+    registration_no = models.IntegerField(unique=True)
     status_select = (
         ('not enroll', 'Not Enroll'),
         ('enrolled', 'Enrolled'),
@@ -159,9 +159,6 @@ class AcademicInfo(models.Model):
     previous_academic_certificate = models.ForeignKey(PreviousAcademicCertificate, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False)
-
-    class Meta:
-        unique_together = ['class_info', 'roll']
 
     def __str__(self):
         return str(self.roll)
