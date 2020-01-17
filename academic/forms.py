@@ -1,6 +1,5 @@
 from django import forms
 from . import models
-from teacher.models import GuideTeacher
 from academic.models import ClassRegistration
 
 
@@ -60,7 +59,7 @@ class ClassRegistrationForm(forms.ModelForm):
 
 class GuideTeacherForm(forms.ModelForm):
     class Meta:
-        model = GuideTeacher
+        model = models.GuideTeacher
         fields = '__all__'
         widgets = {
             'name': forms.Select(attrs={'class': 'form-control'}),

@@ -1,5 +1,4 @@
 from django.db import models
-# from teacher.models import GuideTeacher
 
 
 class Department(models.Model):
@@ -38,6 +37,13 @@ class Shift(models.Model):
     def __str__(self):
         return self.name
 
+class GuideTeacher(models.Model):
+    name = models.OneToOneField('teacher.PersonalInfo', on_delete=models.CASCADE, null=True)
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.name)
+
 class ClassRegistration(models.Model):
     department_select = (
         ('general', 'General'),
@@ -50,7 +56,7 @@ class ClassRegistration(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, null=True)
     session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
     shift = models.ForeignKey(Shift, on_delete=models.CASCADE, null=True)
-    guide_teacher = models.OneToOneField('teacher.GuideTeacher', on_delete=models.CASCADE, null=True)
+    guide_teacher = models.OneToOneField(GuideTeacher, on_delete=models.CASCADE, null=True)
     date = models.DateField(auto_now_add=True)
 
     class Meta:
