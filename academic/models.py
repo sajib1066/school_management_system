@@ -45,6 +45,7 @@ class GuideTeacher(models.Model):
         return str(self.name)
 
 class ClassRegistration(models.Model):
+    name = models.CharField(max_length=10, unique=True)
     department_select = (
         ('general', 'General'),
         ('science', 'Science'),
@@ -63,4 +64,4 @@ class ClassRegistration(models.Model):
         unique_together = ['class_name', 'section', 'shift', 'guide_teacher']
 
     def __str__(self):
-        return str(self.class_name)
+        return str(self.name)

@@ -49,6 +49,7 @@ class ClassRegistrationForm(forms.ModelForm):
         model = ClassRegistration
         fields = '__all__'
         widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
             'department': forms.Select(attrs={'class': 'form-control'}),
             'class_name': forms.Select(attrs={'class': 'form-control'}),
             'section': forms.Select(attrs={'class': 'form-control'}),

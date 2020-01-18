@@ -9,6 +9,7 @@
                   <tr>
                       <th>Id</th>
                       <th>Class Name</th>
+                      <th>Class</th>
                       <th>Section</th>
                       <th>Session</th>
                       <th>Shift</th>
@@ -21,6 +22,7 @@
                   {% for cls in register_class %}
                     <tr>
                         <td>{{ cls.id }}</td>
+                        <td>{{ cls.name }}</td>
                         <td>{{ cls.class_name }}</td>
                         <td>{{ cls.section }}</td>
                         <td>{{ cls.session }}</td>
