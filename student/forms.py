@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import *
+from academic.models import ClassInfo
 
 class AcademicInfoForm(forms.ModelForm):
     class Meta:
@@ -113,4 +114,5 @@ class PreviousAcademicCertificateForm(forms.ModelForm):
         fields = '__all__'
 
 class StudentSearchForm(forms.Form):
-    registration_no = forms.IntegerField(widget=forms.NumberInput(attrs={'class': "form-control form-control-sm", 'placeholder': 'Registration No', 'aria-controls': 'DataTables_Table_0'}))
+    class_info = forms.ModelChoiceField(required=False, queryset=ClassInfo.objects.all())
+    registration_no = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'placeholder': 'Registration No', 'aria-controls': 'DataTables_Table_0'}))
