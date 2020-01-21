@@ -148,3 +148,17 @@ def student_search(request):
             'student': student
         }
     return render(request, 'student/student-search.html', context)
+
+
+def enrolled_student(request):
+    forms = EnrolledStudentForm()
+    cls = request.GET.get('class_name', None)
+    student = AcademicInfo.objects.filter(class_info=cls)
+    print('Class: ', cls)
+    roll = request.POST.get('roll_var')
+    print('Roll: ', roll)
+    context = {
+        'forms': forms,
+        'student': student
+    }
+    return render(request, 'student/enrolled.html', context)

@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Student Enrolled Here!</h2>
+    <form action="" method="GET">
+        {{ forms }}
+        <input type="submit" value="Go">
+    </form>
+    {% if student %}
+    <div class="animated fadeIn">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-edit"></i> Student Tables
+            </div>
+            <div class="card-body">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Reg No</th>
+                                        <th>Class</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for student in student %}
+                                      <tr role="row" class="odd">
+                                          <td>{{ forloop.counter }}</td>
+                                          <td>{{ student.personal_info.name }}</td>
+                                          <td>{{ student.registration_no }}</td>
+                                          <td>{{ student.class_info }}</td>
+                                          <td>{{ student.status }}</td>
+                                          <td>{{ student.date }}</td>
+                                          <td>
+                                              <a class="btn btn-success" href="{% url 'student-profile' student.id %}">
+                                                  <i class="fa fa-search-plus"></i>
+                                              </a>
+                                              <!-- <a id="enroll" class="btn btn-success" href="#">Enrolled</a> -->
+                                              <button id="enroll">Enrolled</button>
+                                          </td>
+                                      </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'src/js/enroll.js' %}"></script>
+    {% endif %}
+{% endblock %}

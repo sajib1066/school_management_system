@@ -116,3 +116,6 @@ class PreviousAcademicCertificateForm(forms.ModelForm):
 class StudentSearchForm(forms.Form):
     class_info = forms.ModelChoiceField(required=False, queryset=ClassInfo.objects.all())
     registration_no = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'placeholder': 'Registration No', 'aria-controls': 'DataTables_Table_0'}))
+
+class EnrolledStudentForm(forms.Form):
+    class_name = forms.ModelChoiceField(queryset=ClassInfo.objects.all())
