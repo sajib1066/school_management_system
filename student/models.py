@@ -165,7 +165,7 @@ class AcademicInfo(models.Model):
 
 class EnrolledStudent(models.Model):
     class_name = models.ForeignKey(ClassInfo, on_delete=models.CASCADE)
-    student = models.ForeignKey(AcademicInfo, on_delete=models.CASCADE)
+    student = models.OneToOneField(AcademicInfo, on_delete=models.CASCADE)
     roll = models.IntegerField(unique=True)
     date = models.DateField(auto_now_add=True)
 
