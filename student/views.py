@@ -153,7 +153,7 @@ def student_search(request):
 def enrolled_student(request):
     forms = EnrolledStudentForm()
     cls = request.GET.get('class_name', None)
-    student = AcademicInfo.objects.filter(class_info=cls)
+    student = AcademicInfo.objects.filter(class_info=cls, status='not enroll')
     context = {
         'forms': forms,
         'student': student
