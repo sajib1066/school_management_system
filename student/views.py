@@ -154,11 +154,24 @@ def enrolled_student(request):
     forms = EnrolledStudentForm()
     cls = request.GET.get('class_name', None)
     student = AcademicInfo.objects.filter(class_info=cls)
-    print('Class: ', cls)
-    roll = request.POST.get('roll_var')
-    print('Roll: ', roll)
     context = {
         'forms': forms,
         'student': student
     }
     return render(request, 'student/enrolled.html', context)
+
+def student_enrolled(request, reg):
+    student = AcademicInfo.objects.get(registration_no=reg)
+    class_name = student.class_info
+    forms = StudentEnrollForm()
+    if request.method == 'POST':
+        forms = StudentEnrollForm(request.POST)
+        if forms.is_valid():
+            roll = forms.cleaned_data['roll_no']
+            EnrolledStudent.objects.create(class_name=class_name, student=student, roll=roll)
+            return redirect('home')
+    context = {
+        'student': student,
+        'forms': forms
+    }
+    return render(request, 'student/student-enrolled.html', context)

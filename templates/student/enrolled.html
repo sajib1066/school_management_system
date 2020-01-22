@@ -42,8 +42,7 @@
                                               <a class="btn btn-success" href="{% url 'student-profile' student.id %}">
                                                   <i class="fa fa-search-plus"></i>
                                               </a>
-                                              <!-- <a id="enroll" class="btn btn-success" href="#">Enrolled</a> -->
-                                              <button id="enroll">Enrolled</button>
+                                              <a class="btn btn-success" href="{% url 'enrolled' student.registration_no %}">Enroll</a>
                                           </td>
                                       </tr>
                                     {% endfor %}
