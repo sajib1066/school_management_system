@@ -6,10 +6,9 @@ from academic.models import ClassInfo
 class AcademicInfoForm(forms.ModelForm):
     class Meta:
         model = AcademicInfo
-        exclude = ['status', 'personal_info', 'address_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete']
+        exclude = ['registration_no', 'status', 'personal_info', 'address_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete']
         widgets = {
-            'class_info': forms.Select(attrs={'class': 'form-control'}),
-            'registration_no': forms.TextInput(attrs={'class': 'form-control'}),
+            'class_info': forms.Select(attrs={'class': 'form-control'})
         }
 
 class PersonalInfoForm(forms.ModelForm):
