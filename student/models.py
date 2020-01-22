@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 from academic.models import ClassInfo
 from address.models import District, Upazilla, Union
@@ -142,7 +143,7 @@ class PreviousAcademicCertificate(models.Model):
 
 class AcademicInfo(models.Model):
     class_info = models.ForeignKey(ClassInfo, on_delete=models.CASCADE)
-    registration_no = models.IntegerField(unique=True)
+    registration_no = models.IntegerField(unique=True, default=random.randint(000000, 999999))
     status_select = (
         ('not enroll', 'Not Enroll'),
         ('enrolled', 'Enrolled'),
