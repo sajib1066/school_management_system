@@ -169,6 +169,8 @@ def student_enrolled(request, reg):
         if forms.is_valid():
             roll = forms.cleaned_data['roll_no']
             EnrolledStudent.objects.create(class_name=class_name, student=student, roll=roll)
+            student.status = 'enrolled'
+            student.save()
             return redirect('home')
     context = {
         'student': student,
