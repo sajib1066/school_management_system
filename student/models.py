@@ -1,7 +1,7 @@
 from django.db import models
 import random
 
-from academic.models import ClassInfo
+from academic.models import ClassInfo, ClassRegistration
 from address.models import District, Upazilla, Union
 
 class PersonalInfo(models.Model):
@@ -165,7 +165,7 @@ class AcademicInfo(models.Model):
         return str(self.registration_no)
 
 class EnrolledStudent(models.Model):
-    class_name = models.ForeignKey(ClassInfo, on_delete=models.CASCADE)
+    class_name = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
     student = models.OneToOneField(AcademicInfo, on_delete=models.CASCADE)
     roll = models.IntegerField()
     date = models.DateField(auto_now_add=True)
