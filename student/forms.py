@@ -120,4 +120,5 @@ class EnrolledStudentForm(forms.Form):
     class_name = forms.ModelChoiceField(queryset=ClassInfo.objects.all())
 
 class StudentEnrollForm(forms.Form):
-    roll_no = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Enter Roll'}))
+    class_name = forms.ModelChoiceField(queryset=ClassRegistration.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+    roll_no = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Enter Roll', 'class': 'form-control'}))

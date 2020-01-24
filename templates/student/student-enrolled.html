@@ -26,12 +26,16 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card-body">
             <form action="" method="post">
                 {% csrf_token %}
                 {{ forms.as_p }}
                 <input class="btn btn-primary" type="submit" value="Enroll">
             </form>
         </div>
+        </div>
+      </div>
     </div>
 {% endblock %}

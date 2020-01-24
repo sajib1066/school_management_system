@@ -162,12 +162,12 @@ def enrolled_student(request):
 
 def student_enrolled(request, reg):
     student = AcademicInfo.objects.get(registration_no=reg)
-    class_name = student.class_info
     forms = StudentEnrollForm()
     if request.method == 'POST':
         forms = StudentEnrollForm(request.POST)
         if forms.is_valid():
             roll = forms.cleaned_data['roll_no']
+            class_name = forms.cleaned_data['class_name']
             EnrolledStudent.objects.create(class_name=class_name, student=student, roll=roll)
             student.status = 'enrolled'
             student.save()
