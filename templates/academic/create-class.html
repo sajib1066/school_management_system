@@ -28,8 +28,8 @@
                   {% for class_obj in class_obj %}
                     <tr>
                         <td>{{ class_obj.id }}</td>
-                        <td>{{ class_obj.name }}</td>
-                        <td>{{ class_obj.display_name }}</td>
+                        <td>{{ class_obj.name|title }}</td>
+                        <td>{{ class_obj.display_name|title }}</td>
                         <td>{{ class_obj.date }}</td>
                     </tr>
                   {% endfor %}
