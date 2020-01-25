@@ -177,3 +177,10 @@ def student_enrolled(request, reg):
         'forms': forms
     }
     return render(request, 'student/student-enrolled.html', context)
+
+def enrolled_student_list(request):
+    student = EnrolledStudent.objects.all()
+    context = {
+        'student': student
+    }
+    return render(request, 'student/enrolled-student-list.html', context)
