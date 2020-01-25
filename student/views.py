@@ -171,7 +171,7 @@ def student_enrolled(request, reg):
             EnrolledStudent.objects.create(class_name=class_name, student=student, roll=roll)
             student.status = 'enrolled'
             student.save()
-            return redirect('home')
+            return redirect('enrolled-student-list')
     context = {
         'student': student,
         'forms': forms

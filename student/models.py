@@ -171,7 +171,7 @@ class EnrolledStudent(models.Model):
     date = models.DateField(auto_now_add=True)
 
     class Meta:
-        unique_together = ['class_name', 'student', 'roll']
+        unique_together = ['class_name', 'roll']
     
     def __str__(self):
         return str(self.roll)
