@@ -6,38 +6,20 @@
       <div class="card">
           <div class="card-header">
               <i class="fa fa-edit"></i> Student Tables
-              <div class="card-header-actions">
-                  <a class="card-header-action" href="https://datatables.net" target="_blank">
-                      <small class="text-muted">docs</small>
-                  </a>
-              </div>
           </div>
           <div class="card-body">
               <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                   <div class="row">
                       <div class="col-sm-12 col-md-6">
-                          <div class="dataTables_length" id="DataTables_Table_0_length">
-                              <label>Show
-                                  <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-                                      <option value="10">10</option>
-                                      <option value="25">25</option>
-                                      <option value="50">50</option>
-                                      <option value="100">100</option>
-                                  </select> entries</label>
-                          </div>
-                      </div>
-                      <div class="col-sm-12 col-md-6">
                           <div id="DataTables_Table_0_filter" class="dataTables_filter">
                               <form action="" method="GET">
-                                  {% csrf_token %}
-                                <label>Search:
-                                    <!-- <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_0"> -->
-                                    {{ search.registration_no }}
-                                </label>
+                                {{ forms }}
+                                <input type="submit" value="Search">
                               </form>
                           </div>
                       </div>
                   </div>
+                  <br>
                   <div class="row">
                       <div class="col-sm-12">
                           <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
