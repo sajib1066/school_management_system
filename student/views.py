@@ -64,8 +64,8 @@ def student_list(request):
     context = {'student': student}
     return render(request, 'student/student-list.html', context)
 
-def student_profile(request, student_id):
-    student = AcademicInfo.objects.get(id=student_id)
+def student_profile(request, reg_no):
+    student = AcademicInfo.objects.get(registration_no=reg_no)
     context = {
         'student': student
     }
@@ -183,7 +183,6 @@ def enrolled_student_list(request):
     forms = SearchEnrolledStudentForm()
     class_name = request.GET.get('reg_class', None)
     roll = request.GET.get('roll_no', None)
-    print(class_name, roll)
     if class_name:
         student = EnrolledStudent.objects.filter(class_name=class_name)
         context = {
