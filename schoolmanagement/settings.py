@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'result',
     'address',
     'account',
+    'attendance',
 ]
 
 MIDDLEWARE = [
