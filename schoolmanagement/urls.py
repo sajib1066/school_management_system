@@ -30,6 +30,7 @@ urlpatterns = [
     path('result/', include('result.urls')),
     path('address/', include('address.urls')),
     path('account/', include('account.urls')),
+    path('attendance/', include('attendance.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
