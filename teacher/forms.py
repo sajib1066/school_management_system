@@ -5,7 +5,7 @@ from academic.models import Department
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
         model = models.PersonalInfo
-        exclude = {'address', 'education', 'training', 'job', 'experience', }
+        exclude = {'address', 'education', 'training', 'job', 'experience', 'is_delete'}
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
