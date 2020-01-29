@@ -65,10 +65,10 @@
                                             <a class="btn btn-success" href="{% url 'student-profile' student.registration_no %}">
                                                 <i class="fa fa-search-plus"></i>
                                             </a>
-                                            <a class="btn btn-info" href="{% url 'student-edit' student.id %}">
+                                            <a class="btn btn-info" href="{% url 'student-edit' student.registration_no%}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a class="btn btn-danger" href="{% url 'student-delete' student.id %}">
+                                            <a class="btn btn-danger" href="{% url 'student-delete' student.registration_no %}">
                                                 <i class="fa fa-trash-o"></i>
                                             </a>
                                         </td>

@@ -71,8 +71,8 @@ def student_profile(request, reg_no):
     }
     return render(request, 'student/student-profile.html', context)
 
-def student_edit(request, student_id):
-    student = AcademicInfo.objects.get(id=student_id)
+def student_edit(request, reg_no):
+    student = AcademicInfo.objects.get(registration_no=reg_no)
     academic_info_form = AcademicInfoForm(instance=student)
     personal_info_form = PersonalInfoForm(instance=student.personal_info)
     student_address_info_form = StudentAddressInfoForm(instance=student.address_info)
@@ -117,8 +117,8 @@ def student_edit(request, student_id):
     }
     return render(request, 'student/student-edit.html', context)
 
-def student_delete(request, student_id):
-    student = AcademicInfo.objects.get(id=student_id)
+def student_delete(request, reg_no):
+    student = AcademicInfo.objects.get(registration_no=reg_no)
     student.is_delete = True
     student.save()
     return redirect('student-list')
