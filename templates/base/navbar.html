@@ -17,7 +17,11 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
-                <img src="{{ request.user.userprofile.photo.url }}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                {% if request.user.userprofile %}
+                <img src="{{ request.user.userprofile.photo.url }}" class="img-avatar" alt="admin">
+                {% else %}
+                <img src="{% static 'src/img/man.png' %}" class="img-avatar" alt="Anynumos">
+                {% endif %}
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header text-center">
