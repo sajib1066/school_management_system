@@ -6,12 +6,8 @@
       <div class="card">
           <div class="card-header">
               <i class="fa fa-edit"></i> Student Tables
-              <div class="card-header-actions">
-                  <a class="card-header-action" href="https://datatables.net" target="_blank">
-                      <small class="text-muted">docs</small>
-                  </a>
-              </div>
           </div>
+          {% if student %}
           <div class="card-body">
               <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                   <div class="row">
@@ -97,6 +93,11 @@
                   </div>
               </div>
           </div>
+          {% else %}
+          <div class="card-body">
+              <h3>No Student Found</h3>
+          </div>
+          {% endif %}
       </div>
   </div>
 {% endblock %}
