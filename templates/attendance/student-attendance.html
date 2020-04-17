@@ -42,7 +42,7 @@
                                         <td>{{ student.student.registration_no }}</td>
                                         <td>{{ student.roll }}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="#">Attendance</a>
+                                            <a class="btn btn-primary" href="{% url 'set-attendance' class_info.name student.roll %}">Attendance</a>
                                         </td>
                                     </tr>
                                   {% endfor %}

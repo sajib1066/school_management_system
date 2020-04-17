@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from .forms import SearchEnrolledStudentForm
 from student.models import EnrolledStudent
 from academic.models import ClassRegistration
@@ -19,3 +20,7 @@ def student_attendance(request):
         'forms': forms,
     }
     return render(request, 'attendance/student-attendance.html', context)
+
+def set_attendance(request, std_class, std_roll):
+    return JsonResponse({'status': 'Success'})
+
