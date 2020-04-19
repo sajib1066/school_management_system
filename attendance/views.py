@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from .forms import SearchEnrolledStudentForm
 from student.models import EnrolledStudent
 from academic.models import ClassRegistration
+from .models import StudentAttendance
 
 def student_attendance(request):
     forms = SearchEnrolledStudentForm()
@@ -21,6 +24,11 @@ def student_attendance(request):
     }
     return render(request, 'attendance/student-attendance.html', context)
 
+@api_view()
 def set_attendance(request, std_class, std_roll):
-    return JsonResponse({'status': 'Success'})
+    try:
+        StudentAttendance.objects.create_attendance(std_class, std_roll)
+        return Response({'status': 'Success'})
+    except Exception as e:
+        return Response({'status': 'Failed'})
 
