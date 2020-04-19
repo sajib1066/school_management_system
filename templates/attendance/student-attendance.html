@@ -30,6 +30,7 @@
                                       <th>Id</th>
                                       <th>Name</th>
                                       <th>Reg No</th>
+                                      <th>Class</th>
                                       <th>Roll</th>
                                       <th>Actions</th>
                                   </tr>
@@ -40,9 +41,10 @@
                                         <td>{{ forloop.counter }}</td>
                                         <td>{{ student.student.personal_info.name }}</td>
                                         <td>{{ student.student.registration_no }}</td>
-                                        <td>{{ student.roll }}</td>
+                                        <td class="cls_name">{{ class_info.name }}</td>
+                                        <td class="std_roll">{{ student.roll }}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{% url 'set-attendance' class_info.name student.roll %}">Attendance</a>
+                                            <a class="btn btn-primary attendance" href="#">Attendance</a>
                                         </td>
                                     </tr>
                                   {% endfor %}

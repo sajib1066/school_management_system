@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 
 from .forms import SearchEnrolledStudentForm
 from student.models import EnrolledStudent
@@ -28,7 +29,7 @@ def student_attendance(request):
 def set_attendance(request, std_class, std_roll):
     try:
         StudentAttendance.objects.create_attendance(std_class, std_roll)
-        return Response({'status': 'Success'})
+        return Response({'status': 'Success'}, status=status.HTTP_200_OK)
     except Exception as e:
-        return Response({'status': 'Failed'})
+        return Response({'status': 'Failed'}, status=status.HTTP_400_BAD_REQUEST)
 
