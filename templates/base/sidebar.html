@@ -8,24 +8,21 @@
             <!-- Administration Section Start -->
             <li class="nav-item nav-dropdown">
              <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Administration</a>
+                 <i class="nav-icon icon-puzzle"></i>Product List</a>
              <ul class="nav-dropdown-items">
                  <li class="nav-item">
                      <a class="nav-link" href="{% url 'designation' %}">
-                         <i class="fa fa-plus-circle"></i>Add Designation</a>
+                         <i class="fa fa-plus-circle"></i>Add Product</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="{% url 'district' %}">
-                         <i class="fa fa-plus-circle"></i>Add District</a>
+                         <i class="fa fa-plus-circle"></i>Search Product</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="{% url 'upazilla' %}">
-                         <i class="fa fa-plus-circle"></i>Add Upazilla</a>
+                         <i class="fa fa-plus-circle"></i>Update Product</a>
                  </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="{% url 'union' %}">
-                         <i class="fa fa-plus-circle"></i>Add Union</a>
-                 </li>
+                
              </ul>
            </li>
            <!-- Administration Section END -->
@@ -33,190 +30,23 @@
            <!-- Academic Section START -->
            <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Academic</a>
+                <i class="nav-icon icon-puzzle"></i>Profiles</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'add-department' %}">
-                      <i class="fa fa-plus-circle"></i>Add Department</a>
+                      <i class="fa fa-plus-circle"></i>Add Profile</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'create-class' %}">
-                      <i class="fa fa-plus-circle"></i>Create Class</a>
+                      <i class="fa fa-plus-circle"></i>Update Profile</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'create-section' %}">
-                      <i class="fa fa-plus-circle"></i>Create Section</a>
+                      <i class="fa fa-plus-circle"></i>Search Profile</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'create-session' %}">
-                      <i class="fa fa-plus-circle"></i>Create Session</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'create-shift' %}">
-                      <i class="fa fa-plus-circle"></i>Create Shift</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'guide-teacher' %}">
-                      <i class="fa fa-plus-circle"></i>Guide Teacher</a>
-              </li>
-            </ul>
+             
           </li>
-          <!-- Academic Section END -->
-
-           <!-- Teacher Section START -->
-           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Teacher</a>
-            <ul class="nav-dropdown-items">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'teacher-registration' %}">
-                        <i class="fa fa-plus-circle"></i>Teacher Registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'teacher-list' %}">
-                        <i class="fa fa-list"></i>Teacher List</a>
-                </li>
-            </ul>
-          </li>
-          <!-- Teacher Section END -->
-
-            <!-- Class Section START -->
-            <li class="nav-item nav-dropdown">
-             <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Class</a>
-             <ul class="nav-dropdown-items">
-               <li class="nav-item">
-                   <a class="nav-link" href="{% url 'class-registration' %}">
-                       <i class="fa fa-plus-circle"></i>Class Registration</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="{% url 'class-list' %}">
-                       <i class="fa fa-list"></i>Class List</a>
-               </li>
-             </ul>
-           </li>
-           <!-- Class Section END -->
-
-            <!-- Student Section START -->
-            <li class="nav-item nav-dropdown">
-             <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Student</a>
-             <ul class="nav-dropdown-items">
-                 <li class="nav-item">
-                     <a class="nav-link" href="{% url 'student-registration' %}">
-                         <i class="fa fa-plus-circle"></i>Student Registration</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="{% url 'student-list' %}">
-                         <i class="fa fa-list"></i>Student List</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="{% url 'student-search' %}">
-                         <i class="fa fa-search-plus"></i>Student Search</a>
-                 </li>
-             </ul>
-           </li>
-           <!-- Student Section END -->
-
-           <!-- Enroll Student Section START -->
-        <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Enroll Student</a>
-            <ul class="nav-dropdown-items">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'enrolled-student' %}">
-                        <i class="fa fa-plus-circle"></i>Student Enrolled</a>
-                    <a class="nav-link" href="{% url 'enrolled-student-list' %}">
-                        <i class="fa fa-list"></i>Enrolled Student List</a>
-                </li>
-            </ul>
-          </li>
-          <!-- Enroll Student Section END -->
-
-           <!-- Employee Section START -->
-           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Employee</a>
-            <ul class="nav-dropdown-items">
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'employee-registration' %}">
-                        <i class="fa fa-plus-circle"></i>Add Employee</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'employee-list' %}">
-                        <i class="fa fa-list"></i>Employee List</a>
-                </li>
-            </ul>
-          </li>
-          <!-- Employee Section END -->
-
-          <!-- Result Section START -->
-          <li class="nav-item nav-dropdown">
-           <a class="nav-link nav-dropdown-toggle" href="#">
-               <i class="nav-icon icon-puzzle"></i>Result</a>
-           <ul class="nav-dropdown-items">
-               <li class="nav-item">
-                   <a class="nav-link" href="{% url 'add-subject' %}">
-                       <i class="fa fa-plus-circle"></i>Add Subject</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="{% url 'subject-list' %}">
-                       <i class="fa fa-list"></i>Subject List</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="{% url 'mark-entry' %}">
-                       <i class="fa fa-plus-circle"></i>Mark Entry</a>
-               </li>
-           </ul>
-         </li>
-         <!-- Result Section END -->
-
-         <!-- Attendence Report Section START -->
-         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#">
-              <i class="nav-icon icon-puzzle"></i>Attendence Report</a>
-          <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'student-attendance' %}">
-                      <i class="fa fa-plus-circle"></i>Student Attendence</a>
-              </li>
-          </ul>
-        </li>
-        <!-- Attendence Report Section END -->
-
-       <!-- Holiday Section START -->
-       <li class="nav-item nav-dropdown">
-        <a class="nav-link nav-dropdown-toggle" href="#">
-            <i class="nav-icon icon-puzzle"></i>Holiday</a>
-        <ul class="nav-dropdown-items">
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="nav-icon icon-puzzle"></i>Student List</a>
-            </li>
-        </ul>
-      </li>
-      <!-- Holiday Section END -->
-
-        <!-- Event Section START -->
-        <li class="nav-item nav-dropdown">
-         <a class="nav-link nav-dropdown-toggle" href="#">
-             <i class="nav-icon icon-puzzle"></i>Event</a>
-         <ul class="nav-dropdown-items">
-             <li class="nav-item">
-                 <a class="nav-link" href="#">
-                     <i class="nav-icon icon-puzzle"></i>Student List</a>
-             </li>
-         </ul>
-       </li>
-       <!-- Event Section END -->
-
-        <!-- User-Manual Section START -->
-        <li class="nav-item nav-dropdown">
-         <a class="nav-link" href="#">
-             <i class="nav-icon icon-puzzle"></i>User-Manual</a>
-       </li>
-       <!-- User-Manual Section END -->
-        </ul>
+         
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 
