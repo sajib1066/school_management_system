@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 from .models import UserProfile
 from .forms import ProfileForm
 

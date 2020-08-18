@@ -5,7 +5,7 @@
   <div class="card">
     <div class="card-header">Teacher Registration Form</div>
     <div class="card-body">
-      <form action="" method="post" enctype="multipart/form-data" id="TeacherRegistrationForm" data-upazilla-url={% url 'load-upazilla' %}>
+      <form action="" method="post" enctype="multipart/form-data" id="TeacherRegistrationForm" data-upazilla-url=#>
 
         <div class="card">
           <div class="card-header">Personal Information</div>
@@ -19,7 +19,7 @@
           <div class="card-header">Address Information</div>
           <div class="card-body">
             {% csrf_token %}
-            {{ address_forms.as_p }}
+           
           </div>
         </div>
 
@@ -57,7 +57,8 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script>
+      <!-- <script>
+       
         $("#id_district").change(function () {
           var url = $("#TeacherRegistrationForm").attr("data-upazilla-url");
           var districtId = $(this).val();
@@ -88,7 +89,9 @@
           });
 
         });
-      </script>
+        
+     </script>
+     -->
     </div>
   </div>
 {% endblock %}

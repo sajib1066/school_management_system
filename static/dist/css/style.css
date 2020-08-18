@@ -7841,15 +7841,15 @@ base-chart.chart {
   border-bottom: 1px solid #c2cfd6; }
   .app-header.navbar .navbar-brand {
     display: inline-block;
-    width: 155px;
+    width: 180px;
     height: 55px;
     padding: 0.5rem 1rem;
     margin-right: 0;
     background-color: #fff;
-    background-image: url("../img/logo.png");
+    background-image: url("/static/src/img/concord.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 70px auto;
+    background-size: 180px auto;
     border-bottom: 1px solid #c2cfd6; }
   .app-header.navbar .navbar-toggler {
     min-width: 50px;

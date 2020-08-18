@@ -2,7 +2,6 @@ from django.db import models
 import random
 
 from academic.models import ClassInfo, ClassRegistration
-from address.models import District, Upazilla, Union
 
 class PersonalInfo(models.Model):
     name = models.CharField(max_length=100)
@@ -45,14 +44,6 @@ class PersonalInfo(models.Model):
     def __str__(self):
         return self.name
 
-class StudentAddressInfo(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE)
-    union = models.ForeignKey(Union, on_delete=models.CASCADE)
-    village = models.TextField()
-
-    def __str__(self):
-        return self.village
 
 class GuardianInfo(models.Model):
     father_name = models.CharField(max_length=100)
@@ -153,7 +144,6 @@ class AcademicInfo(models.Model):
     )
     status = models.CharField(choices=status_select, default='not enroll', max_length=15)
     personal_info = models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
-    address_info = models.ForeignKey(StudentAddressInfo, on_delete=models.CASCADE, null=True)
     guardian_info = models.ForeignKey(GuardianInfo, on_delete=models.CASCADE, null=True)
     emergency_contact_info = models.ForeignKey(EmergencyContactDetails, on_delete=models.CASCADE, null=True)
     previous_academic_info = models.ForeignKey(PreviousAcademicInfo, on_delete=models.CASCADE, null=True)

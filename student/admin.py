@@ -5,7 +5,6 @@ from .models import *
 
 admin.site.register(AcademicInfo)
 admin.site.register(PersonalInfo)
-admin.site.register(StudentAddressInfo)
 admin.site.register(GuardianInfo)
 admin.site.register(EmergencyContactDetails)
 admin.site.register(PreviousAcademicInfo)

@@ -1,17 +1,8 @@
 from django.db import models
-from address.models import District, Upazilla, Union
 from administration.models import Designation
 from academic.models import Department
 
 
-class EmployeeAddressInfo(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE, null=True)
-    union = models.ForeignKey(Union, on_delete=models.CASCADE, null=True)
-    village = models.TextField()
-
-    def __str__(self):
-        return self.village
 
 class EducationInfo(models.Model):
     name_of_exam = models.CharField(max_length=100)
@@ -87,8 +78,6 @@ class PersonalInfo(models.Model):
         ('b-', 'B-'),
         ('ab-', 'AB-')
     )
-    blood_group = models.CharField(choices=blood_group_choice, max_length=5)
-    e_tin = models.IntegerField(unique=True)
     nid = models.IntegerField(unique=True)
     driving_license_passport = models.IntegerField(unique=True)
     phone_no = models.CharField(max_length=11, unique=True)
@@ -103,7 +92,6 @@ class PersonalInfo(models.Model):
         ('single', 'Single')
     )
     marital_status = models.CharField(choices=marital_status_choice, max_length=10)
-    address = models.ForeignKey(EmployeeAddressInfo, on_delete=models.CASCADE, null=True)
     education = models.ForeignKey(EducationInfo, on_delete=models.CASCADE, null=True)
     training = models.ForeignKey(TrainingInfo, on_delete=models.CASCADE, null=True)
     job = models.ForeignKey(EmployeeJobInfo, on_delete=models.CASCADE, null=True)

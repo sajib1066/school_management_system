@@ -1,17 +1,8 @@
 from django.db import models
 from academic.models import Department
 from administration.models import Designation
-from address.models import District, Upazilla, Union
 
 
-class AddressInfo(models.Model):
-    district = models.ForeignKey(District, on_delete=models.CASCADE, null=True)
-    upazilla = models.ForeignKey(Upazilla, on_delete=models.CASCADE, null=True)
-    union = models.ForeignKey(Union, on_delete=models.CASCADE, null=True)
-    village = models.TextField()
-
-    def __str__(self):
-        return self.village
 
 class EducationInfo(models.Model):
     name_of_exam = models.CharField(max_length=100)
@@ -45,13 +36,6 @@ class JobInfo(models.Model):
     institute_name = models.CharField(max_length=100)
     job_designation = models.ForeignKey(Designation, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    scale = models.IntegerField()
-    grade_of_post = models.CharField(max_length=45)
-    first_time_scale_due_year = models.IntegerField()
-    second_time_scale_due_year = models.IntegerField()
-    promotion_due_year = models.IntegerField()
-    recreation_leave_due_year = models.IntegerField()
-    expected_retirement_year = models.IntegerField()
 
     def __str__(self):
         return self.institute_name
@@ -70,15 +54,15 @@ class PersonalInfo(models.Model):
     date_of_birth = models.DateField()
     place_of_birth = models.CharField(max_length=45)
     nationality_choice = (
-        ('Bangladeshi', 'Bangladeshi'),
+        ('Nigerian', 'Nigerian'),
         ('Others', 'Others')
     )
     nationality = models.CharField(max_length=45, choices=nationality_choice)
     religion_choice = (
+        ('Christianity', 'Christianity'),
         ('Islam', 'Islam'),
         ('Hinduism', 'Hinduism'),
         ('Buddhism', 'Buddhism'),
-        ('Christianity', 'Christianity'),
         ('Others', 'Others')
     )
     religion = models.CharField(max_length=45, choices=religion_choice)
@@ -99,8 +83,6 @@ class PersonalInfo(models.Model):
         ('ab-', 'AB-')
     )
     blood_group = models.CharField(choices=blood_group_choice, max_length=5)
-    e_tin = models.IntegerField(unique=True)
-    nid = models.IntegerField(unique=True)
     driving_license_passport = models.IntegerField(unique=True)
     phone_no = models.CharField(max_length=11, unique=True)
     email = models.CharField(max_length=255, unique=True)
@@ -114,7 +96,6 @@ class PersonalInfo(models.Model):
         ('single', 'Single')
     )
     marital_status = models.CharField(choices=marital_status_choice, max_length=10)
-    address = models.ForeignKey(AddressInfo, on_delete=models.CASCADE, null=True)
     education = models.ForeignKey(EducationInfo, on_delete=models.CASCADE, null=True)
     training = models.ForeignKey(TrainingInfo, on_delete=models.CASCADE, null=True)
     job = models.ForeignKey(JobInfo, on_delete=models.CASCADE, null=True)
