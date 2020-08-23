@@ -3,37 +3,39 @@ from academic.models import Department
 from administration.models import Designation
 
 
-
+group_choices = (
+    ('university', 'University'),
+    ('polythenic', 'Polythenic'),
+    ('college', 'College'),
+)
 class EducationInfo(models.Model):
-    name_of_exam = models.CharField(max_length=100)
-    institute = models.CharField(max_length=255)
-    group = models.CharField(max_length=100)
+    school_name = models.CharField(max_length=255)
+    group = models.CharField(choices=group_choices,max_length=100)
     grade = models.CharField(max_length=45)
-    board = models.CharField(max_length=45)
-    passing_year = models.IntegerField()
+    nysc_information = models.CharField(max_length=45)
+    graduation_year = models.IntegerField()
 
     def __str__(self):
-        return self.name_of_exam
+        return self.school_name
 
 class TrainingInfo(models.Model):
-    training_name = models.CharField(max_length=100)
-    year = models.IntegerField()
-    duration = models.IntegerField()
-    place = models.CharField(max_length=100)
+    training_name = models.CharField(max_length=100, null=True)
+    year = models.IntegerField(null=True)
+    duration = models.IntegerField(null=True)
+    place = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.training_name
 
 class JobInfo(models.Model):
     category_choice = (
-        ('bcs', 'BCS'),
-        ('nationalized', 'Nationalized'),
-        ('10% quota', '10% quota'),
-        ('non govt.', 'Non Govt.')
+        ('assistant', 'Assistant Teacher'),
+        ('subject teacher', 'Subject Teacher'),
+        ('class teacher', 'Class Teacher'),
+        ('other', 'Others')
     )
     category = models.CharField(choices=category_choice, max_length=45)
-    joning_date = models.DateField()
-    institute_name = models.CharField(max_length=100)
+    joining_date = models.DateField()
     job_designation = models.ForeignKey(Designation, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
@@ -41,7 +43,7 @@ class JobInfo(models.Model):
         return self.institute_name
 
 class ExperienceInfo(models.Model):
-    institute_name = models.CharField(max_length=100)
+    former_job = models.CharField(max_length=100)
     designation = models.CharField(max_length=45)
     trainer = models.CharField(max_length=45)
 
@@ -61,8 +63,6 @@ class PersonalInfo(models.Model):
     religion_choice = (
         ('Christianity', 'Christianity'),
         ('Islam', 'Islam'),
-        ('Hinduism', 'Hinduism'),
-        ('Buddhism', 'Buddhism'),
         ('Others', 'Others')
     )
     religion = models.CharField(max_length=45, choices=religion_choice)

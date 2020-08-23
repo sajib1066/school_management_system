@@ -26,17 +26,15 @@ class PersonalInfo(models.Model):
     gender = models.CharField(choices=gender_choice, max_length=10)
     phone_no = models.CharField(max_length=11)
     email = models.EmailField(blank=True, null=True)
-    birth_certificate_no = models.IntegerField()
     religion_choice = (
-        ('Islam', 'Islam'),
-        ('Hinduism', 'Hinduism'),
-        ('Buddhism', 'Buddhism'),
         ('Christianity', 'Christianity'),
+        ('Islam', 'Islam'),
         ('Others', 'Others')
     )
     religion = models.CharField(choices=religion_choice, max_length=45)
+    address = models.CharField(max_length=109, default='default')
     nationality_choice = (
-        ('Bangladeshi', 'Bangladeshi'),
+        ('Nigerian', 'Nigerian'),
         ('Others', 'Others')
     )
     nationality = models.CharField(choices=nationality_choice, max_length=45)
@@ -62,8 +60,7 @@ class GuardianInfo(models.Model):
         ('Worker', 'Worker'),
         ('N/A', 'N/A'),
     )
-    father_occupation = models.CharField(choices=father_occupation_choice, max_length=45)
-    father_yearly_income = models.IntegerField()
+    father_occupation = models.CharField(max_length=45)
     mother_name = models.CharField(max_length=100)
     mother_phone_no = models.CharField(max_length=11)
     mother_occupation_choice = (
@@ -80,7 +77,7 @@ class GuardianInfo(models.Model):
         ('Worker', 'Worker'),
         ('N/A', 'N/A'),
     )
-    mother_occupation = models.CharField(choices=mother_occupation_choice, max_length=45)
+    mother_occupation = models.CharField(max_length=45)
     guardian_name = models.CharField(max_length=100)
     guardian_phone_no = models.CharField(max_length=11)
     guardian_email = models.EmailField(blank=True, null=True)
@@ -114,15 +111,13 @@ class EmergencyContactDetails(models.Model):
         return self.emergency_guardian_name
 
 class PreviousAcademicInfo(models.Model):
-    institute_name = models.CharField(max_length=100)
-    name_of_exam = models.CharField(max_length=100)
-    group = models.CharField(max_length=45)
-    gpa = models.CharField(max_length=10)
-    board_roll = models.IntegerField()
-    passing_year = models.IntegerField()
+    former_school_name = models.CharField(max_length=100, default='default')
+    school_location = models.CharField(max_length=100, default='default')
+    school_phone_no = models.IntegerField(default=9)
+    exit_year = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.institute_name
+        return self.former_school_name
 
 class PreviousAcademicCertificate(models.Model):
     birth_certificate = models.FileField(upload_to='documents/', blank=True)

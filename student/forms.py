@@ -21,6 +21,7 @@ class PersonalInfoForm(forms.ModelForm):
             'blood_group': forms.Select(attrs={'class': 'form-control'}),
             'date_of_birth': forms.TextInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
+            'address': forms.TextInput(attrs={'class':'form-control'}),
             'phone_no': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'birth_certificate_no': forms.TextInput(attrs={'class': 'form-control'}),
@@ -38,11 +39,10 @@ class GuardianInfoForm(forms.ModelForm):
         widgets = {
             'father_name': forms.TextInput(attrs={'class': 'form-control'}),
             'father_phone_no': forms.TextInput(attrs={'class': 'form-control'}),
-            'father_occupation': forms.Select(attrs={'class': 'form-control'}),
-            'father_yearly_income': forms.TextInput(attrs={'class': 'form-control'}),
+            'father_occupation': forms.TextInput(attrs={'class': 'form-control'}),
             'mother_name': forms.TextInput(attrs={'class': 'form-control'}),
             'mother_phone_no': forms.TextInput(attrs={'class': 'form-control'}),
-            'mother_occupation': forms.Select(attrs={'class': 'form-control'}),
+            'mother_occupation': forms.TextInput(attrs={'class': 'form-control'}),
             'guardian_name': forms.TextInput(attrs={'class': 'form-control'}),
             'guardian_phone_no': forms.TextInput(attrs={'class': 'form-control'}),
             'guardian_email': forms.TextInput(attrs={'class': 'form-control'}),
@@ -66,12 +66,11 @@ class PreviousAcademicInfoForm(forms.ModelForm):
         model = PreviousAcademicInfo
         fields = '__all__'
         widgets = {
-            'institute_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'name_of_exam': forms.TextInput(attrs={'class': 'form-control'}),
-            'group': forms.TextInput(attrs={'class': 'form-control'}),
+            'former_school_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'school_location': forms.TextInput(attrs={'class': 'form-control'}),
+            'school_phone_no': forms.TextInput(attrs={'class': 'form-control'}),
             'gpa': forms.TextInput(attrs={'class': 'form-control'}),
-            'board_roll': forms.TextInput(attrs={'class': 'form-control'}),
-            'passing_year': forms.TextInput(attrs={'class': 'form-control'}),
+            'exit_year': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class PreviousAcademicCertificateForm(forms.ModelForm):

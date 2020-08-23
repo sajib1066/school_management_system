@@ -32,12 +32,11 @@ class EducationInfoForm(forms.ModelForm):
         model = models.EducationInfo
         fields = '__all__'
         widgets = {
-            'name_of_exam': forms.TextInput(attrs={'class': 'form-control'}),
-            'institute': forms.TextInput(attrs={'class': 'form-control'}),
-            'group': forms.TextInput(attrs={'class': 'form-control'}),
+            'school_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'group': forms.Select(attrs={'class': 'form-control'}),
             'grade': forms.TextInput(attrs={'class': 'form-control'}),
-            'board': forms.TextInput(attrs={'class': 'form-control'}),
-            'passing_year': forms.NumberInput(attrs={'class': 'form-control'}),
+            'nysc_information': forms.TextInput(attrs={'class': 'form-control'}),
+            'graduation_year': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 class TrainingInfoForm(forms.ModelForm):
@@ -57,7 +56,7 @@ class JobInfoForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'category': forms.Select(attrs={'class': 'form-control'}),
-            'joning_date': forms.TextInput(attrs={'class': 'form-control'}),
+            'joining_date': forms.TextInput(attrs={'class': 'form-control'}),
             'institute_name': forms.TextInput(attrs={'class': 'form-control'}),
             'job_designation': forms.Select(attrs={'class': 'form-control'}),
             'department': forms.Select(attrs={'class': 'form-control'}),
@@ -68,7 +67,7 @@ class ExperienceInfoForm(forms.ModelForm):
         model = models.ExperienceInfo
         fields = '__all__'
         widgets = {
-            'institute_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'former_job': forms.TextInput(attrs={'class': 'form-control'}),
             'designation': forms.TextInput(attrs={'class': 'form-control'}),
             'trainer': forms.TextInput(attrs={'class': 'form-control'}),
         }

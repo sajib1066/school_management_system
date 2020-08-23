@@ -15,6 +15,8 @@ def admin_login(request):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
+                if user.is_student == True:
+                    return render(request, 'studenthome.html')
                 return redirect('home')
     context = {'forms': forms}
     return render(request, 'administration/login.html', context)

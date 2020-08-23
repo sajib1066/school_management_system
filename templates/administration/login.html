@@ -1,11 +1,5 @@
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v2.1.12
-* @link https://coreui.io
-* Copyright (c) 2018 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
+
 
 <html lang="en">
   <head>
@@ -16,7 +10,7 @@
     <!-- Main styles for this application-->
     <link href="css/style.css" rel="stylesheet">
     <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <!-- Global site tag (gtag.js) - Google Analytics
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -29,7 +23,7 @@
       gtag('config', 'UA-118965717-3');
       // Bootstrap ID
       gtag('config', 'UA-118965717-5');
-    </script>
+    </script>-->
     {% include 'base/header.html' %}
   </head>
   <body class="app flex-row align-items-center">
@@ -39,16 +33,14 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <h1>Login</h1>
+                <h1 style="color:#b10025">Login</h1>
                 <p class="text-muted">Sign In to your account</p>
                 <form class="" action="" method="post">
                   {% csrf_token %}
                   {% for fields in forms %}
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="icon-user"></i>
-                            </span>
+
                         </div>
                         {{ fields }}
                     </div>
@@ -67,9 +59,12 @@
             <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
               <div class="card-body text-center">
                 <div>
-                  <h2>Contact Admin</h2>
+                  <img src="/static/src/img/concordlogo.png" alt="" width="auto" height="200px">
+
+                 <!--
+                                     <h2>Contact Admin</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <button class="btn btn-primary active mt-3" type="button">Register Now!</button>
+                  <button class="btn btn-primary active mt-3" type="button">Register Now!</button>--> 
                 </div>
               </div>
             </div>

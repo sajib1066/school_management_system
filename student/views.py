@@ -18,7 +18,7 @@ def student_registration(request):
     previous_academic_certificate_form = PreviousAcademicCertificateForm(request.POST or None, request.FILES)
 
     if request.method == 'POST':
-        if academic_info_form.is_valid() and personal_info_form.is_valid() and student_address_info_form.is_valid() and guardian_info_form.is_valid() and emergency_contact_details_form.is_valid() and previous_academic_info_form.is_valid() and previous_academic_certificate_form.is_valid():
+        if academic_info_form.is_valid() and personal_info_form.is_valid() and guardian_info_form.is_valid() and emergency_contact_details_form.is_valid() and previous_academic_info_form.is_valid() and previous_academic_certificate_form.is_valid():
             s1 = personal_info_form.save()
             s3 = guardian_info_form.save()
             s4 = emergency_contact_details_form.save()
@@ -59,7 +59,6 @@ def student_edit(request, reg_no):
     student = AcademicInfo.objects.get(registration_no=reg_no)
     academic_info_form = AcademicInfoForm(instance=student)
     personal_info_form = PersonalInfoForm(instance=student.personal_info)
-    student_address_info_form = StudentAddressInfoForm(instance=student.address_info)
     guardian_info_form = GuardianInfoForm(instance=student.guardian_info)
     emergency_contact_details_form = EmergencyContactDetailsForm(instance=student.emergency_contact_info)
     previous_academic_info_form = PreviousAcademicInfoForm(instance=student.previous_academic_info)
