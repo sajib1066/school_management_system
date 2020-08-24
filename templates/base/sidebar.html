@@ -52,18 +52,14 @@
           </li>
           <!-- Academic Section END -->
 
-           <!-- Teacher Section START -->
+           <!-- Session Section START -->
            <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Teacher</a>
+                <i class="nav-icon icon-puzzle"></i>Session</a>
             <ul class="nav-dropdown-items">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'teacher-registration' %}">
-                        <i class="fa fa-plus-circle"></i>Teacher Registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'teacher-list' %}">
-                        <i class="fa fa-list"></i>Teacher List</a>
+                    <a class="nav-link" href="{% url 'view-session' %}">
+                        <i class="fa fa-list"></i>Current Session</a>
                 </li>
             </ul>
           </li>
@@ -85,6 +81,23 @@
              </ul>
            </li>
            <!-- Class Section END -->
+
+           <!-- Teacher Section START -->
+           <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Teacher</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teacher-registration' %}">
+                        <i class="fa fa-plus-circle"></i>Teacher Registration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teacher-list' %}">
+                        <i class="fa fa-list"></i>Teacher List</a>
+                </li>
+            </ul>
+          </li>
+          <!-- Teacher Section END -->
 
             <!-- Student Section START -->
             <li class="nav-item nav-dropdown">

@@ -83,7 +83,8 @@ def class_registration(request):
     return render(request, 'academic/class-registration.html', context)
 
 def class_list(request):
-    register_class = ClassRegistration.objects.all()
+    currentsess = currentsession.objects.get()
+    register_class = ClassRegistration.objects.filter(class_session=currentsess.current)
     context = {'register_class': register_class}
     return render(request, 'academic/class-list.html', context)
 
@@ -100,3 +101,19 @@ def create_guide_teacher(request):
         'guide_teacher': guide_teacher
     }
     return render(request, 'academic/create-guide-teacher.html', context)
+
+def view_session(request):
+    forms = ChangeSessionForm()
+    session = currentsession.objects.get()
+    if request.method == 'POST':
+        forms = ChangeSessionForm(request.POST)
+        if forms.is_valid():
+            instance = forms.save(commit=False)
+            session.current = instance.current
+            session.save()
+            return redirect('view-session')
+    context = {
+        'session': session.current,
+        'form': forms
+    }   
+    return render(request, 'academic/session.html', context)  

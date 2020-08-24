@@ -65,3 +65,11 @@ class GuideTeacherForm(forms.ModelForm):
         widgets = {
             'name': forms.Select(attrs={'class': 'form-control'}),
         }
+
+class ChangeSessionForm(forms.ModelForm):
+    class Meta:
+        model=models.currentsession
+        fields = '__all__'
+        widgets = {
+            'current': forms.Select(attrs={'class': 'form-control'}),
+        }

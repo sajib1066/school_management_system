@@ -40,7 +40,7 @@ class JobInfo(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.institute_name
+        return self.category
 
 class ExperienceInfo(models.Model):
     former_job = models.CharField(max_length=100)
@@ -48,7 +48,7 @@ class ExperienceInfo(models.Model):
     trainer = models.CharField(max_length=45)
 
     def __str__(self):
-        return self.institute_name
+        return self.former_job
 
 class PersonalInfo(models.Model):
     name = models.CharField(max_length=45)
