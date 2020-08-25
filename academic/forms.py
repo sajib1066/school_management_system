@@ -53,7 +53,7 @@ class ClassRegistrationForm(forms.ModelForm):
             'department': forms.Select(attrs={'class': 'form-control'}),
             'class_name': forms.Select(attrs={'class': 'form-control'}),
             'section': forms.Select(attrs={'class': 'form-control'}),
-            'session': forms.Select(attrs={'class': 'form-control'}),
+            'class_session': forms.Select(attrs={'class': 'form-control'}),
             'shift': forms.Select(attrs={'class': 'form-control'}),
             'guide_teacher': forms.Select(attrs={'class': 'form-control'}),
         }

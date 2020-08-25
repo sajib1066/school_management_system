@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>session
+    </div>
+
+      <div class="card-body">
+    <h1>{{session}} Session</h1>
+    <br><br><br>
+    <div>
+        <h6>Change session</h6>
+        <form class="" action="" method="POST">
+            {%csrf_token%}
+            {{form.as_p}}   
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    
+    </div>
+  </div>
+{% endblock %}
