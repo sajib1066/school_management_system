@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from academic.models import ClassRegistration
-
+from student.models import AcademicInfo
+from teacher.models import PersonalInfo
 
 
 def add_department(request):
@@ -117,3 +118,17 @@ def view_session(request):
         'form': forms
     }   
     return render(request, 'academic/session.html', context)  
+
+def view_class(request):
+    try:
+        my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user)
+        my_students = AcademicInfo.objects.filter(class_info=my_class.class_name)
+    except:
+        my_class = None 
+        my_students = None       
+    context = {
+        'class': my_class,
+        'students': my_students
+    }
+    return render(request, 'academic/view-class.html', context)
+    

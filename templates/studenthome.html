@@ -2,7 +2,89 @@
 {% load static %}
 {% block title %} The Concord School {% endblock %}
 {% block content %}
-<marquee behavior="" direction="">Welcome To The Concord School</marquee>
-<h1>Helooooooooooooooo</h1>
+<marquee behavior="" direction="">Multum Non Multa</marquee>
 
+<div class="card">
+
+    <div class="card-body" id="student-general">
+        
+    <div class="jumbotron">
+    <img src="/static/src/img/concord-students.jpg" class="img-fluid" alt="">   
+    <h5 class="display-3" >Welcome, {{academic_info.personal_info.name}}</h5>
+    <p class="lead">This is the Concord School Management System</p>
+    <hr class="my-4">
+    <div>
+        <p class="lead">Current Class: {{academic_info.class_info.name}}</p>
+        <p class="lead">Registration no: {{academic_info.registration_no}}</p>
+    </div>
+    </div>
+ </div>
+
+ <div class="card" id="student-info">
+     <div class="card-header">
+         <div class="row"> 
+            <img style="height:200px; width:200px; border-radius:50%; margin:auto" src="{{ academic_info.personal_info.photo.url }}" alt="Photo">   
+         </div>
+     </div>
+     <div class="card-body">
+         <div>
+             <div class="row"> 
+                <h2 class="mx-auto">Personal Information</h2>
+             </div>
+         </div>
+         <hr>
+         <div class="row">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                       <td>Name: </td>
+                       <td>{{academic_info.personal_info.name}}</td>                     
+                    </tr>
+                    <tr>
+                        <td>Date of Birth:</td>
+                        <td>{{academic_info.personal_info.date_of_birth}}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td>
+                        <td>{{academic_info.personal_info.gender}}</td>
+                    </tr>
+                    <tr>
+                        <td>Address: </td>
+                        <td>{{academic_info.personal_info.address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td>{{academic_info.personal_info.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Registration no</td>
+                        <td>{{academic_info.registration_no}}</td>
+                    </tr>
+                    <tr>
+                        <td>Registered Date:</td>
+                        <td>{{academic_info.date}}</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+         </div>
+        
+
+     </div>
+
+ </div>
+
+ </div>
+ 
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelector("#student-info").style.display = 'none'
+            document.querySelector("#student-sidebar-info").onclick = function(){
+                document.querySelector("#student-general").style.display = 'none'
+                document.querySelector("#student-info").style.display = 'block'
+            } 
+        })
+</script>
+    
 {% endblock %}

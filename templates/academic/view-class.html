@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      {% if class %}
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Students</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                </tr>
+            </thead>
+       
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td><a href="{% url 'teacher-student-profile' student.registration_no %}">{{student.personal_info.name}}</a></td>
+                <td>{{student.personal_info.gender}}</td>
+                <td>{{student.personal_info.date_of_birth}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h1>No current class</h1>
+  </div>
+  {% endif %}
+{% endblock %}

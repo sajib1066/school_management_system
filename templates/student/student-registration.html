@@ -82,6 +82,7 @@
             <div class="card-body">
               {% csrf_token %}
               {{ previous_academic_certificate_form.as_p }}
+              {{login_creation_form.as_p}}
             </div>
           </div>
           <button id="previous_academic_certificate_prev_btn" type="button" class="btn btn-primary pull-left">Previous</button>

@@ -1,7 +1,7 @@
 from django.db import models
 from academic.models import Department
 from administration.models import Designation
-
+from account.models import Userss
 
 group_choices = (
     ('university', 'University'),
@@ -102,6 +102,7 @@ class PersonalInfo(models.Model):
     experience = models.ForeignKey(ExperienceInfo, on_delete=models.CASCADE, null=True)
     is_delete = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
+    login_details = models.ForeignKey(Userss, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name

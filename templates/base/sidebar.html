@@ -5,21 +5,52 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'home' %}"><i class="icon-speedometer"></i> Dashboard</a>
             </li>
-            <!-- Administration Section Start 
-            <li class="nav-item nav-dropdown">
-             <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Administration</a>
-             <ul class="nav-dropdown-items">
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-plus-circle"></i>Add Designation</a>
-                 </li>
-             </ul>
-           </li>
-        -->
-           <!-- Administration Section END -->
 
-           <!-- Academic Section START -->
+        
+        <!--Student sidebar-->
+        {%if request.user.is_student%}
+        <li class="nav-item" id="student-sidebar-info">
+            <a class="nav-link" href="#">
+                <i class="icon-speedometer"></i>My Info</a>
+          </li>
+        
+
+         <!--Teacher sidebar-->
+         {%elif request.user.is_teacher%}
+             <!-- My Info -->
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'teacher-my-profile' %}">
+                <i class="icon-speedometer"></i>My Info</a>
+          </li>
+            <!-- Administration Section END -->
+
+                         <!-- My Info -->
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'view-class' %}">
+                <i class="icon-speedometer"></i>My Class</a>
+          </li>
+            <!-- Administration Section END -->
+
+                         <!-- My Info -->
+           <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="icon-speedometer"></i>Timetable</a>
+          </li>
+            <!-- Administration Section END -->
+
+                         <!-- My Info -->
+           <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="icon-speedometer"></i>Myy</a>
+          </li>
+            <!-- Teacher Sidebar End -->
+           {%else%}
+
+
+
+
+
+
            <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#">
                 <i class="nav-icon icon-puzzle"></i>Academic</a>
@@ -221,7 +252,7 @@
         </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-
+    {%endif%}
     {% block sidebar %}
     {% endblock %}
 </div>

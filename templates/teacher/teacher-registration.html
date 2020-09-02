@@ -16,9 +16,10 @@
         </div>
 
         <div class="card">
-          <div class="card-header">Address Information</div>
+          <div class="card-header">Login Information</div>
           <div class="card-body">
             {% csrf_token %}
+            {{login_form.as_p}}
            
           </div>
         </div>

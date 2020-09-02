@@ -2,11 +2,15 @@ from django import forms
 
 from .models import *
 from academic.models import ClassInfo
+from django.contrib.auth.forms import UserCreationForm
+from account.models import Userss
+from django.forms import PasswordInput
+from django.db import transaction
 
 class AcademicInfoForm(forms.ModelForm):
     class Meta:
         model = AcademicInfo
-        exclude = ['registration_no', 'status', 'personal_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete']
+        exclude = ['registration_no', 'status', 'personal_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete', 'login_details']
         widgets = {
             'class_info': forms.Select(attrs={'class': 'form-control'})
         }
@@ -92,3 +96,20 @@ class StudentEnrollForm(forms.Form):
 class SearchEnrolledStudentForm(forms.Form):
     reg_class = forms.ModelChoiceField(queryset=ClassRegistration.objects.all())
     roll_no = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'placeholder': 'Enter Roll'}))
+
+class LoginCreationForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginCreationForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control'})
+        self.fields['password2'].widget = PasswordInput(attrs={'placeholder': 'Confirm Password', 'class': 'form-control'})
+
+    class Meta():
+        model = Userss
+        fields = UserCreationForm.Meta.fields
+    
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_student = True
+        user.save()
+        return user

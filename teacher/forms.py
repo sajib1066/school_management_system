@@ -1,11 +1,15 @@
 from django import forms
 from . import models
 from academic.models import Department
+from django.contrib.auth.forms import UserCreationForm
+from account.models import Userss
+from django.db import transaction
+from django.forms import PasswordInput
 
 class PersonalInfoForm(forms.ModelForm):
     class Meta:
         model = models.PersonalInfo
-        exclude = {'address', 'education', 'training', 'job', 'experience', 'is_delete'}
+        exclude = {'address', 'education', 'training', 'job', 'experience', 'is_delete', 'login_details'}
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
@@ -79,3 +83,19 @@ class AddDesignationForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class TeacherLoginForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(TeacherLoginForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control'})
+        self.fields['password2'].widget = PasswordInput(attrs={'placeholder': 'Confirm Password', 'class': 'form-control'})
+    class Meta:
+        model = Userss
+        fields = UserCreationForm.Meta.fields
+    
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.is_teacher = True
+        user.save()
+        return user

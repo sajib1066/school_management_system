@@ -11,6 +11,7 @@ def class_wise_student_registration(request):
 
 def student_registration(request):
     academic_info_form = AcademicInfoForm(request.POST or None)
+    login_creation_form = LoginCreationForm(request.POST or None)
     personal_info_form = PersonalInfoForm(request.POST or None, request.FILES or None)
     guardian_info_form = GuardianInfoForm(request.POST or None)
     emergency_contact_details_form = EmergencyContactDetailsForm(request.POST or None)
@@ -18,18 +19,21 @@ def student_registration(request):
     previous_academic_certificate_form = PreviousAcademicCertificateForm(request.POST or None, request.FILES)
 
     if request.method == 'POST':
-        if academic_info_form.is_valid() and personal_info_form.is_valid() and guardian_info_form.is_valid() and emergency_contact_details_form.is_valid() and previous_academic_info_form.is_valid() and previous_academic_certificate_form.is_valid():
+        if academic_info_form.is_valid() and personal_info_form.is_valid() and guardian_info_form.is_valid() and emergency_contact_details_form.is_valid() and previous_academic_info_form.is_valid() and previous_academic_certificate_form.is_valid() and login_creation_form.is_valid():
             s1 = personal_info_form.save()
             s3 = guardian_info_form.save()
             s4 = emergency_contact_details_form.save()
             s5 = previous_academic_info_form.save()
             s6 = previous_academic_certificate_form.save()
+            login_creation_form.is_student = True
+            s7 = login_creation_form.save()
             academic_info = academic_info_form.save(commit=False)
             academic_info.personal_info = s1
             academic_info.guardian_info = s3
             academic_info.emergency_contact_info = s4
             academic_info.previous_academic_info = s5
             academic_info.previous_academic_certificate = s6
+            academic_info.login_details = s7
             academic_info.save()
             return redirect('student-list')
 
@@ -39,7 +43,8 @@ def student_registration(request):
         'guardian_info_form': guardian_info_form,
         'emergency_contact_details_form': emergency_contact_details_form,
         'previous_academic_info_form': previous_academic_info_form,
-        'previous_academic_certificate_form': previous_academic_certificate_form
+        'previous_academic_certificate_form': previous_academic_certificate_form,
+        'login_creation_form': login_creation_form
     }
     return render(request, 'student/student-registration.html', context)
 

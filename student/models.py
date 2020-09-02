@@ -2,6 +2,7 @@ from django.db import models
 import random
 
 from academic.models import ClassInfo, ClassRegistration
+from account.models import Userss
 
 class PersonalInfo(models.Model):
     name = models.CharField(max_length=100)
@@ -129,6 +130,7 @@ class PreviousAcademicCertificate(models.Model):
 
 class AcademicInfo(models.Model):
     class_info = models.ForeignKey(ClassInfo, on_delete=models.CASCADE)
+    login_details = models.OneToOneField(Userss, on_delete=models.SET_NULL, null=True)
     registration_no = models.IntegerField(unique=True, default=random.randint(000000, 999999))
     status_select = (
         ('not enroll', 'Not Enroll'),

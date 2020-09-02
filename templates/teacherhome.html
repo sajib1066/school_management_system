@@ -1,0 +1,169 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %} The Concord School {% endblock %}
+{% block content %}
+
+<marquee behavior="" direction="">Multum Non Multa</marquee>
+<div class="card">
+
+    <div class="card-body" id="teacher-general">
+        
+    <div class="jumbotron">
+    <img src="/static/src/img/concord-students.jpg" class="img-fluid" alt="">   
+    <h5 class="display-3" >Welcome, {{teacher_personal_info.name}}</h5>
+    <p class="lead">This is the Concord School Management System</p>
+    <hr class="my-4">
+    
+    
+    
+
+
+    <!--Simple Table-->
+   
+    {%if class %}
+    <!--<canvas id="myChart" width="auto" height="400"></canvas>-->
+    <div class="col-lg-6" >
+      <p class="lead">Current Class: {{class.name}}</p>
+      <p class="lead">Class Section: {{class.section}}</p>
+      <p class="lead">Session: {{class.class_session}}</p>
+      </p>
+      </div>
+    {%else%}
+    <h5>No current class</h5>
+    {%endif%}
+    </div>
+    </div>
+    
+
+    <!--Teacher Personal Info-->
+    <div class="card" id="teacher-info">
+        <div class="card-header">
+          <div class="row">
+            <img style="height:200px; width:200px; border-radius:50%; margin:auto" src="{{ teacher_personal_info.photo.url }}" alt="Photo">
+          </div>
+        </div>
+        <div class="card-body">
+          <div >
+          <div >
+            <div class="row">
+              <h2 class="mx-auto">Personal Information</h2>
+            </div>
+            <hr>
+            <div class="row">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                  <td>{{teacher_personal_info.name}}</td>
+                  </tr>
+                  <tr>
+                    <td>Blood Group</td>
+                  <td>{{teacher_personal_info.blood_group}}</td>
+                </tr>
+                  <tr>
+                    <td>Date of Birth</td>
+                  <td>{{teacher_personal_info.date_of_birth}}</td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                <td>{{teacher_personal_info.gender}}</td>
+              </tr>
+              <tr>
+                <td>Phone no</td>
+              <td>{{teacher_personal_info.phone_no}}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+            <td>{{teacher_personal_info.email}}</td>
+          </tr>
+          <tr>
+            <td>Driving License/Passport no</td>
+          <td>{{teacher_personal_info.driving_license_passport}}</td>
+        </tr>
+        <tr>
+          <td>Religion</td>
+        <td>{{teacher_personal_info.religion}}</td>
+      </tr>
+      <tr>
+        <td>Nationality</td>
+      <td>{{teacher_personal_info.nationality}}</td>
+    </tr>
+    <tr>
+      <td>Marital Status</td>
+    <td>{{teacher_personal_info.marital_status}}</td>
+  </tr>
+      <tr>
+        <td>Education</td>
+      <td>{{teacher_personal_info.education}}</td>
+    </tr>
+    <tr>
+      <td>Training</td>
+    <td>{{teacher_personal_info.training}}</td>
+    </tr>
+    <tr>
+      <td>Job</td>
+    <td>{{teacher_personal_info.job}}</td>
+    </tr>
+    <tr>
+      <td>Experience</td>
+    <td>{{teacher_personal_info.experience}}</td>
+    </tr>
+                </tbody>
+
+              </table>
+              </div>
+            </div>
+        </div>
+          
+
+    <!--Teacher Personal Info end-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelector("#teacher-info").style.display = 'none'
+                document.querySelector("#teacher-sidebar-button").onclick = function(){
+                    document.querySelector("#teacher-general").style.display = 'none'
+                    document.querySelector("#teacher-info").style.display = 'block'
+                } 
+
+
+  var ctx = document.getElementById('myChart');
+  var myPieChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Boys', 'Girls'],
+          datasets: [{
+              label: 'Gender',
+              data: [12, 4],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+          })
+    </script>
+
+{% endblock %}

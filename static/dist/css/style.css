@@ -412,9 +412,10 @@ h6, .h6 {
   line-height: 1.2; }
 
 .display-3 {
-  font-size: 4.5rem;
-  font-weight: 300;
-  line-height: 1.2; }
+  font-size: 2.5rem;
+  font-weight: 340;
+  line-height: 1.2;
+  color: #b10025; }
 
 .display-4 {
   font-size: 3.5rem;
@@ -1812,8 +1813,8 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #20a8d8;
-  border-color: #20a8d8; }
+  background-color: #3c4b64;
+  border-color: #3c4b64; }
   .btn-primary:hover {
     color: #fff;
     background-color: #1b8eb7;
@@ -3326,7 +3327,7 @@ tbody.collapse.show {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #c2cfd6; }
+  background-color: #fff; }
   @media (min-width: 576px) {
     .jumbotron {
       padding: 4rem 2rem; } }
@@ -4181,7 +4182,7 @@ button.close {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-color: #20a8d8 !important; }
+  background-color: #3c4b64 !important; }
 
 a.bg-primary:focus, a.bg-primary:hover {
   background-color: #1985ac !important; }
@@ -4205,7 +4206,7 @@ a.bg-info:focus, a.bg-info:hover {
   background-color: #39b2d5 !important; }
 
 .bg-warning {
-  background-color: #ffc107 !important; }
+  background-color: #3c4b64 !important; }
 
 a.bg-warning:focus, a.bg-warning:hover {
   background-color: #d39e00 !important; }
