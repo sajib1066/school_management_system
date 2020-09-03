@@ -19,8 +19,8 @@ def subject_list(request):
     form = ClassSelectSubjectListForm(request.GET or None)
     select_class = request.GET.get('select_class', None)
     if select_class:
-        cls = ClassRegistration.objects.get(id=select_class)
-        subjects = SubjectRegistration.objects.filter(select_class=cls)
+        cl = ClassRegistration.objects.get(id=select_class)
+        subjects = SubjectRegistration.objects.filter(select_class=cl)
         context = {'form': form, 'subjects': subjects}
         return render(request, 'result/subject-list.html', context)
 
@@ -31,8 +31,8 @@ def mark_entry(request):
     form = ClassSelectMarkEntryForm(request.GET or None)
     select_class = request.GET.get('select_class', None)
     if select_class:
-        cls = ClassRegistration.objects.get(id=select_class)
-        student = AcademicInfo.objects.filter(class_info=cls)
+        cl = ClassRegistration.objects.get(id=select_class)
+        student = AcademicInfo.objects.filter(class_info=cl.class_name)
         context = {'form': form, 'student': student}
         return render(request, 'result/mark-entry.html', context)
     context = {'form': form}

@@ -121,7 +121,8 @@ def view_session(request):
 
 def view_class(request):
     try:
-        my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user)
+        currentsess = currentsession.objects.get()
+        my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user, class_session=currentsess.current)
         my_students = AcademicInfo.objects.filter(class_info=my_class.class_name)
     except:
         my_class = None 

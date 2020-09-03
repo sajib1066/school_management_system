@@ -24,8 +24,9 @@ class Section(models.Model):
         return self.name
 
 class Session(models.Model):
-    name = models.IntegerField(unique=True)
-    date = models.DateField(auto_now_add=True)
+    name = models.CharField(max_length=15, unique=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
 
     def __str__(self):
         return str(self.name)

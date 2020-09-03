@@ -25,7 +25,7 @@ class SectionForm(forms.ModelForm):
         model = models.Section
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g. 2018/2019 session'}),
         }
 
 class SessionForm(forms.ModelForm):
@@ -33,7 +33,9 @@ class SessionForm(forms.ModelForm):
         model = models.Session
         fields = '__all__'
         widgets = {
-            'name': forms.NumberInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'start_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M')
         }
 
 class ShiftForm(forms.ModelForm):

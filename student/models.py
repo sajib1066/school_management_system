@@ -112,10 +112,10 @@ class EmergencyContactDetails(models.Model):
         return self.emergency_guardian_name
 
 class PreviousAcademicInfo(models.Model):
-    former_school_name = models.CharField(max_length=100, default='default')
-    school_location = models.CharField(max_length=100, default='default')
-    school_phone_no = models.IntegerField(default=9)
-    exit_year = models.IntegerField(default=0)
+    former_school_name = models.CharField(max_length=100)
+    school_location = models.CharField(max_length=100)
+    school_phone_no = models.IntegerField()
+    exit_year = models.IntegerField()
 
     def __str__(self):
         return self.former_school_name
