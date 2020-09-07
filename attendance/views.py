@@ -26,9 +26,18 @@ def student_attendance(request):
     return render(request, 'attendance/student-attendance.html', context)
 
 class SetAttendance(APIView):
-    def get(self, request, std_class, std_roll):
+    def get(self, request, std_class, std_roll, std_id):
         try:
-            StudentAttendance.objects.create_attendance(std_class, std_roll)
+            std_id = int(std_id)
+            StudentAttendance.objects.create_attendance(std_class, std_roll, std_id)
             return Response({'status': 'Success'}, status=status.HTTP_200_OK)
         except:
             return Response({'status': 'Failed'}, status=status.HTTP_400_BAD_REQUEST)
+
+class GetAttendance(APIView):
+    def get(self, request, std_class):
+        try:
+            attendance = StudentAttendance.objects.class_attendance(std_class)
+        except:
+            attendance = None
+        return render(request, 'attendance/class-attendance.html', {'attendance': attendance})

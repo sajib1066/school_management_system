@@ -8,45 +8,29 @@
               <i class="fa fa-edit"></i> Student Attendance Tables
           </div>
           <div class="card-body">
-              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                  <div class="row">
-                      <div class="col-sm-12 col-md-6">
-                          <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                              <form action="" method="GET">
-                                {{ forms }}
-                                <input type="submit" value="Search">
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-                  <hr>
-                  <h2 align="center">Student`s of class {{ class_info.name }}</h2>
-                  <hr>
                   <div class="row">
                       <div class="col-sm-12">
                           <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
                               <thead>
                                   <tr role="row">
                                       <th>Id</th>
-                                      <th>Name</th>
-                                      <th>Reg No</th>
-                                      <th>Class</th>
-                                      <th>Roll</th>
-                                      <th>Actions</th>
+                                      {%for d in attendance%}
+                                      <th>{{d.date}}</th>
+                                      {%endfor%}
                                   </tr>
                               </thead>
                               <tbody>
-                                  {% for student in student %}
+                                  {% for student in attendance %}
                                     <tr role="row" class="odd">
-                                        <td>{{ forloop.counter }}</td>
-                                        <td>{{ student.student.personal_info.name }}</td>
-                                        <td>{{ student.student.registration_no }}</td>
-                                        <td class="cls_name">{{ class_info.name }}</td>
-                                        <td class="std_roll">{{ student.roll }}</td>
-                                        <td>
-                                            <a class="btn btn-primary attendance" data-value ="1" href="#">Present</a>
-                                            <a class="btn btn-danger attendance" data-value ="0"  href="#">Absent</a>
-                                        </td>
+                                        <td>{{ student.student.student.personal_info.name }}</td>
+                                        {%if student.status == 1%}
+                                        <td>Present</td>
+                                        <td></td>
+                                        {%else%}
+                                        <td>Absent</td>
+                                        <td></td>
+                                        {%endif%}
+                                        
                                     </tr>
                                   {% endfor %}
                               </tbody>

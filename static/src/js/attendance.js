@@ -4,8 +4,9 @@ $(document).ready(function(){
         var row = $(this).closest('tr');
         var class_name = row.find('.cls_name').text();
         var roll = row.find('.std_roll').text();
+        var id = $(this).attr('data-value');
         
-        var api_url = 'http://127.0.0.1:8000/attendance/set-attendance/' + class_name + '/' + roll
+        var api_url = 'http://127.0.0.1:8000/attendance/set-attendance/' + class_name + '/' + roll + '/' + id
         
         $.ajax({
             url: api_url,
