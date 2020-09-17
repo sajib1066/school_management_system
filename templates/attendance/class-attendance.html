@@ -5,32 +5,55 @@
   <div class="animated fadeIn">
       <div class="card">
           <div class="card-header">
-              <i class="fa fa-edit"></i> Student Attendance Tables
+              <i class="fa fa-edit"></i> Student Attendance Tables {{date}}
           </div>
           <div class="card-body">
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-12">
+                    <div class="card text-white bg-primary">
+        
+                        <div class="card-body pb-0">
+                            <div class="btn-group float-right">
+                                <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon-settings"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{% url 'student-list' %}">Student List</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <div class="text-value"><a href="{% url 'student-list' %}" class="btn btn-primary">{{ student }}</a></div>
+                            <div><h3>{{class}}</h3></div>
+                        </div>                        
+                    </div>
+           
+ 
+        </div>
+            </div>
                   <div class="row">
                       <div class="col-sm-12">
+                        <form action="" method="GET">
+                            {% block extrahead %}
+                            {{forms.media}}
+                            {% endblock %}
+                            {{ forms.as_p }}
+                            <input type="submit" value="Search">
+                          </form>
                           <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
                               <thead>
+                                  <h3>{{date}}</h3>
                                   <tr role="row">
-                                      <th>Id</th>
-                                      {%for d in attendance%}
-                                      <th>{{d.date}}</th>
-                                      {%endfor%}
+                                      <th>Student</th>
+                                      <th>Attendance</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  {% for student in attendance %}
+                                {% for student in attendance %}
                                     <tr role="row" class="odd">
-                                        <td>{{ student.student.student.personal_info.name }}</td>
-                                        {%if student.status == 1%}
-                                        <td>Present</td>
-                                        <td></td>
-                                        {%else%}
-                                        <td>Absent</td>
-                                        <td></td>
-                                        {%endif%}
-                                        
+                                        <td>{{student.student.student.personal_info.name}}</td> 
+                                        <td>{{student.status}}</td>                                     
                                     </tr>
                                   {% endfor %}
                               </tbody>

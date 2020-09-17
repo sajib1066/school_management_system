@@ -5,64 +5,53 @@
   <div class="animated fadeIn">
       <div class="card">
           <div class="card-header">
-              <i class="fa fa-edit"></i> Student Attendance Tables
+              <i class="fa fa-edit"></i> Student Attendance Tables 
           </div>
           <div class="card-body">
-              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                  <div class="row">
-                      <div class="col-sm-12 col-md-6">
-                          <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                              <form action="" method="GET">
-                                {{ forms }}
-                                <input type="submit" value="Search">
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-                  <hr>
-                  <h2 align="center">Student`s of class {{ class_info.name }}</h2>
-                  <hr>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-12">
+                    <div class="card text-white bg-primary">
+        
+                        <div class="card-body pb-0">
+                            <div class="btn-group float-right">
+                                <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon-settings"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{% url 'student-list' %}">Student List</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                            <div class="text-value"><a href="{% url 'student-list' %}" class="btn btn-primary"></a></div>
+                            <div><h3>{{request.user.username}}</h3></div>
+                        </div>                        
+                    </div>
+           
+ 
+        </div>
+            </div>
                   <div class="row">
                       <div class="col-sm-12">
-                        <form method="POST" class="post-form">
-                            {% block extrahead %}
-                            {{date_form.media}}
-                            {% endblock %}
-                            {{ formset.management_form.as_p }}
-                            {% csrf_token %}
-                            {{date_form}}
-                            <hr>
                           <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
                               <thead>
+                                  <h3></h3>
                                   <tr role="row">
-                                      <th>Id</th>
-                                      <th>Name</th>
-                                      <th>Reg No</th>
-                                      <th>Class</th>
-                                      <th>Roll</th>
-                                      <th>Actions</th>
+                                      <th>Date</th>
+                                      <th>Attendance</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  {% for student, form in list %}
-                                    <tr role="row" class="odd">
-                                        <td>{{ forloop.counter }}</td>
-                                        <td>{{ student.student.personal_info.name }}</td>
-                                        <td>{{ student.student.registration_no }}</td>
-                                        <td class="cls_name">{{ class_info.name }}</td>
-                                        <td class="std_roll">{{ student.roll }}</td>
-                                        <td>
-                                        {% for radio in form %}
-                                            {{ radio }}
-                                        {% endfor %}
-                                        </td>
+                                {% for studen in student %}
+                                    <tr role="row" class="odd"> 
+                                        <td>{{studen.date}}</td> 
+                                        <td>{{studen.status}}</td>                                                                          
                                     </tr>
                                   {% endfor %}
                               </tbody>
-                            </table>
-                            <button type="submit" class="save btn btn-default" style="cursor: pointer">Save</button>
+                          </table>
                       </div>
-                    </form>
                   </div>
                   <div class="row">
                       <div class="col-sm-12 col-md-5">

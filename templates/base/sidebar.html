@@ -13,7 +13,10 @@
             <a class="nav-link" href="#">
                 <i class="icon-speedometer"></i>My Info</a>
           </li>
-        
+          <li class="nav-item" id="student-sidebar-info">
+            <a class="nav-link" href="{% url 'student-attendance' %}">
+                <i class="icon-speedometer"></i>My Attendance</a>
+          </li>
 
          <!--Teacher sidebar-->
          {%elif request.user.is_teacher%}
@@ -213,6 +216,10 @@
                   <a class="nav-link" href="{% url 'student-attendance' %}">
                       <i class="fa fa-plus-circle"></i>Student Attendence</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'view_attendance' %}">
+                    <i class="fa fa-plus-circle"></i>View Attendence</a>
+            </li>
           </ul>
         </li>
         <!-- Attendence Report Section END -->

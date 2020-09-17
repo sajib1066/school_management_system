@@ -23,7 +23,7 @@ class PersonalInfoForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'blood_group': forms.Select(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class':'form-control'}),
             'phone_no': forms.TextInput(attrs={'class': 'form-control'}),

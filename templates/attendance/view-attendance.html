@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="animated fadeIn">
+      <div class="card">
+          <div class="card-header">
+              <i class="fa fa-edit"></i> All Classes
+          </div>
+          <div class="card-body">
+                  <div class="row">
+                      <div class="col-sm-12">
+                          {%for class in classes%}
+                          <a href="{%url 'get_attendance' class.name%}">{{class.name}}</a>
+                          {%endfor%}
+              </div>
+          </div>
+      </div>
+  </div>
+  <script>
+      document.addEventListener('DomContentLoaded', function(){
+          
+      })
+  </script>
+{% endblock %}

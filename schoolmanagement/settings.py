@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'result',
     'account',
     'attendance',
+    'flatpickr',
 ]
 
 MIDDLEWARE = [
