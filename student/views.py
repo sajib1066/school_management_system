@@ -109,10 +109,10 @@ def student_delete(request, reg_no):
 
 def student_search(request):
     forms = StudentSearchForm()
-    cls_name = request.GET.get('class_info', None)
+    cls_name = request.GET.get('class_name', None)
     reg_no = request.GET.get('registration_no', None)
     if cls_name:
-        student = AcademicInfo.objects.filter(class_info=cls_name)
+        student = AcademicInfo.objects.filter(class_name=cls_name)
         if reg_no:
             student = student.filter(registration_no=reg_no)
         context = {
@@ -137,7 +137,7 @@ def student_search(request):
 def enrolled_student(request):
     forms = EnrolledStudentForm()
     cls = request.GET.get('class_name', None)
-    student = AcademicInfo.objects.filter(class_info=cls, status='not enroll')
+    student = AcademicInfo.objects.filter(class_name=cls, status='not enroll')
     context = {
         'forms': forms,
         'student': student
@@ -152,7 +152,9 @@ def student_enrolled(request, reg):
         if forms.is_valid():
             roll = forms.cleaned_data['roll_no']
             class_name = forms.cleaned_data['class_name']
-            EnrolledStudent.objects.create(class_name=class_name, student=student, roll=roll)
+            session = currentsession.objects.get()
+            session = session.current
+            EnrolledStudent.objects.create(class_name=class_name, student=student, roll=roll, session=session)
             student.status = 'enrolled'
             student.save()
             return redirect('enrolled-student-list')

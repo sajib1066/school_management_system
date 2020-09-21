@@ -1,18 +1,35 @@
 from django import forms
 
 from .models import *
-from academic.models import ClassInfo
 from django.contrib.auth.forms import UserCreationForm
 from account.models import Userss
 from django.forms import PasswordInput
 from django.db import transaction
 
+class_select = (
+        (1, 'Playgroup'),
+        (2, 'Pre-nursery'),
+        (3, 'Nursery 1'),
+        (4, 'Nursery 2'),
+        (5, 'Reception Year'),
+        (6, 'Primary 1'),
+        (7, 'Primary 2'),
+        (8, 'Primary 3'),
+        (9, 'Primary 4'),
+        (10, 'Primary 5'),
+        (11, 'JSS 1'),
+        (12, 'JSS 2'),
+        (13, 'JSS 3'),
+        (14, 'SS 1'),
+        (15, 'SS 2'),
+        (16, 'SS 3'),
+    )
 class AcademicInfoForm(forms.ModelForm):
     class Meta:
         model = AcademicInfo
         exclude = ['registration_no', 'status', 'personal_info', 'guardian_info', 'emergency_contact_info', 'previous_academic_info', 'previous_academic_certificate', 'is_delete', 'login_details']
         widgets = {
-            'class_info': forms.Select(attrs={'class': 'form-control'})
+            'class_name': forms.Select(attrs={'class': 'form-control'})
         }
 
 class PersonalInfoForm(forms.ModelForm):
@@ -83,11 +100,11 @@ class PreviousAcademicCertificateForm(forms.ModelForm):
         fields = '__all__'
 
 class StudentSearchForm(forms.Form):
-    class_info = forms.ModelChoiceField(required=False, queryset=ClassInfo.objects.all())
+    class_name = forms.Select(attrs={'class': 'form-control'})
     registration_no = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'placeholder': 'Registration No', 'aria-controls': 'DataTables_Table_0'}))
 
 class EnrolledStudentForm(forms.Form):
-    class_name = forms.ModelChoiceField(queryset=ClassInfo.objects.all())
+    class_name = forms.ChoiceField(choices=class_select)
 
 class StudentEnrollForm(forms.Form):
     class_name = forms.ModelChoiceField(queryset=ClassRegistration.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))

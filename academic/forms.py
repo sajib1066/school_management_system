@@ -1,23 +1,24 @@
 from django import forms
 from . import models
 from academic.models import ClassRegistration
+from flatpickr import DatePickerInput
 
-
+session_choices = (
+        ('2018/2019', '2018/2019'),
+        ('2019/2020', '2019/2020'),
+        ('2020/2021', '2020/2021'),
+        ('2021/2022', '2021/2022'),
+        ('2022/2023', '2022/2023'),
+        ('2023/2024', '2023/2024'),
+        ('2024/2025', '2024/2025'),
+        ('2025/2026', '2025/2026'),
+    )
 class DepartmentForm(forms.ModelForm):
     class Meta:
         model = models.Department
         fields = '__all__'
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-        }
-
-class ClassForm(forms.ModelForm):
-    class Meta:
-        model = models.ClassInfo
-        fields = '__all__'
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'display_name': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class SectionForm(forms.ModelForm):
@@ -33,9 +34,10 @@ class SessionForm(forms.ModelForm):
         model = models.Session
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'start_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-            'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M')
+            'start_date': DatePickerInput(attrs={'class': 'form-control'}),
+            'end_date': DatePickerInput(attrs={'class': 'form-control'}),
+            'name': forms.Select(attrs={'class': 'form-control'}),
+            'term': forms.Select(attrs={'class': 'form-control'}),
         }
 
 class ShiftForm(forms.ModelForm):

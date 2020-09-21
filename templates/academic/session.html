@@ -6,7 +6,8 @@
     </div>
 
       <div class="card-body">
-    <h1>{{session}} Session</h1>
+    <h1>
+      {% if session %}{{session}} Session {% else %} No current Session {% endif %}</h1>
     <br><br><br>
     <div>
         <h6>Change session</h6>

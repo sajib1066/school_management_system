@@ -1,9 +1,13 @@
 from django.db import models
 import random
 
-from academic.models import ClassInfo, ClassRegistration
+from academic.models import ClassRegistration, Session, currentsession
 from account.models import Userss
 
+class CurrentSessionManager(models.Manager):
+    def get_queryset(self):
+        current = currentsession.objects.get()
+        return super().get_queryset().filter(session=current.current)
 class PersonalInfo(models.Model):
     name = models.CharField(max_length=100)
     photo = models.ImageField(upload_to='student-photos/')
@@ -129,7 +133,25 @@ class PreviousAcademicCertificate(models.Model):
     other_certificate = models.FileField(upload_to='documents/', blank=True)
 
 class AcademicInfo(models.Model):
-    class_info = models.ForeignKey(ClassInfo, on_delete=models.CASCADE)
+    class_select = (
+        (1, 'Playgroup'),
+        (2, 'Pre-nursery'),
+        (3, 'Nursery 1'),
+        (4, 'Nursery 2'),
+        (5, 'Reception Year'),
+        (6, 'Primary 1'),
+        (7, 'Primary 2'),
+        (8, 'Primary 3'),
+        (9, 'Primary 4'),
+        (10, 'Primary 5'),
+        (11, 'JSS 1'),
+        (12, 'JSS 2'),
+        (13, 'JSS 3'),
+        (14, 'SS 1'),
+        (15, 'SS 2'),
+        (16,'SS 3'),
+    )
+    class_name = models.IntegerField(choices=class_select,)
     login_details = models.OneToOneField(Userss, on_delete=models.SET_NULL, null=True)
     registration_no = models.IntegerField(unique=True, default=random.randint(000000, 999999))
     status_select = (
@@ -153,9 +175,13 @@ class AcademicInfo(models.Model):
 
 class EnrolledStudent(models.Model):
     class_name = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE)
     student = models.OneToOneField(AcademicInfo, on_delete=models.CASCADE)
     roll = models.IntegerField()
     date = models.DateField(auto_now_add=True)
+
+    objects = models.Manager() # The default manager.
+    current_year = CurrentSessionManager()
 
     class Meta:
         unique_together = ['class_name', 'roll']

@@ -32,7 +32,7 @@ def mark_entry(request):
     select_class = request.GET.get('select_class', None)
     if select_class:
         cl = ClassRegistration.objects.get(id=select_class)
-        student = AcademicInfo.objects.filter(class_info=cl.class_name)
+        student = EnrolledStudent.current_year.filter(class_name=cl.class_name).only('students')
         context = {'form': form, 'student': student}
         return render(request, 'result/mark-entry.html', context)
     context = {'form': form}

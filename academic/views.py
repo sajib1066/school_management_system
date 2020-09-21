@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from academic.models import ClassRegistration
-from student.models import AcademicInfo
+from student.models import EnrolledStudent
 from teacher.models import PersonalInfo
 
 
@@ -84,8 +84,7 @@ def class_registration(request):
     return render(request, 'academic/class-registration.html', context)
 
 def class_list(request):
-    currentsess = currentsession.objects.get()
-    register_class = ClassRegistration.objects.filter(class_session=currentsess.current)
+    register_class = ClassRegistration.objects.all()
     context = {'register_class': register_class}
     return render(request, 'academic/class-list.html', context)
 
@@ -113,17 +112,17 @@ def view_session(request):
             session.current = instance.current
             session.save()
             return redirect('view-session')
-    context = {
+        context = {
         'session': session.current,
         'form': forms
-    }   
+                    }
+    context = {'session': session.current,'form': forms}                   
     return render(request, 'academic/session.html', context)  
 
 def view_class(request):
     try:
-        currentsess = currentsession.objects.get()
-        my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user, class_session=currentsess.current)
-        my_students = AcademicInfo.objects.filter(class_info=my_class.class_name)
+        my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user)
+        my_students = EnrolledStudent.current_year.filter(class_name=my_class.class_name).only('students')
     except:
         my_class = None 
         my_students = None       

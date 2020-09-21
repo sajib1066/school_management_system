@@ -20,7 +20,7 @@ def student_attendance(request):
         cll = ClassRegistration.objects.get(guide_teacher__name__login_details = request.user)
         class_name = cll.class_name        
     if request.method == 'POST':
-        class_info = ClassRegistration.objects.get(id=class_name)
+        class_info = ClassRegistration.current_objects.get(id=class_name)
         student = EnrolledStudent.objects.filter(class_name=class_name)
         count = student.count()
         attendance_formset = formset_factory(AttendanceForm, extra=count)
@@ -79,7 +79,7 @@ def GetAttendance(request, std_class):
 
 def ViewAttendance(request):
     try:
-        classes = ClassRegistration.objects.all
+        classes = ClassRegistration.current_objects.all
     except:
         classes = None    
     return render(request, 'attendance/view-attendance.html', {'classes': classes})
