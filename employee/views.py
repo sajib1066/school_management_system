@@ -20,7 +20,7 @@ def teacher_registration(request):
         training_form = forms.TrainingInfoForm(request.POST)
         job_form = forms.JobInfoForm(request.POST)
         experience_form = forms.ExperienceInfoForm(request.POST)
-        if form.is_valid() and address_form.is_valid() and education_form.is_valid() and training_form.is_valid() and job_form.is_valid() and experience_form.is_valid():
+        if form.is_valid() and education_form.is_valid() and training_form.is_valid() and job_form.is_valid() and experience_form.is_valid():
             personal_info = form.save()
             education_info = education_form.save(commit=False)
             education_info.education = personal_info

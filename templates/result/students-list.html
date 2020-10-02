@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{class.name}}</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                    <th>Student Registration No</th>
+                    <th>Student Name</th>
+                    <th>Results</th>
+                    <th>Prepare results</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for student in students %}
+                    <tr>
+                        <td>{{ student.student.registration_no }}</td>
+                        <td>{{ student.student.personal_info.name }}</td>
+                        <td>
+                          <a class="btn btn-success" title="Add Subject" href="{% url 'student_results' student.student.registration_no %}">
+                              All Results
+                          </a>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" title="Add Subject" href="{% url 'student_result' student.student.registration_no %}">
+                              Prepare Results
+                          </a>
+                        </td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}

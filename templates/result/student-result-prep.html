@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>My Subject List</div>
+      <div class="card-body">
+        <form action="" method="POST">
+          {%csrf_token%}
+          <table class="table table-responsive-sm">
+              <thead class="bg-primary">
+                  <tr>
+                      <th>Subject Code</th>
+                      <th>Subject Name</th>
+                      <th>Test Score</th>
+                      <th>Exam Score</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {{approve_results.management_form}}
+                  {% for result in results %}
+                    <tr>
+                        <td>{{result.subject.subject_code}}</td>
+                        <td>{{ result.subject.subject_name }}</td>
+                        <td>{{ result.test_score }}</td>
+                        <td>{{ result.exam_score }}</td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+          {{form}}
+          <br>
+          <input class="btn btn-primary" type="submit" value="Create Result">
+        </form>
+      </div>
+  </div>
+{% endblock %}

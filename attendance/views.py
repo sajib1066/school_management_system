@@ -20,8 +20,8 @@ def student_attendance(request):
         cll = ClassRegistration.objects.get(guide_teacher__name__login_details = request.user)
         class_name = cll.class_name        
     if request.method == 'POST':
-        class_info = ClassRegistration.current_objects.get(id=class_name)
-        student = EnrolledStudent.objects.filter(class_name=class_name)
+        class_info = ClassRegistration.objects.get(id=class_name)
+        student = EnrolledStudent.current_year.filter(class_name=class_name)
         count = student.count()
         attendance_formset = formset_factory(AttendanceForm, extra=count)
         formset = attendance_formset(request.POST)
@@ -36,7 +36,7 @@ def student_attendance(request):
                     StudentAttendance.objects.create_attendance(class_info.name, student.roll, mark, date)
                 except:
                     return    
-                return redirect('home')
+            return redirect('home')
     if class_name:
         class_info = ClassRegistration.objects.get(id=class_name)
         student = EnrolledStudent.objects.filter(class_name=class_name)
@@ -79,7 +79,7 @@ def GetAttendance(request, std_class):
 
 def ViewAttendance(request):
     try:
-        classes = ClassRegistration.current_objects.all
+        classes = ClassRegistration.objects.all()
     except:
         classes = None    
     return render(request, 'attendance/view-attendance.html', {'classes': classes})

@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class List</div>
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Subject Name</th>
+                      <th>Subject Code</th>
+                      <th>Class Name</th>
+                      <th>Department</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for sub in subjects %}
+                    <tr>
+                        <td>{{ sub.id }}</td>
+                        <td>{{ sub.subject_name }}</td>
+                        <td>{{ sub.subject_code }}</td>
+                        <td>{{sub.select_class.name}}</td>
+                        <td>{{sub.department}}</td>
+                        <td>
+                          <a class="btn btn-success" title="Add Subject" href="{% url 'teacher_result' sub.subject_code %}">
+                              Prepare Results
+                          </a>
+                        </td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+{% endblock %}

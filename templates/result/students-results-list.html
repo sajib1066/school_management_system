@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{student.student.personal_info.name}}</div>
+      <div class="card-body">
+          {% for r in result%}
+          <h4>{{r.student.session}}</h4><hr>
+          <h6>Approval status: {% if r.approval %}Approved {%else%}Pending {%endif%}</h6>
+          <h6>Position: {{r.position}}</h6>
+          <table class="table table-responsive-sm table-bordered">
+              <thead class="bg-primary">
+                  <tr>
+                    <th>Subject</th>
+                    <th>Test Score</th>
+                    <th>Test Score</th>
+                    <th>Total Score</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for q in r.result.all %}
+                    <tr>
+                        <td>{{ q.subject }}</td>
+                        <td>{{ q.test_score }}</td>
+                        <td>{{ q.exam_score }}</td>
+                        <td>{{ q.total_score }}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+          <br>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

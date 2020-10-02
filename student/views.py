@@ -165,12 +165,12 @@ def student_enrolled(request, reg):
     return render(request, 'student/student-enrolled.html', context)
 
 def enrolled_student_list(request):
-    student = EnrolledStudent.objects.all()
+    student = EnrolledStudent.current_year.all()
     forms = SearchEnrolledStudentForm()
     class_name = request.GET.get('reg_class', None)
     roll = request.GET.get('roll_no', None)
     if class_name:
-        student = EnrolledStudent.objects.filter(class_name=class_name)
+        student = EnrolledStudent.current_year.filter(class_name=class_name)
         context = {
             'forms': forms,
             'student': student

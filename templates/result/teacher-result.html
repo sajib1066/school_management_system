@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{subject.subject_name}} Result</div>
+      <div class="card-body">
+          <form action="" method="POST" class="post-form">
+            {{ result_formset.management_form.as_p }}
+              {% csrf_token %}
+          <table class="table table-responsive-sm table-bordered">
+              <thead class="bg-primary">
+                  <tr>
+                      <th>Student Name</th>
+                      <th>Student Roll</th>
+                      <th>Test Result</th>
+                      <th>Exam Result</th>
+                      <th>Total</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {{ form.management_form }}
+                  {% for student, form in list %}
+                    <tr>
+                        <td>{{ student.student.personal_info.name }}</td>
+                        <td>{{ student.roll }}</td>
+                        {% for f in form %}
+                        <td>{{f}}</td>
+                        {% endfor %}
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+          <button type="submit" class="save btn btn-default" style="cursor: pointer">Save</button>
+        </form>
+      </div>
+  </div>
+{% endblock %}

@@ -45,6 +45,15 @@
 
         <!-- Breadcrumb -->
         {% include 'base/breadcrumb.html' %}
+        {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+    <script>
+        alert('{{ message }}');
+    </script>
+    {% endfor %}
+    </ul>
+    {% endif %}
 
         <!-- Page contents -->
         <div class="container-fluid">

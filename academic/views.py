@@ -122,7 +122,7 @@ def view_session(request):
 def view_class(request):
     try:
         my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user)
-        my_students = EnrolledStudent.current_year.filter(class_name=my_class.class_name).only('students')
+        my_students = EnrolledStudent.current_year.filter(class_name=my_class).only('student')
     except:
         my_class = None 
         my_students = None       

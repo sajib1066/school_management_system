@@ -17,6 +17,10 @@
             <a class="nav-link" href="{% url 'student-attendance' %}">
                 <i class="icon-speedometer"></i>My Attendance</a>
           </li>
+          <li class="nav-item" id="student-sidebar-info">
+            <a class="nav-link" href="{% url 'student_result_view' %}">
+                <i class="icon-speedometer"></i>View Result</a>
+          </li>
 
          <!--Teacher sidebar-->
          {%elif request.user.is_teacher%}
@@ -43,8 +47,13 @@
 
                          <!-- My Info -->
            <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="icon-speedometer"></i>Myy</a>
+            <a class="nav-link" href="{% url 'my_subjects' %}">
+                <i class="icon-speedometer"></i>My Subjects</a>
+          </li>
+                                     <!-- My Info -->
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'result_student_list' %}">
+                <i class="icon-speedometer"></i>Class Results</a>
           </li>
             <!-- Teacher Sidebar End -->
            {%else%}
@@ -203,6 +212,14 @@
                    <a class="nav-link" href="{% url 'mark-entry' %}">
                        <i class="fa fa-plus-circle"></i>Mark Entry</a>
                </li>
+               <li class="nav-item">
+                <a class="nav-link" href="{% url 'mark-result' %}">
+                    <i class="fa fa-plus-circle"></i>Mark Result</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'view_student_result' %}">
+                    <i class="fa fa-plus-circle"></i>Approve Result</a>
+            </li>
            </ul>
          </li>
          <!-- Result Section END -->
@@ -227,7 +244,7 @@
        <!-- Holiday Section START -->
        <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#">
-            <i class="nav-icon icon-puzzle"></i>Holiday</a>
+            <i class="nav-icon icon-puzzle"></i>Timetable</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -240,7 +257,7 @@
         <!-- Event Section START -->
         <li class="nav-item nav-dropdown">
          <a class="nav-link nav-dropdown-toggle" href="#">
-             <i class="nav-icon icon-puzzle"></i>Event</a>
+             <i class="nav-icon icon-puzzle"></i>Events</a>
          <ul class="nav-dropdown-items">
              <li class="nav-item">
                  <a class="nav-link" href="#">
@@ -253,11 +270,11 @@
         <!-- User-Manual Section START -->
         <li class="nav-item nav-dropdown">
          <a class="nav-link" href="#">
-             <i class="nav-icon icon-puzzle"></i>User-Manual</a>
+             <i class="nav-icon icon-puzzle"></i>Updates</a>
        </li>
-       <!-- User-Manual Section END -->
+       <!-- User-Manual Section END --> 
         </ul>
-    </nav>
+    </nav> 
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>
     {%endif%}
     {% block sidebar %}

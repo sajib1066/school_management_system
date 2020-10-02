@@ -14,7 +14,7 @@
   {% if subjects %}
   <div class="card">
       <div class="card-header">
-          <i class="fa fa-align-justify"></i>Class List</div>
+          <i class="fa fa-align-justify"></i>My Subject List</div>
       <div class="card-body">
           <table class="table table-responsive-sm">
               <thead>
@@ -36,12 +36,15 @@
                         <td>{{ sub.marks }}</td>
                         <td>{{ sub.pass_mark }}</td>
                         <td>
-                          <a class="btn btn-success" title="Add Subject" href="{% url 'mark-table' sub.subject_name %}">
+                          <a class="btn btn-success" title="Add Subject" href="">
                               <i class="fa fa-search-plus"></i>
                           </a>
                           <a class="btn btn-info" title="View Subject List" href="">
                               <i class="fa fa-eye"></i>
                           </a>
+                          <a class="btn btn-info" title="View Subject List" href="{% url 'subject-edit' sub.id%}">
+                            <i class="fa fa-edit"></i>
+                        </a>
                         </td>
                     </tr>
                   {% endfor %}

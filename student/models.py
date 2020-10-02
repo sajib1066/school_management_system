@@ -4,6 +4,10 @@ import random
 from academic.models import ClassRegistration, Session, currentsession
 from account.models import Userss
 
+
+def random_int():
+    return random.randint(10000, 99999)
+
 class CurrentSessionManager(models.Manager):
     def get_queryset(self):
         current = currentsession.objects.get()
@@ -153,7 +157,7 @@ class AcademicInfo(models.Model):
     )
     class_name = models.IntegerField(choices=class_select,)
     login_details = models.OneToOneField(Userss, on_delete=models.SET_NULL, null=True)
-    registration_no = models.IntegerField(unique=True, default=random.randint(000000, 999999))
+    registration_no = models.IntegerField(unique=True, default=random_int)
     status_select = (
         ('not enroll', 'Not Enroll'),
         ('enrolled', 'Enrolled'),
@@ -171,12 +175,12 @@ class AcademicInfo(models.Model):
     is_delete = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.registration_no)
+        return str(self.personal_info)
 
 class EnrolledStudent(models.Model):
     class_name = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE)
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
-    student = models.OneToOneField(AcademicInfo, on_delete=models.CASCADE)
+    student = models.ForeignKey(AcademicInfo, on_delete=models.CASCADE)
     roll = models.IntegerField()
     date = models.DateField(auto_now_add=True)
 
@@ -187,5 +191,5 @@ class EnrolledStudent(models.Model):
         unique_together = ['class_name', 'roll']
     
     def __str__(self):
-        return str(self.roll)
+        return str(self.student)
 

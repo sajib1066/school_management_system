@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{results.subject_name.distinct}} Results</div>
+      <div class="card-body">
+        <canvas id="pie-chart"></canvas>
+          <table class="table table-responsive-sm table-bordered">
+              <thead class="bg-primary">
+                  <tr>
+                    <th>Term</th>
+                    <th>Test Score</th>
+                    <th>Exam Score</th>
+                    <th>Total Score</th>
+                  </tr>
+              </thead>
+              {% for result in results %}
+              <tbody>
+                    <tr>
+                        <td>{{result.student.session.term}}</td>
+                        <td>{{result.test_score}}</td>
+                        <td>{{result.exam_score}}</td>
+                        <td>{{result.total_score}}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+
+    var config = {
+      type: 'bar',
+      data: {
+        datasets: [{
+          data: {{ data|safe }},
+          backgroundColor: [ 'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)' ],
+          label: 'Results'
+        }],
+        labels: {{ labels|safe }}
+      },
+      options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    suggestedMax: 100
+                }
+            }]
+        }
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+
+  </script>
+{% endblock %}
