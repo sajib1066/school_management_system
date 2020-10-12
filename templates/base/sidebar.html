@@ -241,18 +241,22 @@
         </li>
         <!-- Attendence Report Section END -->
 
-       <!-- Holiday Section START -->
+       <!-- Timetable Section START -->
        <li class="nav-item nav-dropdown">
         <a class="nav-link nav-dropdown-toggle" href="#">
             <i class="nav-icon icon-puzzle"></i>Timetable</a>
         <ul class="nav-dropdown-items">
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="nav-icon icon-puzzle"></i>Student List</a>
+                <a class="nav-link" href="{% url 'add-period'%}">
+                    <i class="nav-icon icon-puzzle"></i>Add Period</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'timetable-class-list'%}">
+                    <i class="nav-icon icon-puzzle"></i>Generate Timetable</a>
             </li>
         </ul>
       </li>
-      <!-- Holiday Section END -->
+      <!-- Timetable Section END -->
 
         <!-- Event Section START -->
         <li class="nav-item nav-dropdown">

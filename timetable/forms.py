@@ -1,0 +1,26 @@
+from django import forms
+from .models import *
+from flatpickr import TimePickerInput
+
+class PeriodForm(forms.ModelForm):
+    class Meta:
+        model = Period
+        fields = '__all__'
+        widgets = {
+            'section': forms.Select(attrs={'class': 'form-control'}),
+            'day': forms.Select(attrs={'class': 'form-control'}),
+            'start_time': TimePickerInput(attrs={'class': 'form-control'}),
+            'end_time': TimePickerInput(attrs={'class': 'form-control'})
+        }
+
+class BreakForm(forms.ModelForm):
+    class Meta:
+        model = Breaks
+        fields = '__all__'
+        widgets = {
+            'break_type': forms.Select(attrs={'class': 'form-control'}),
+            'section': forms.Select(attrs={'class': 'form-control'}),
+            'start_time': TimePickerInput(attrs={'class': 'form-control'}),
+            'end_time': TimePickerInput(attrs={'class': 'form-control'})
+        }        
+

@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Subject Register Form</div>
+    <div class="card-body">
+      <form class="" action="" method="post">
+        <div class="card">
+          <div class="card-header">Subject Information</div>
+          <div class="card-body">
+            <h6>ADD PERIOD</h6>
+            <hr>
+            {% csrf_token %}
+            {{form.media}}
+            {{breakform.media}}
+            {{ form.as_p }}
+            <h6>ADD BREAK</h6> <hr>
+            {{breakform.as_p}}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Subject</button>
+      </form>
+      <hr>
+    
+    <div class="card">
+      <div class="card-header">All Section Time Periods</div>
+      <div class="card-body">
+        {% if periods %}
+        <h5>Periods</h5>
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+          </tr>
+        </thead> 
+          {% for period in periods %}
+          {% if period.section == 'Nursery'%}
+          <tbody>
+            <tr>
+              <td>{{period.day}}</td>
+              <td>{{period.start_time}}</td>
+              <td>{{period.end_time}}</td>
+            </tr>
+          </tbody>
+          {% endif %}
+          {% if period.section == 'Primary'%}
+          <tbody>
+            <tr>
+              <td>{{period.day}}</td>
+              <td>{{period.start_time}}</td>
+              <td>{{period.end_time}}</td>
+            </tr>
+          </tbody>
+          {% endif %}
+          {% if period.section == 'Secondary'%}
+          <tbody>
+            <tr>
+              <td>{{period.day}}</td>
+              <td>{{period.start_time}}</td>
+              <td>{{period.end_time}}</td>
+            </tr>
+          </tbody>
+          {% endif %}
+          {% endfor %}
+          {% else %}
+          <h4>No Periods</h4>
+          {% endif %}
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

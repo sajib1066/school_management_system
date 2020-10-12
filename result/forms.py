@@ -14,6 +14,7 @@ class SubjectRegistrationForm(forms.ModelForm):
             'marks': forms.NumberInput(attrs={'class': 'form-control'}),
             'pass_mark': forms.NumberInput(attrs={'class': 'form-control'}),
             'department': forms.Select(attrs={'class': 'form-control'}),
+            'periods_per_week': forms.NumberInput(attrs={'class': 'form-control'}),
             'teacher': forms.Select(attrs={'class': 'form-control'})
         }
 

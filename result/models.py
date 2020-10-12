@@ -18,6 +18,7 @@ class SubjectRegistration(models.Model):
     pass_mark = models.IntegerField()
     add_date = models.DateField(auto_now_add=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    periods_per_week = models.IntegerField(default=1)
     teacher =  models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
