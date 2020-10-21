@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Period)
 admin.site.register(Timetable)
 admin.site.register(Breaks)
+admin.site.register(Class_Subjects)

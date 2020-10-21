@@ -22,7 +22,7 @@ class SubjectRegistration(models.Model):
     teacher =  models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return str(self.subject_name)
+        return str(self.select_class)+ str(self.subject_name)
 
 class Result(models.Model):
     subject = models.ForeignKey(SubjectRegistration, on_delete=models.CASCADE)

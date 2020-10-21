@@ -14,6 +14,7 @@
                       <th>Class</th>
                       <th>Section</th>
                       <th>Generate Timetable</th>
+                      <th>View Timetable</th>
                   </tr>
               </thead>
               <tbody>
@@ -28,6 +29,7 @@
                         <td>{{ cls.section }}</td>
                         <input type="hidden" value="{{cls.id}}" name="timetable_class_id">
                         <td><input class="btn btn-primary" type="submit" method="POST" value="Generate Timetable"></td>
+                        <td><a class="btn btn-primary" href="{%url 'view_timetable' cls.id %}">View Timetable</a></td>
                     </tr>
                 </form>
                   {% endfor %}
