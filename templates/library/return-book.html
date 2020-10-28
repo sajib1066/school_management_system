@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Borrow {{borrow.book.title}}
+    </div>
+      <div class="card-body">
+          <h5>Book Title: {{borrow.book.title}}</h5>
+          <h5>Borrowed by: {{borrow.student.name}}</h5>
+          <h5>Issued on: {{borrow.issue_date}}</h5> 
+          <h5>Expected on/before: {{borrow.return_date}}</h5>
+
+  
+        <h6>Fill Form</h6>
+        <form action="" method="POST">
+            {% csrf_token%}
+            {{form.media}}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+  </div>
+{% endblock %}

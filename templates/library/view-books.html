@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class List
+    </div>
+    {% if books %}
+      <div class="card-body">
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Date Added</th>
+                      <th>Available Copies</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for book in books %}
+                    <tr>
+                        <td><a href="{% url 'view-book' book.id %}">{{ book.title }}</a></td>
+                        <td>{{ book.author }}</td>
+                        <td>{{book.date_added}}</td>
+                        <td>{{book.available_copies}}</td>
+                    </tr>
+                  </a>
+
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      {% else %}
+      <div class="card-body">
+          <h3>No Books</h3>
+      </div>
+      {% endif %}
+  </div>
+{% endblock %}

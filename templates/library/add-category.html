@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Add Category </div>
+    <div class="card-body">
+      <form class="" action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }} 
+        <button type="submit" class="btn btn-primary">Add Category</button>
+      </form>
+    </div>
+
+    </div>
+{% endblock %}

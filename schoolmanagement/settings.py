@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'attendance',
     'flatpickr',
     'timetable',
+    'library'
 ]
 
 MIDDLEWARE = [

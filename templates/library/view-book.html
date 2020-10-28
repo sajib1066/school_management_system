@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{book.title}}
+    </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-sm-4"><img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg" /></div>
+              <div class="col-sm-4">
+                  <h5>Title: {{book.title}}</h5><br>
+                  <h5>Author: {{book.author}} </h5><br>
+                  <h5>Categories: {%for category in book.categories.all %}{{category}},{% endfor %}</h5><br>
+                  <h5>ISBN number: {{book.isbn}}</h5><br>
+             </div>
+             <div class="col-sm-4">
+                <h5>Date Added: {{book.date_added}}</h5><br>
+                <h5>Total Copies: {{book.total_copies}}</h5><br>
+                <h5>Available Copies: {{book.available_copies}}</h5><br>
+                <h5><a class="btn btn-primary" href="{% url 'borrow-book' book.id %}">Borrow</a></h5>
+             </div>
+          </div> <br>
+          <hr>
+          <h5>Borrowed</h5><br>
+          {% if borrowers %}
+          <table class="table table-striped">
+              <thead class="bg-primary">
+                  <tr>
+                      <th>Student</th>
+                      <th>Date Collected</th>
+                      <th>Return Date</th>
+                      <th>Return Book</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for student in borrowers %}
+                    <tr>
+                        <td>{{student.student.name}}</td>
+                        <td>{{student.issue_date}}</td>
+                        <td>{{student.return_date}}</td>
+                        <td><a href="{% url 'return-book' student.id %}" class="btn btn-primary">Return Book</a></td>
+                    </tr>
+
+                  {% endfor %}
+              </tbody>
+          </table>
+          {%else%}
+          <hr>
+          <h6>Not currently borrowed</h6>
+          {%endif%}
+      </div>
+  </div>
+{% endblock %}

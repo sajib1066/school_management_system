@@ -248,11 +248,11 @@
         <ul class="nav-dropdown-items">
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'add-period'%}">
-                    <i class="nav-icon icon-puzzle"></i>Add Period</a>
+                    <i class="fa fa-plus-circle"></i>Add Period</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'timetable-class-list'%}">
-                    <i class="nav-icon icon-puzzle"></i>Generate Timetable</a>
+                    <i class="fa fa-list"></i>Generate Timetable</a>
             </li>
         </ul>
       </li>
@@ -270,6 +270,28 @@
          </ul>
        </li>
        <!-- Event Section END -->
+
+
+        <!-- Library Section START -->
+               <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Library</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add-book'%}">
+                            <i class="fa fa-plus-circle"></i>Add Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add-category'%}">
+                            <i class="fa fa-plus-circle"></i>Add Category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view-books'%}">
+                            <i class="nav-icon icon-puzzle"></i>View Books</a>
+                    </li>
+                </ul>
+              </li>
+              <!-- Library Section END -->
 
         <!-- User-Manual Section START -->
         <li class="nav-item nav-dropdown">

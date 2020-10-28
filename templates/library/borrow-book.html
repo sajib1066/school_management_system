@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Borrow {{book.title}}
+    </div>
+      <div class="card-body">
+          <h3>{{book.title}}</h3><br>
+          <div style="border: 1px;">
+            <h6>Select Student Class</h6>
+            <form action="" method="GET">
+              {{ form }}
+              <input type="submit" value="Search">
+            </form>
+        </div><hr>
+
+        {% if students %}
+        <h6>Fill Form</h6>
+        <form action="" method="POST">
+            {% csrf_token%}
+            {{borrowform.media}}
+            <label>Choose Student: </label>
+            <select class="form-control" name="studentname">
+                {% for student in students%}
+                <option value="{{student.student.personal_info.name}}">{{student.student.personal_info.name}}</option>
+                {% endfor %}
+            </select><br>
+            {{borrowform.as_p}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        {% else %}
+        
+
+        {% endif %}
+      </div>
+  </div>
+{% endblock %}

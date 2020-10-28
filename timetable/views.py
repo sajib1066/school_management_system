@@ -128,6 +128,12 @@ def Edit_Timetable(request, id):
             subject = form.cleaned_data['subject']
             day = form.cleaned_data['day']
             period = form.cleaned_data['period']
+            start_confilct = Timetable.objects.filter(subject__teacher=subject.teacher, day=day, period__start_time__range=(period.start_time, period.end_time))
+            end_confilct = Timetable.objects.filter(subject=subject, day=day, period__end_time__range=(period.start_time, period.end_time))
+            if start_confilct.count != 0 or end_confilct.count != 0:
+                messages.info(request, 'A subject exists at this time')
+                return
+            form.save()    
     timetable =  Timetable.objects.get(id=id)
     form = forms.TimetableForm(instance=timetable)
     context = {
