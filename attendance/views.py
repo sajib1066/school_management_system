@@ -17,7 +17,7 @@ def student_attendance(request):
         student = StudentAttendance.objects.filter(student__student__login_details = request.user)
         return render(request, 'attendance/my-attendance.html', {'student': student})
     if request.user.is_teacher:
-        cll = ClassRegistration.objects.get(guide_teacher__name__login_details = request.user)
+        cll = ClassRegistration.objects.get(guide_teacher__login_details = request.user)
         class_name = cll.class_name        
     if request.method == 'POST':
         class_info = ClassRegistration.objects.get(id=class_name)

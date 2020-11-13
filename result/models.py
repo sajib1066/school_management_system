@@ -14,15 +14,13 @@ class SubjectRegistration(models.Model):
     select_class = models.ForeignKey(ClassRegistration, on_delete=models.CASCADE, null=True)
     subject_name = models.CharField(max_length=45)
     subject_code = models.IntegerField(unique=True, default=random_int)
-    marks = models.IntegerField()
-    pass_mark = models.IntegerField()
     add_date = models.DateField(auto_now_add=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     periods_per_week = models.IntegerField(default=1)
     teacher =  models.ForeignKey(PersonalInfo, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return str(self.select_class)+ str(self.subject_name)
+        return str(self.subject_name)
 
 class Result(models.Model):
     subject = models.ForeignKey(SubjectRegistration, on_delete=models.CASCADE)

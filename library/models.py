@@ -12,7 +12,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     categories = models.ManyToManyField(Category)
-    isbn = models.CharField('ISBN', max_length=13, null=True, blank=True,
+    isbn = models.CharField('ISBN', max_length=13, null=True, blank=True, unique=True,
                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     total_copies = models.IntegerField()
     available_copies = models.IntegerField()

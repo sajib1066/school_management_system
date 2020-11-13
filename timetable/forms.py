@@ -35,3 +35,40 @@ class TimetableForm(forms.ModelForm):
             'period': forms.Select(attrs={'class': 'form-control'}),
         }              
 
+class SectionSubjectForm(forms.ModelForm):
+    class Meta:
+        model= SectionSubject
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'teacher': forms.Select(attrs={'class': 'form-control'}),
+            'section': forms.Select(attrs={'class': 'form-control'}),
+            'additional_teacher': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'no_of_times_a_week': forms.NumberInput(attrs={'class': 'form-control'}),
+            'is_before_short_break': forms.CheckboxInput(),
+            'is_before_long_break': forms.CheckboxInput(),
+        }
+
+class AddTeacherForm(forms.ModelForm):
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'code': forms.NumberInput(attrs={'class': 'form-control'}),
+            'max_periods_a_week': forms.NumberInput(attrs={'class': 'form-control'}),
+            'unavailable_days': forms.SelectMultiple(attrs={'class': 'form-control'}),
+        }
+
+
+class ClassSubjectsForm(forms.ModelForm):
+    class Meta:
+        model = Class_Subjects
+        fields = '__all__'
+        widgets = {
+            'class_name': forms.Select(attrs={'class': 'form-control'}),
+            'section': forms.Select(attrs={'class': 'form-control'}),
+            'subjects': forms.SelectMultiple(attrs={'class': 'form-control'}),
+
+        }        
+

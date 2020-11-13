@@ -18,9 +18,9 @@ def add_department(request):
     return render(request, 'academic/add-department.html', context)
 
 def add_class(request):
-    forms = ClassForm()
+    forms = ClassRegistrationForm()
     if request.method == 'POST':
-        forms = ClassForm(request.POST)
+        forms = ClassRegistrationForm(request.POST)
         if forms.is_valid():
             forms.save()
             return redirect('create-class')
@@ -88,19 +88,7 @@ def class_list(request):
     context = {'register_class': register_class}
     return render(request, 'academic/class-list.html', context)
 
-def create_guide_teacher(request):
-    forms = GuideTeacherForm()
-    if request.method == 'POST':
-        forms = GuideTeacherForm(request.POST)
-        if forms.is_valid():
-            forms.save()
-            return redirect('guide-teacher')
-    guide_teacher = GuideTeacher.objects.all()
-    context = {
-        'forms': forms,
-        'guide_teacher': guide_teacher
-    }
-    return render(request, 'academic/create-guide-teacher.html', context)
+
 
 def view_session(request):
     forms = ChangeSessionForm()
@@ -121,7 +109,7 @@ def view_session(request):
 
 def view_class(request):
     try:
-        my_class = ClassRegistration.objects.get(guide_teacher__name__login_details=request.user)
+        my_class = ClassRegistration.objects.get(guide_teacher__login_details=request.user)
         my_students = EnrolledStudent.current_year.filter(class_name=my_class).only('student')
     except:
         my_class = None 

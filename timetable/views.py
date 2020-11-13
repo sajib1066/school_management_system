@@ -5,41 +5,67 @@ from .models import *
 from . import forms
 from django.contrib import messages
 import random
+from datetime import datetime, date, timedelta
 
 # Create your views here.
 def AddPeriod(request):
     try:
-        time = Period.objects.all()
+        time = Period.objects.all().order_by('section')
     except:
         time = None 
     breakform = forms.BreakForm()           
     form = forms.PeriodForm()
     if request.method == 'POST':
-        try:
-            form = forms.PeriodForm(request.POST)
+        form1 = forms.PeriodForm(request.POST)
+        if form1.is_valid():
+            form = form1.save(commit=False)
+            form.start_time = (datetime.combine(date.today(),form.start_time) + timedelta(seconds=1)).time() 
             form.save()
             messages.info(request, 'Form saved successfully')
-        except:
-            messages.info(request, "Couldn't save form")    
+            return redirect('add-period')
+        else: 
+            messages.error(request, "Couldn't save form")    
     context = {
         'form': form,
         'periods': time,
-        'breakform': breakform
+        'breakform': breakform,
     }
     return render(request, 'timetable/add-period.html', context)
+
+def AddBreak(request):
+    if request.method == 'POST':
+        form = forms.BreakForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Break added successfully')
+            return redirect('add-period')
+
+def DeletePeriod(request):
+    if request.method == 'POST':
+        id = request.POST['id']
+        Period.objects.get(id=id).delete()
+        messages.success(request, 'Period deleted successfully')
+        return redirect('home')
+
+def DeleteTimetableTeacher(request):
+    if request.method == 'POST':
+        id = request.POST['id']
+        Teacher.objects.get(id=id).delete()
+        messages.success(request, 'Teacher deleted successfully')
+        return redirect('add-timetable-teacher')        
 
 def GenerateTimetable(request):
     if request.method == 'POST':
         idf = request.POST["timetable_class_id"]
-        classs = ClassRegistration.objects.get(id=idf)
-        subjects = list(Class_Subjects.objects.filter(subject__select_class=classs))
+        classes = ClassRegistration.objects.get(id=idf)
+        classs = Class_Subjects.objects.get(class_name=classes.class_name)
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
         class_periods = list(Period.objects.filter(section=classs.section).order_by('start_time'))
-        break_time = Breaks.objects.get(section=classs.section)
-        before_break = Period.objects.filter(start_time__lte=break_time.start_time).count()
+        break_time = Breaks.objects.get(section=classs.section, break_type='Short Break')
+        before_break = Period.objects.filter(section=classs.section, start_time__lte=break_time.start_time).count()
         if Timetable.objects.filter(school_class__id=idf).count() != 0:
             Timetable.objects.filter(school_class__id=idf).delete()
-        for subject in subjects:
+        for subject in classs.subjects.all():
             DupNum = 0
             y = 0
             m = 0
@@ -49,16 +75,19 @@ def GenerateTimetable(request):
                 messages.info(request, "Couldn't create Timetable")
                 redirect('home')
             while y < subject.no_of_times_a_week:
-                if DupNum > len(class_periods) * 5:
+                if DupNum > len(class_periods) * 6:
+                    messages.info(request, "Could not get a Timetable slot for {}, {} time".format(subject.subject.subject_name, y+1))
                     break
                 else:
                     if DupNum < 3:
-                        if subject.is_morning and m < 3:
-                            i = random.randint(0, before_break)                   
+                        if subject.is_before_short_break and m < 3:
+                            i = random.randint(0, before_break-1)                   
                         else:
                             i = random.randint(0, len(class_periods)-1)
                         d = random.randint(0, len(days)-1)    
                     else:
+                        if DupNum == 3:
+                            d = -1
                         if j <= len(class_periods):
                             if j == len(class_periods) and d < (len(days) - 1):
                                 d += 1
@@ -66,25 +95,48 @@ def GenerateTimetable(request):
                             elif j < len(class_periods):
                                 i = j
                                 j += 1
-                start_conflict = Timetable.objects.filter(day=days[d],
+                start_conflict = Timetable.objects.filter(school_class=classes, day=days[d],
                     period__start_time__range=(class_periods[i].start_time,
                                     class_periods[i].end_time))
-                end_conflict = Timetable.objects.filter(day=days[d],
+                end_conflict = Timetable.objects.filter(school_class=classes, day=days[d],
                 period__end_time__range=(class_periods[i].start_time,
                                 class_periods[i].end_time))
 
-                during_conflict = Timetable.objects.filter(day=days[d],
+                during_conflict = Timetable.objects.filter(school_class=classes,day=days[d],
                     period__start_time__gte=class_periods[i].start_time, 
                     period__end_time__lte=class_periods[i].end_time)
 
-                teacher_conflict = Timetable.objects.filter(day=days[d], subject__teacher=subject.teacher,
-                        period__start_time__gte=class_periods[i].start_time,
-                        period__end_time__lte=class_periods[i].end_time)
+                teacher_start_conflict = Timetable.objects.filter(day=days[d], subject__teacher=subject.teacher,
+                       period__start_time__range=(class_periods[i].start_time,
+                                    class_periods[i].end_time))
 
-                subject_conflict = Timetable.objects.filter(day=days[d], subject__subject=subject.subject)
+                teacher_end_conflict = Timetable.objects.filter(day=days[d], subject__teacher=subject.teacher,
+                       period__end_time__range=(class_periods[i].start_time,
+                                    class_periods[i].end_time))                                    
 
-                if start_conflict.count() == 0 and end_conflict.count() == 0 and during_conflict.count() == 0 and teacher_conflict.count() == 0 and subject_conflict.count() == 0:
-                    Timetable.objects.create(school_class=classs, subject=subject, period=class_periods[i], day=days[d])
+                subject_conflict = Timetable.objects.filter(school_class=classes,day=days[d], subject__name=subject.name)
+
+                if days[d] in subject.teacher.unavailable_days.all():
+                    good_day = False 
+                else:
+                    good_day = True 
+
+                if subject.additional_teacher:
+                    for s in subject.additional_teacher.all():
+                        s_start_conflict = Timetable.objects.filter(day=days[d], subject__teacher=s,
+                       period__start_time__range=(class_periods[i].start_time,
+                                    class_periods[i].end_time))
+
+                        s_end_conflict = Timetable.objects.filter(day=days[d], subject__teacher=s,
+                       period__end_time__range=(class_periods[i].start_time,
+                                    class_periods[i].end_time)) 
+
+                        if s_end_conflict.count() != 0 or s_start_conflict.count() != 0:
+                            good_day = False             
+
+
+                if start_conflict.count() == 0 and end_conflict.count() == 0 and during_conflict.count() == 0 and teacher_start_conflict.count() == 0 and teacher_end_conflict.count() == 0 and subject_conflict.count() == 0 and good_day:
+                    Timetable.objects.create(school_class=classes, subject=subject, period=class_periods[i], day=days[d], teacher=subject.teacher)
                     DupNum = 0
                     y+=1
                     m=0
@@ -129,7 +181,7 @@ def Edit_Timetable(request, id):
             day = form.cleaned_data['day']
             period = form.cleaned_data['period']
             start_confilct = Timetable.objects.filter(subject__teacher=subject.teacher, day=day, period__start_time__range=(period.start_time, period.end_time))
-            end_confilct = Timetable.objects.filter(subject=subject, day=day, period__end_time__range=(period.start_time, period.end_time))
+            end_confilct = Timetable.objects.filter(subject__teacher=subject.teacher, day=day, period__end_time__range=(period.start_time, period.end_time))
             if start_confilct.count != 0 or end_confilct.count != 0:
                 messages.info(request, 'A subject exists at this time')
                 return
@@ -140,3 +192,61 @@ def Edit_Timetable(request, id):
         'form': form
     }
     return render(request, 'timetable/edit-timetable.html', context)
+
+def AddSectionSubject(request):
+    form = forms.SectionSubjectForm()
+    section_subjects = SectionSubject.objects.all()
+    if request.method == 'POST':
+        form = forms.SectionSubjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('add-section-subject')
+    context = {
+        'form': form,
+        'subjects': section_subjects
+    }    
+    return render(request, 'timetable/add-section-subject.html', context)
+
+def AddTimetableTeacher(request):
+    form = forms.AddTeacherForm()
+    teachers = Teacher.objects.all().order_by('code')
+    if request.method == 'POST':
+        form = forms.AddTeacherForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('add-timetable-teacher')
+    context =  {
+        'form': form,
+        'teachers': teachers
+    }
+    return render(request, 'timetable/add-teacher.html', context)
+
+def AddClassSubjects(request):
+    form = forms.ClassSubjectsForm()
+    classes = Class_Subjects.objects.all()
+    if request.method == 'POST':
+        form = forms.ClassSubjectsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Class Subjects created successfully')
+            return redirect('timetable-class-subjects')
+    context = {
+        'form': form,
+        'classes': classes
+    }    
+    return render(request, 'timetable/add-class-subjects.html', context)
+
+def DeleteClassSubjects(request):
+    if request.method == 'POST':
+        id = request.POST['id']
+        Class_Subjects.objects.get(id=id).delete()
+        messages.info(request, 'Class Subjects deleted successdully')
+        return redirect('timetable-class-subjects')
+
+def DeleteSectionSubjects(request):
+    if request.method == 'POST':
+        id = request.POST['id']
+        SectionSubject.objects.get(id=id).delete()
+        messages.info(request, 'Class Subjects deleted successdully')
+        return redirect('add-section-subject')      
+

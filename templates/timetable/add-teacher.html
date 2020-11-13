@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Timetable Teacher</div>
+    <div class="card-body">
+      <form class="" action="" method="post">
+        <div class="card">
+          <div class="card-header">Timetable Teacher Form</div>
+          <div class="card-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Teacher</button>
+          </div>
+        </div>
+      </form>
+      <br>
+      <hr>
+      <div class="card">
+        <div class="card-header">All Timtable Teachers</div>
+        <div class="card-body">
+          {% if teachers %}
+           <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Number of Periods</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+            {% for teacher in teachers %}
+            <tbody>
+              <tr>
+                <form class="" action="{% url 'delete-timetable-teacher' %}" method="post">
+                  {% csrf_token %}
+                <input type="hidden" name="id" value="{{teacher.id}}">
+                <td>{{teacher.name}}</td>
+                <td>{{teacher.code}}</td>
+                <td>{{teacher.max_periods_a_week}}</td>
+                <!-- Button trigger modal -->
+              <td>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{teacher.name}}Modal">
+                Delete
+              </button></td>
+
+              <!-- Modal -->
+              <div class="modal fade" id="{{teacher.name}}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Are you sure you want to delete {{teacher.name}}</h6>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <input type="submit" class="btn btn-primary" value="Delete">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Modal end-->
+              </tr>
+            </tbody>
+          </form>
+            {% endfor %}
+            {% else %}
+            <h4>No Teachers</h4>
+            {% endif %}
+          </table>
+        </div>
+        </div>
+    </div>
+  </div>
+{% endblock %}

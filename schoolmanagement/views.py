@@ -10,7 +10,7 @@ def home_page(request):
     if request.user.is_teacher:
         teacher_personal_info = teacher.models.PersonalInfo.objects.get(login_details=request.user)
         try: 
-            clas = academic.models.ClassRegistration.objects.get(guide_teacher__name =teacher_personal_info)
+            clas = academic.models.ClassRegistration.objects.get(guide_teacher =teacher_personal_info)
         except:
             clas = None
         context = {

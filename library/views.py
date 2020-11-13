@@ -43,7 +43,7 @@ def ListBooks(request):
 
 def ViewBook(request, id):
     book = Book.objects.get(id=id)
-    borrowers = Borrowed.objects.filter(book__id=id)
+    borrowers = Borrowed.objects.filter(book__id=id, returned=False)
     context = {
         'book': book,
         'borrowers': borrowers
@@ -105,4 +105,17 @@ def ReturnBook(request, id):
     }
     return render(request, 'library/return-book.html', context)
 
+def EditBook(request, id):
+    book = Book.objects.get(id=id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, instance=book)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Book edited successfully')
+            return redirect('home')
+    form = BookForm(instance=book)
+    context = {
+        'form': form
+    }    
+    return render(request, 'library/edit-book.html', context)
 

@@ -8,5 +8,6 @@ urlpatterns = [
     path('view-books/', views.ListBooks, name='view-books'),  
     path('view-book/<id>', views.ViewBook, name='view-book'),
     path('borrow-book/<id>', views.BorrowBook, name='borrow-book'),
-    path('return-book/<id>', views.ReturnBook, name='return-book')
+    path('return-book/<id>', views.ReturnBook, name='return-book'),
+    path('edit-book/<id>', views.EditBook, name='edit-book')
 ]

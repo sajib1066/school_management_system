@@ -87,10 +87,6 @@
                   <a class="nav-link" href="{% url 'create-shift' %}">
                       <i class="fa fa-plus-circle"></i>Create Shift</a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'guide-teacher' %}">
-                      <i class="fa fa-plus-circle"></i>Guide Teacher</a>
-              </li>
             </ul>
           </li>
           <!-- Academic Section END -->
@@ -250,6 +246,18 @@
                 <a class="nav-link" href="{% url 'add-period'%}">
                     <i class="fa fa-plus-circle"></i>Add Period</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add-section-subject' %}">
+                    <i class="fa fa-plus-circle"></i>Add SectionSubject</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add-timetable-teacher' %}">
+                    <i class="fa fa-plus-circle"></i>Timetable Teacher</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'timetable-class-subjects' %}">
+                    <i class="fa fa-plus-circle"></i>Add Class Subjects</a>
+            </li>                                    
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'timetable-class-list'%}">
                     <i class="fa fa-list"></i>Generate Timetable</a>

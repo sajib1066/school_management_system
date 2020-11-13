@@ -58,22 +58,9 @@ class Shift(models.Model):
     def __str__(self):
         return self.name
 
-class GuideTeacher(models.Model):
-    name = models.OneToOneField('teacher.PersonalInfo', on_delete=models.CASCADE, null=True)
-    date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return str(self.name)
 
 class ClassRegistration(models.Model):
     name = models.CharField(max_length=10, unique=True)
-    department_select = (
-        ('general', 'General'),
-        ('science', 'Science'),
-        ('business', 'Business'),
-        ('humanities', 'Humanities')
-    )
-    department = models.CharField(choices=department_select, max_length=15)
     class_select = (
         (1, 'Playgroup'),
         (2, 'Pre-nursery'),
@@ -95,13 +82,14 @@ class ClassRegistration(models.Model):
     class_name = models.IntegerField(choices=class_select, null=True)
     section_select = (
         ('Nursery', 'Nursery'),
-        ('Primary', 'Primary'),
-        ('Secondary', 'Secondary')
+        ('Lower Prep', 'Lower Prep'),
+        ('Upper Prep', 'Upper Prep'),
+        ('Junior Secondary', 'Junior Secondary'),
+        ('Senior Secondary', 'Senior Secondary'),
     )
-    section = models.CharField(choices= section_select,max_length=10, null=True)
-    shift = models.ForeignKey(Shift, on_delete=models.CASCADE, null=True)
-    guide_teacher = models.OneToOneField(GuideTeacher, on_delete=models.CASCADE, null=True)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
+    guide_teacher =  models.OneToOneField('teacher.PersonalInfo', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = ['class_name', 'name']

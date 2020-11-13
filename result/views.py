@@ -128,7 +128,7 @@ def student_result(request, registration_no):
     return render(request, 'result/student-result-prep.html', context)
 
 def students_list(request):
-    classw = ClassRegistration.objects.get(guide_teacher__name__login_details = request.user)
+    classw = ClassRegistration.objects.get(guide_teacher__login_details = request.user)
     students = EnrolledStudent.current_year.filter(class_name=classw)
     context = {
         'class': classw,

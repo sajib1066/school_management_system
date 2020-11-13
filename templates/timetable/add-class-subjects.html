@@ -6,56 +6,52 @@
         <div class="card">
           <div class="card-header">Subject Information</div>
           <div class="card-body">
-            <h6>ADD PERIOD</h6>
+            <h6>ADD Class Subjects  </h6>
             <hr>
             <form class="" action="" method="post">
             {% csrf_token %}
             {{form.media}}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Add Period</button>
+            <button type="submit" class="btn btn-primary">Create</button>
           </form>
           <br><br>
-            <h6>ADD BREAK</h6> <hr>
-            <form class="" action="{% url 'add-break'%}" method="post">
-            {%csrf_token%}
-            {{breakform.media}}
-            {{breakform.as_p}}
-            <button type="submit" class="btn btn-primary">Add Break Time</button>
           </div>
         </div>
-        
-      </form>
       <hr>
     
     <div class="card">
-      <div class="card-header">All Section Time Periods</div>
+      <div class="card-header">All Classes</div>
       <div class="card-body">
-        {% if periods %}
+        {% if classes %}
+        {%for class in classes%}
+        <h5>{{class}}</h5>
          <table class="table table-striped">
         <thead>
           <tr>
-            <th>Section</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+            <th>Subject</th>
+            <th>Tecaher</th>
+            <th>No of times a week</th>
             <th>Delete</th>
           </tr>
         </thead>
-          {% for period in periods %}
+          {% for p in class.subjects.all %}
           <tbody>
             <tr>
-              <form class="" action="{% url 'delete-period' %}" method="post">
+              <form class="" action="{% url 'timetable-delete-class-subjects' %}" method="post">
                 {% csrf_token %}
-              <input type="hidden" name="id" value="{{period.id}}">
-              <td>{{period.section}}</td>
-              <td>{{period.start_time}}</td>
-              <td>{{period.end_time}}</td>
+              <input type="hidden" name="id" value="{{class.id}}">
+              <td>{{p.name}}</td>
+              <td>{{p.teacher}}</td>
+              <td>{{p.no_of_times_a_week}}</td>
+              {% endfor %}
               <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{period.id}}Modal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{p.id}}classSubjectsModal">
                   Delete
                 </button></td>
+                
   
                 <!-- Modal -->
-                <div class="modal fade" id="{{period.id}}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="{{p.id}}classSubjectsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -65,7 +61,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <h6>Are you sure you want to delete this period</h6>
+                        <h6>Are you sure you want to delete this Class Subjects</h6>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,9 +74,9 @@
                           </tr>
           </tbody>
         </form>
-          {% endfor %}
+          {% endfor%}
           {% else %}
-          <h4>No Periods</h4>
+          <h4>No Class Subjects</h4>
           {% endif %}
         </table>
       </div>

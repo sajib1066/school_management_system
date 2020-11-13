@@ -3,59 +3,48 @@
   <div class="card">
     <div class="card-header">Subject Register Form</div>
     <div class="card-body">
+      <form class="" action="" method="post">
         <div class="card">
           <div class="card-header">Subject Information</div>
           <div class="card-body">
-            <h6>ADD PERIOD</h6>
-            <hr>
-            <form class="" action="" method="post">
             {% csrf_token %}
-            {{form.media}}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Add Period</button>
-          </form>
-          <br><br>
-            <h6>ADD BREAK</h6> <hr>
-            <form class="" action="{% url 'add-break'%}" method="post">
-            {%csrf_token%}
-            {{breakform.media}}
-            {{breakform.as_p}}
-            <button type="submit" class="btn btn-primary">Add Break Time</button>
+            <button type="submit" class="btn btn-primary">Add Subject</button>
           </div>
         </div>
-        
       </form>
-      <hr>
-    
+    </div>
     <div class="card">
-      <div class="card-header">All Section Time Periods</div>
+      <div class="card-header">All Section Subjects</div>
       <div class="card-body">
-        {% if periods %}
+        {% if subjects %}
          <table class="table table-striped">
         <thead>
           <tr>
+            <th>Subjects</th>
             <th>Section</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+            <th>Tecaher</th>
+            <th>No of Times a Week</th>
             <th>Delete</th>
           </tr>
         </thead>
-          {% for period in periods %}
+          {% for subject in subjects %}
           <tbody>
             <tr>
-              <form class="" action="{% url 'delete-period' %}" method="post">
+              <form class="" action="{% url 'timetable-delete-section-subjects' %}" method="post">
                 {% csrf_token %}
-              <input type="hidden" name="id" value="{{period.id}}">
-              <td>{{period.section}}</td>
-              <td>{{period.start_time}}</td>
-              <td>{{period.end_time}}</td>
+              <input type="hidden" name="id" value="{{subject.id}}">
+              <td>{{subject.name}}</td>
+              <td>{{subject.section}}</td>
+              <td>{{subject.teacher}}</td>
+              <td>{{subject.no_of_times_a_week}}</td>
               <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{period.id}}Modal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{subject.id}}sectionModal">
                   Delete
                 </button></td>
   
                 <!-- Modal -->
-                <div class="modal fade" id="{{period.id}}Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="{{subject.id}}sectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -85,6 +74,5 @@
         </table>
       </div>
       </div>
-    </div>
   </div>
 {% endblock %}
