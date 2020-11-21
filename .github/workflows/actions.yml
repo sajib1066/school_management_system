@@ -1,0 +1,19 @@
+name: "School Management System App"
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    build:
+        name: School management system actions
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+            - name: setup python 3.8
+              uses: actions/setup-python@v1
+            with:
+                python-version: 3.8
