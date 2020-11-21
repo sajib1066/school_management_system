@@ -1,0 +1,12 @@
+name: "A Workflow for School Management System App"
+on: push
+
+jobs:
+    build:
+        name: School Management System Action
+        runs-on: ubuntu-latest
+        steps:
+            - uses: action/checkout@v1
+            - uses: .action-a
+            with:
+                MY_NAME: "Sajib Hossain"
