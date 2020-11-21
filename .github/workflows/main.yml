@@ -3,7 +3,7 @@ on: push
 
 jobs:
     build:
-        name: School Management System Action
+        name: School management system action
         runs-on: ubuntu-latest
         steps:
             - uses: action/checkout@v1
