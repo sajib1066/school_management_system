@@ -134,7 +134,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'schoolmanagement.Userss'
+AUTH_USER_MODEL = 'account.Userss'
 
 
 # Static files (CSS, JavaScript, Images)
