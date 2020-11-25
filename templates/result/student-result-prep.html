@@ -13,6 +13,7 @@
                       <th>Subject Name</th>
                       <th>Test Score</th>
                       <th>Exam Score</th>
+                      <th>Grade</th>
                   </tr>
               </thead>
               <tbody>
@@ -23,6 +24,7 @@
                         <td>{{ result.subject.subject_name }}</td>
                         <td>{{ result.test_score }}</td>
                         <td>{{ result.exam_score }}</td>
+                        <td>{{ result.score_grade }}</td>
                       </tr>
                   {% endfor %}
               </tbody>

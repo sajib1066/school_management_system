@@ -12,6 +12,7 @@
                     <th>Test Score</th>
                     <th>Exam Score</th>
                     <th>Total Score</th>
+                    <th>Grade</th>
                   </tr>
               </thead>
               {% for result in results %}
@@ -21,6 +22,7 @@
                         <td>{{result.test_score}}</td>
                         <td>{{result.exam_score}}</td>
                         <td>{{result.total_score}}</td>
+                        <td>{{result.score_grade}}</td>
                     </tr>
                   {% endfor %}
               </tbody>

@@ -33,10 +33,27 @@ class Result(models.Model):
         unique_together = ['subject', 'student']
     
     def __str__(self):
-        return str(self.exam_score)
+        return str(self.exam_score)   
         
     def total_score(self):
-        return self.test_score + self.exam_score    
+        return self.test_score + self.exam_score   
+
+    def score_grade(self):
+        if self.total_score() < 50:
+            return 'F'
+        if 50 <= self.total_score < 55:
+            return 'E'
+        if 55 <= self.total_score < 60:
+            return 'D'
+        if 60 <= self.total_score < 70:
+            return 'C'                        
+        if 70 <= self.total_score < 80:
+            return 'B'
+        if 80 <= self.total_score < 90:
+            return 'A'
+        if 90 <= self.total_score < 100:
+            return 'A*'
+
 
 
 class StudentResult(models.Model):
