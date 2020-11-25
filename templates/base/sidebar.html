@@ -55,6 +55,22 @@
             <a class="nav-link" href="{% url 'result_student_list' %}">
                 <i class="icon-speedometer"></i>Class Results</a>
           </li>
+                   <!-- Attendence Report Section START -->
+         <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Attendance</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'teacher-mark-attendance' %}">
+                        <i class="fa fa-plus-circle"></i>Mark Class Attendance</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'view_attendance' %}">
+                      <i class="fa fa-plus-circle"></i>View Attendance</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Attendence Report Section END -->
             <!-- Teacher Sidebar End -->
            {%else%}
 
@@ -301,6 +317,73 @@
               </li>
               <!-- Library Section END -->
 
+        <!-- Inventory Section START -->
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Inventory</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-inventory-category' %}">
+                        <i class="fa fa-plus-circle"></i>Add Category </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-inventory-item'%}">
+                        <i class="fa fa-plus-circle"></i>Add Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'issue-inventory-item'%}">
+                        <i class="fa fa-plus-circle"></i>Issue Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view-inventory-items'%}">
+                        <i class="nav-icon icon-puzzle"></i>View Inventory Items</a>
+                </li>
+            </ul>
+          </li>
+          <!-- Inventory Section END --> 
+        
+
+        <!-- Inventory Section START -->
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Class Items</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'assigned-inventory-items'%}">
+                        <i class="nav-icon icon-puzzle"></i>Assigned Class Items</a>
+                </li>
+            </ul>
+          </li>
+          <!-- Inventory Section END --> 
+          <!-- Store Section START -->
+        <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Shop</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view-store' %}">
+                        <i class="nav-icon icon-puzzle"></i>View Store </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-store-item'%}">
+                        <i class="fa fa-plus-circle"></i>Add Store Item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-store-category'%}">
+                        <i class="fa fa-plus-circle"></i>Add Store Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view-inventory-items'%}">
+                        <i class="nav-icon icon-puzzle"></i>View Inventory Items</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'assigned-inventory-items'%}">
+                        <i class="nav-icon icon-puzzle"></i>Assigned Inventory Items</a>
+                </li>
+            </ul>
+          </li>
+          <!-- Store Section END --> 
+          
         <!-- User-Manual Section START -->
         <li class="nav-item nav-dropdown">
          <a class="nav-link" href="#">

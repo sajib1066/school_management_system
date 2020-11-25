@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Return Item Form</div>
+    <div class="card-body">
+        <div class="card">
+          <div class="card-header">ReturnItem</div>
+          <div class="card-body">
+            <h6>Return Item</h6>
+            <hr>
+            <form class="" action="" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Return</button>
+          </form>
+          </div>
+        </div>
+      <hr>
+    
+    </div>
+  </div>
+{% endblock %}

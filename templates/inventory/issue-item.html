@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Issue Item
+    </div>
+      <div class="card-body">
+          <h3>Issue Item</h3><br>
+          <form action="" method="POST">
+              {% csrf_token %}
+              {{ form.media }}
+              {{ form.as_p }}
+              <input type="submit" class="btn btn-primary">
+            </form>
+        <hr>
+
+        <table class="table table-responsive-sm">
+          <thead>
+              <tr>
+                  <th>Item Issued</th>
+                  <th>Individual</th>
+                  <th>Date Issued</th>
+                  <th>Returned</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for issue in issued %}
+                <tr>
+                    <td>{{issue.item}}</td>
+                    <td>{{issue.individual}}</td>
+                    <td>{{issue.issue_date}}</td>
+                    <td><a href="{% url 'return-inventory-item' issue.id %}" class="btn btn-primary">Return</a></td>
+                  
+                </tr>
+              </a>
+
+              {% endfor %}
+              </tbody>
+              </table>
+      </div>
+  </div>
+{% endblock %}

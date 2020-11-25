@@ -6,8 +6,11 @@ from . import forms
 from django.contrib import messages
 import random
 from datetime import datetime, date, timedelta
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
+@login_required(login_url='login')
 def AddPeriod(request):
     try:
         time = Period.objects.all().order_by('section')
@@ -32,6 +35,7 @@ def AddPeriod(request):
     }
     return render(request, 'timetable/add-period.html', context)
 
+@login_required(login_url='login')
 def AddBreak(request):
     if request.method == 'POST':
         form = forms.BreakForm(request.POST)
@@ -40,6 +44,7 @@ def AddBreak(request):
             messages.info(request, 'Break added successfully')
             return redirect('add-period')
 
+@login_required(login_url='login')
 def DeletePeriod(request):
     if request.method == 'POST':
         id = request.POST['id']
@@ -47,6 +52,7 @@ def DeletePeriod(request):
         messages.success(request, 'Period deleted successfully')
         return redirect('home')
 
+@login_required(login_url='login')
 def DeleteTimetableTeacher(request):
     if request.method == 'POST':
         id = request.POST['id']
@@ -54,6 +60,7 @@ def DeleteTimetableTeacher(request):
         messages.success(request, 'Teacher deleted successfully')
         return redirect('add-timetable-teacher')        
 
+@login_required(login_url='login')
 def GenerateTimetable(request):
     if request.method == 'POST':
         idf = request.POST["timetable_class_id"]
@@ -150,6 +157,7 @@ def GenerateTimetable(request):
     return render(request, 'timetable/time_class-list.html', context)    
 
 
+@login_required(login_url='login')
 def timetable_class_list(request):
     try:
         register_class = ClassRegistration.objects.all()
@@ -160,6 +168,7 @@ def timetable_class_list(request):
     return render(request, 'timetable/time_class-list.html', context)
 
 
+@login_required(login_url='login')
 def ViewTimetable(request, id):
     classs = ClassRegistration.objects.get(id=id)
     timetable = Timetable.objects.filter(school_class__id=id)
@@ -173,6 +182,7 @@ def ViewTimetable(request, id):
     }
     return render(request, 'timetable/timetable.html', context)
 
+@login_required(login_url='login')
 def Edit_Timetable(request, id):
     if request.method == 'POST':
         form = forms.TimetableForm(request.POST)
@@ -193,6 +203,7 @@ def Edit_Timetable(request, id):
     }
     return render(request, 'timetable/edit-timetable.html', context)
 
+@login_required(login_url='login')
 def AddSectionSubject(request):
     form = forms.SectionSubjectForm()
     section_subjects = SectionSubject.objects.all()
@@ -207,6 +218,7 @@ def AddSectionSubject(request):
     }    
     return render(request, 'timetable/add-section-subject.html', context)
 
+@login_required(login_url='login')
 def AddTimetableTeacher(request):
     form = forms.AddTeacherForm()
     teachers = Teacher.objects.all().order_by('code')
@@ -221,6 +233,7 @@ def AddTimetableTeacher(request):
     }
     return render(request, 'timetable/add-teacher.html', context)
 
+@login_required(login_url='login')
 def AddClassSubjects(request):
     form = forms.ClassSubjectsForm()
     classes = Class_Subjects.objects.all()
@@ -236,6 +249,7 @@ def AddClassSubjects(request):
     }    
     return render(request, 'timetable/add-class-subjects.html', context)
 
+@login_required(login_url='login')
 def DeleteClassSubjects(request):
     if request.method == 'POST':
         id = request.POST['id']
@@ -243,6 +257,7 @@ def DeleteClassSubjects(request):
         messages.info(request, 'Class Subjects deleted successdully')
         return redirect('timetable-class-subjects')
 
+@login_required(login_url='login')
 def DeleteSectionSubjects(request):
     if request.method == 'POST':
         id = request.POST['id']

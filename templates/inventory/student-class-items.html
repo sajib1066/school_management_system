@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{item.name}} Item
+    </div>
+      <div class="card-body">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>Students Given
+          </div>
+            <div class="card-body">
+                {% if students_given %}                
+                <table class="table table-responsive-sm table-bordered">
+                    <thead class="bg-primary">
+                        <tr>
+                            <th>#</th>
+                            <th>Student</th>
+                            <th>Date Given</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students_given %}
+                          <tr>
+                              <td>{{forloop.counter}}</td>
+                              <td>{{student.students_given.student.personal_info.name}}</td>
+                              <td>{{student.date_given}}</td>
+                          </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else%}
+                <h5>No Student Given Yet</h5>
+                {% endif %}
+                
+                
+                </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i>Students Given
+                  </div>
+                    <div class="card-body">
+                                {% if not_given %}
+                                <table class="table table-responsive-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Student</th>
+                                            <th>Give</th>
+                                            <th>'</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% for student in not_given %}
+                                  <tr>
+                                      <td>{{forloop.counter}}</td>
+                                      <td>{{student.student.personal_info.name}}</td>
+                                      <td>
+                                          <form action="" method="POST">
+                                              {% csrf_token %}
+                                            <input type="hidden" value="{{student.id}}" name="id">
+                                            <input type="submit" class="btn btn-primary">
+                                          </form>
+                                      </td>
+                                  </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                                {% else %}
+                                <h4>No Student yet to be Given</h4>
+                                {% endif %}                      
+                        
+                        </div>
+                        </div>
+      </div>
+  </div>
+{% endblock %}

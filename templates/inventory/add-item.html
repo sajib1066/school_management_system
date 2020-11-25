@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Item Registeration Form</div>
+    <div class="card-body">
+        <div class="card">
+          <div class="card-header">Register Item</div>
+          <div class="card-body">
+            <h6>ADD Item</h6> 
+            <hr>
+            <form class="" action="" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+          </div>
+        </div>
+      <hr>
+    
+    </div>
+  </div>
+{% endblock %}

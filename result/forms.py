@@ -35,17 +35,15 @@ class StudentResultForm(forms.ModelForm):
             'subject': forms.Select(attrs={'class': 'form-control'}),
             'test_score': forms.NumberInput(attrs={'class': 'form-control'}),
             'exam_score': forms.NumberInput(attrs={'class': 'form-control'}),
-            'total_score': forms.NumberInput(attrs={'class': 'form-control'}),
         }   
 
 class ResulltForm(forms.ModelForm):
     class Meta:
         model = Result
-        fields = ('test_score', 'exam_score', 'total_score')
+        fields = ('test_score', 'exam_score')
         widgets = {
             'test_score': forms.NumberInput(attrs={'class': 'form-control'}),
             'exam_score': forms.NumberInput(attrs={'class': 'form-control'}),
-            'total_score': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
 class ApprovalForm(forms.Form):

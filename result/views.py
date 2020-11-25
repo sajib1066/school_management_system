@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 from academic.models import ClassRegistration
 from .forms import SubjectRegistrationForm, ClassSelectMarkEntryForm, ClassSelectSubjectListForm, StudentResultForm, ResulltForm, ApprovalForm, TeacherResultsForm
@@ -8,6 +9,7 @@ from student.models import AcademicInfo, EnrolledStudent, currentsession
 from django.forms.formsets import formset_factory
 from django.contrib import messages
 
+@login_required(login_url='login')
 def add_subject(request):
     form  = SubjectRegistrationForm()
     if request.method == 'POST':
@@ -18,6 +20,7 @@ def add_subject(request):
     context = {'form': form}
     return render(request, 'result/add-subject.html', context)
 
+@login_required(login_url='login')
 def edit_subject(request, id):
     subject = SubjectRegistration.objects.get(id=id)
     form = SubjectRegistrationForm(instance=subject)
@@ -29,7 +32,7 @@ def edit_subject(request, id):
     context = {'form': form}
     return render(request, 'result/add-subject.html', context)
 
-
+@login_required(login_url='login')
 def subject_list(request):
     form = ClassSelectSubjectListForm(request.GET or None)
     select_class = request.GET.get('select_class', None)
@@ -42,6 +45,7 @@ def subject_list(request):
     context = {'form': form}
     return render(request, 'result/subject-list.html', context)
 
+@login_required(login_url='login')
 def mark_entry(request):
     form = ClassSelectMarkEntryForm(request.GET or None)
     select_class = request.GET.get('select_class', None)
@@ -54,9 +58,11 @@ def mark_entry(request):
     context = {'form': form}
     return render(request, 'result/mark-entry.html', context)
 
+@login_required(login_url='login')
 def mark_table(request, subject):
     return render(request, 'result/mark-table.html')
 
+@login_required(login_url='login')
 def mark_result(request):
     form = StudentResultForm
     if request.method == 'POST':
@@ -67,6 +73,7 @@ def mark_result(request):
     context = {'form': form}
     return render(request, 'result/mark-result.html', context)    
 
+@login_required(login_url='login')
 def my_subjects(request):
     subjects = SubjectRegistration.objects.filter(teacher__login_details = request.user)
     context = {
@@ -101,6 +108,7 @@ def teacher_result(request, subject_code):
     return render(request, 'result/teacher-result.html', context)
 
 
+@login_required(login_url='login')
 def student_result(request, registration_no):
     student = EnrolledStudent.current_year.get(student__registration_no=registration_no)
     results = Result.objects.filter(student=student)
@@ -113,9 +121,7 @@ def student_result(request, registration_no):
             total = 0
             stu = StudentResult.objects.create(student=student, teacher_comment=teacher_comment, principal_comment=principal_comment)
             for result in results:
-                stu.result.add(result)
-                total += result.total_score 
-            stu.total_points = total  
+                stu.result.add(result)  
             stu.save()   
             messages.info(request, 'Result created successfully')    
             return redirect('home')
@@ -127,6 +133,7 @@ def student_result(request, registration_no):
     }
     return render(request, 'result/student-result-prep.html', context)
 
+@login_required(login_url='login')
 def students_list(request):
     classw = ClassRegistration.objects.get(guide_teacher__login_details = request.user)
     students = EnrolledStudent.current_year.filter(class_name=classw)
@@ -136,6 +143,7 @@ def students_list(request):
     }
     return render(request, 'result/students-list.html', context)
 
+@login_required(login_url='login')
 def student_results_list(request, registration_no):
     try:
         student = EnrolledStudent.objects.filter(student__registration_no=registration_no)
@@ -150,6 +158,7 @@ def student_results_list(request, registration_no):
     return render(request, 'result/students-results-list.html', context)
 
 
+@login_required(login_url='login')
 def approve_students_result(request):
     try:
         session = currentsession.objects.get()
@@ -160,9 +169,8 @@ def approve_students_result(request):
         results = None
         
     if request.method == 'POST':
-        allr = results.values_list('total_points', flat=True)
         for result in results:
-            for i,x in enumerate(sorted(allr, reverse = True)):
+            for i,x in enumerate(sorted([result.total_points for result in results ], reverse = True)):
                 if result.total_points == x:
                     result.position = i + 1
                     result.approval = True
@@ -172,6 +180,7 @@ def approve_students_result(request):
     }
     return render(request, 'result/student-results.html', context) 
 
+@login_required(login_url='login')
 def result_view_list(request):
     try:
         result = StudentResult.objects.filter(student__student__login_details=request.user).only('student')
@@ -183,6 +192,7 @@ def result_view_list(request):
     }
     return render(request, 'result/result-view-list.html', context)
 
+@login_required(login_url='login')
 def student_result_view(request, id):
     try:
         result = StudentResult.objects.get(id=id)
@@ -195,6 +205,7 @@ def student_result_view(request, id):
     return render(request, 'result/student-view-result.html', context)
 
 
+@login_required(login_url='login')
 def student_subject_result(request, name, registration_no):
     labels = []
     data = []

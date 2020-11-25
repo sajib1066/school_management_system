@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header"> Shop Category Form</div>
+    <div class="card-body">
+        <div class="card">
+          <div class="card-header">Add Category</div>
+          <div class="card-body">
+           <form class="" action="" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+          </div>
+        </div>
+      <hr>
+    
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>View All Items
+    </div>
+    {% if items %}
+      <div class="card-body">
+          <br>
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Item</th>
+                      <th>Class Name</th>
+                      </tr>
+              </thead>
+              <tbody>
+                  {% for item in items %}
+                    <tr>
+                        <td><a href="{% url 'students-assigned-items' item.id%}">{{ item.item.name }}</a></td>
+                        <td>{{ item.get_class_name_display }}</td>
+                    </tr>
+                  </a>
+
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      {% else %}
+      <div class="card-body">
+          <h3>No Items</h3>
+      </div>
+      {% endif %}
+  </div>
+{% endblock %}

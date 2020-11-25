@@ -1,0 +1,139 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+  <!--Main layout-->
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i>{{item.title}}
+    </div>
+    <div class="card-body">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          {% if not item.image %}
+          <img src="https://icon-library.com/images/photo-placeholder-icon/photo-placeholder-icon-17.jpg" width="300" height="200" alt="product">
+      {%else%}
+      <img src="{{item.image}}" alt="product" width=400 height="400">
+      {%endif%}
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+            <h4>{{item.title}}</h4>
+            <div class="mb-3">
+              <a href="">
+                <span class="badge purple mr-1">{{item.category.name}}</span>
+              </a>
+              <a href="">
+                <span class="bg-{{item.label}}">{{item.get_label_display}}</span>
+              </a>
+            </div>
+
+            <p class="lead">
+              <span class="mr-1">
+                <del>{{item.price}}</del>
+              </span>
+              <span>{{item.discount_price}}</span>
+            </p>
+
+            <h4>Description</h4>
+
+            <h6>{{item.description}}</h6> 
+            <div class="row">
+              
+            <form class="d-flex justify-content-left" action="{% url 'add-to-cart' %}" method="POST">
+              <!-- Default input -->
+              {% csrf_token %}
+              <input type="hidden" value="{{item.id}}" name="id">
+              <button class="btn btn-primary btn-md my-0 p ml-2" type="submit">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form>
+            
+            <form class="d-flex justify-content-left" action="{% url 'remove-from-cart' %}" method="POST">
+              <!-- Default input -->
+              {% csrf_token %}
+              <input type="hidden" value="{{item.id}}" name="id">
+              <button class="btn btn-danger btn-md my-0 p" type="submit">Remove from cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form>
+          </div>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 text-center">
+
+          <h4 class="my-4 h4">Additional information</h4>
+
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
+            voluptates,
+            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  <!--Main layout-->
+  </div>
+  
+  {% endblock %}
+
+

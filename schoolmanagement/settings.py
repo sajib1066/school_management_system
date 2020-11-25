@@ -50,8 +50,13 @@ INSTALLED_APPS = [
     'attendance',
     'flatpickr',
     'timetable',
-    'library'
+    'library',
+    'store',
+    'inventory',
 ]
+
+PAYSTACK_PUBLIC_KEY = 'pk_test_700e0926438a00e06ca311f2bb40fa0601a22964'
+PAYSTACK_SCRET_KEY = 'sk_test_fb186f1ff7130fd8dcf498573eb65b6a2f6ae8f1'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>View Items
+    </div>
+    {% if items %}
+      <div class="card-body">
+        <form action="" method="GET">
+            {{ form }}
+            <input type="submit" value="Search">
+          </form>
+          <br>
+          <table class="table table-responsive-sm">
+              <thead>
+                  <tr>
+                      <th>Item</th>
+                      <th>Category</th>
+                      <th>Available Quantity</th>
+                      <th>Location</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for item in items %}
+                    <tr>
+                        <td><a href="{% url 'view-inventory-item' item.id%}">{{ item.name }}</a></td>
+                        <td>{{item.category}}</td>
+                        <td>{{item.available_quantity}}</td>
+                        <td>{{item.location}}</td>
+                    </tr>
+                  </a>
+
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      {% else %}
+      <div class="card-body">
+          <h3>No Items</h3>
+      </div>
+      {% endif %}
+  </div>
+{% endblock %}

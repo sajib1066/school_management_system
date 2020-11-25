@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from . import forms
 from .models import *
@@ -6,7 +7,7 @@ from .models import *
 # Create your views here.
 
 
-
+@login_required(login_url='login')
 def teacher_registration(request):
     form = forms.PersonalInfoForm()
     education_form = forms.EducationInfoForm()
@@ -47,11 +48,13 @@ def teacher_registration(request):
     return render(request, 'teacher/teacher-registration.html', context)
 
 
+@login_required(login_url='login')
 def teacher_list(request):
     teacher = PersonalInfo.objects.filter(is_delete=False)
     context = {'teacher': teacher}
     return render(request, 'teacher/teacher-list.html', context)
 
+@login_required(login_url='login')
 def teacher_profile(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     context = {
@@ -59,12 +62,14 @@ def teacher_profile(request, teacher_id):
     }
     return render(request, 'teacher/teacher-profile.html', context)
 
+@login_required(login_url='login')
 def teacher_delete(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     teacher.is_delete = True
     teacher.save()
     return redirect('teacher-list')
 
+@login_required(login_url='login')
 def teacher_edit(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     form = forms.PersonalInfoForm(instance=teacher)
@@ -100,6 +105,7 @@ def teacher_edit(request, teacher_id):
     }
     return render(request, 'teacher/teacher-edit.html', context)
 
+@login_required(login_url='login')
 def teacher_my_profile(request):
     teacher = PersonalInfo.objects.get(login_details=request.user)
     context = {

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from . import forms
 from .models import *
@@ -7,7 +8,7 @@ from .models import *
 # Create your views here.
 
 
-
+@login_required(login_url='login')
 def teacher_registration(request):
     form = forms.PersonalInfoForm()
     education_form = forms.EducationInfoForm()
@@ -45,7 +46,7 @@ def teacher_registration(request):
     }
     return render(request, 'employee/employee-registration.html', context)
 
-
+@login_required(login_url='login')
 def teacher_list(request):
     teacher = PersonalInfo.objects.all()
     context = {'teacher': teacher}

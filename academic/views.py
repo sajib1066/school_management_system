@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 from academic.models import ClassRegistration
 from student.models import EnrolledStudent
 from teacher.models import PersonalInfo
+from account.decorators import teacher_required
 
-
+@login_required(login_url='login')
 def add_department(request):
     forms = DepartmentForm()
     if request.method == 'POST':
@@ -17,6 +19,7 @@ def add_department(request):
     context = {'forms': forms, 'department': department}
     return render(request, 'academic/add-department.html', context)
 
+@login_required(login_url='login')
 def add_class(request):
     forms = ClassRegistrationForm()
     if request.method == 'POST':
@@ -31,6 +34,7 @@ def add_class(request):
     }
     return render(request, 'academic/create-class.html', context)
 
+@login_required(login_url='login')
 def create_section(request):
     forms = SectionForm()
     if request.method == 'POST':
@@ -45,6 +49,7 @@ def create_section(request):
     }
     return render(request, 'academic/create-section.html', context)
 
+@login_required(login_url='login')
 def create_session(request):
     forms = SessionForm()
     if request.method == 'POST':
@@ -59,6 +64,7 @@ def create_session(request):
     }
     return render(request, 'academic/create-session.html', context)
 
+@login_required(login_url='login')
 def create_shift(request):
     forms = ShiftForm()
     if request.method == 'POST':
@@ -73,6 +79,7 @@ def create_shift(request):
     }
     return render(request, 'academic/create-shift.html', context)
 
+@login_required(login_url='login')
 def class_registration(request):
     forms = ClassRegistrationForm()
     if request.method == 'POST':
@@ -83,13 +90,14 @@ def class_registration(request):
     context = {'forms': forms}
     return render(request, 'academic/class-registration.html', context)
 
+@login_required(login_url='login')
 def class_list(request):
     register_class = ClassRegistration.objects.all()
     context = {'register_class': register_class}
     return render(request, 'academic/class-list.html', context)
 
 
-
+@login_required(login_url='login')
 def view_session(request):
     forms = ChangeSessionForm()
     session = currentsession.objects.get()
@@ -107,6 +115,8 @@ def view_session(request):
     context = {'session': session.current,'form': forms}                   
     return render(request, 'academic/session.html', context)  
 
+@login_required(login_url='login')
+@teacher_required
 def view_class(request):
     try:
         my_class = ClassRegistration.objects.get(guide_teacher__login_details=request.user)

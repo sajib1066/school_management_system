@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header">Assign {{item.name}} Item to a Class Form</div>
+    <div class="card-body">
+        <div class="card">
+          <div class="card-header">Assign Item</div>
+          <div class="card-body">
+            <h6>Assign {{item.name}} Item to a Class Form</h6>
+            <hr>
+            <form class="" action="" method="POST">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Assign</button>
+          </form>
+          </div>
+        </div>
+      <hr>
+    
+    </div>
+  </div>
+{% endblock %}

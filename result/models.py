@@ -27,7 +27,6 @@ class Result(models.Model):
     student = models.ForeignKey(EnrolledStudent, on_delete=models.CASCADE)
     test_score = models.IntegerField()
     exam_score = models.IntegerField()
-    total_score = models.IntegerField()
     add_date = models.DateField(auto_now_add=True)
 
     class Meta:
@@ -35,17 +34,25 @@ class Result(models.Model):
     
     def __str__(self):
         return str(self.exam_score)
+        
+    def total_score(self):
+        return self.test_score + self.exam_score    
 
 
 class StudentResult(models.Model):
     student = models.OneToOneField(EnrolledStudent, on_delete=models.CASCADE)
     result = models.ManyToManyField(Result)
-    total_points = models.IntegerField(default=0)
     position = models.IntegerField(null=True, blank=True)
     approval = models.BooleanField(default=False)
     teacher_comment = models.CharField(max_length=120)
     principal_comment = models.CharField(max_length=120, null=True, blank=True)
     add_date = models.DateField(auto_now_add=True)
+
+    def total_points(self):
+        total = 0
+        for t in self.result.all():
+            total += t.total_score()
+        return total    
 
     def __str__(self):
         return str(self.id) 

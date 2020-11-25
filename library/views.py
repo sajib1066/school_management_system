@@ -4,9 +4,11 @@ from .forms import BookForm, CategoryForm, BorrowBookForm, ReturnBookForm
 from django.contrib import messages
 from student.forms import SearchEnrolledStudentForm
 from student.models import EnrolledStudent, PersonalInfo
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
-
+@login_required(login_url='login')
 def AddBook(request):
     form = BookForm
     if request.method == 'POST':
@@ -20,7 +22,7 @@ def AddBook(request):
     }
     return render(request, 'library/add-book.html', context)
 
-
+@login_required(login_url='login')
 def AddCategory(request):
     form = CategoryForm
     if request.method == 'POST':
@@ -34,6 +36,7 @@ def AddCategory(request):
     }
     return render(request, 'library/add-category.html', context)    
 
+@login_required(login_url='login')
 def ListBooks(request):
     books = Book.objects.all()
     context = {
@@ -41,6 +44,7 @@ def ListBooks(request):
     }    
     return render(request, 'library/view-books.html', context)
 
+@login_required(login_url='login')
 def ViewBook(request, id):
     book = Book.objects.get(id=id)
     borrowers = Borrowed.objects.filter(book__id=id, returned=False)
@@ -50,7 +54,7 @@ def ViewBook(request, id):
     }  
     return render(request, 'library/view-book.html', context)
 
-
+@login_required(login_url='login')
 def BorrowBook(request, id):
     book = Book.objects.get(id=id)
     form = SearchEnrolledStudentForm()
@@ -83,6 +87,7 @@ def BorrowBook(request, id):
     }
     return render(request, 'library/borrow-book.html', context)
 
+@login_required(login_url='login')
 def ReturnBook(request, id):
     borrow = Borrowed.objects.get(id=id)
     form = ReturnBookForm()
@@ -105,6 +110,8 @@ def ReturnBook(request, id):
     }
     return render(request, 'library/return-book.html', context)
 
+
+@login_required(login_url='login')
 def EditBook(request, id):
     book = Book.objects.get(id=id)
     if request.method == 'POST':

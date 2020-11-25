@@ -5,6 +5,8 @@ from django.conf import settings
 class Userss(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_teacher = models.BooleanField(default=False)
+    is_parent = models.BooleanField(default=False)
+    is_librarian = models.BooleanField(default=False)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

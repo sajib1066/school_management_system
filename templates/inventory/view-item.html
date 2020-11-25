@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>View Item
+    </div>
+      <div class="card-body">
+          <h3>{{item.name}}</h3>
+          <div class="row">
+              <div class="col-sm-6">
+            {% if not item.image %}
+                <img src="https://icon-library.com/images/photo-placeholder-icon/photo-placeholder-icon-17.jpg" width="300" height="200" alt="product">
+            {%else%}
+                <img src={{item.image}} width="300" height="200"alt="">
+             {%endif%}
+              </div>
+              <div class="col-sm-6"> 
+                <h5>Category: {{item.category}}</h5><br>
+                <h5>Value: {{item.value}}</h5><br>
+                <h5>Total Quantity: {{item.total_quantity}}</h5><br>
+                <h5>Available Quantity: {{item.available_quantity}}</h5><br>
+                <h5>Loaction: {{item.location}}</h5><br>
+                <h5>Expiry years: {{item.expiry_years}}</h5><br>
+                <a href="{% url 'assign-inventory-item' item.id %}" class="btn btn-primary">Assign to a Class</a>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}
