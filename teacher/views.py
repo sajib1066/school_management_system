@@ -89,7 +89,6 @@ def teacher_edit(request, teacher_id):
             job_info = job_form.save()
             experience_info = experience_form.save()
             personal_info = form.save(commit=False)
-            personal_info.address = address_info
             personal_info.education = education_info
             personal_info.training = training_info
             personal_info.job = job_info
