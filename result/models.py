@@ -41,17 +41,17 @@ class Result(models.Model):
     def score_grade(self):
         if self.total_score() < 50:
             return 'F'
-        if 50 <= self.total_score < 55:
+        if 50 <= self.total_score() < 55:
             return 'E'
-        if 55 <= self.total_score < 60:
+        if 55 <= self.total_score() < 60:
             return 'D'
-        if 60 <= self.total_score < 70:
+        if 60 <= self.total_score() < 70:
             return 'C'                        
-        if 70 <= self.total_score < 80:
+        if 70 <= self.total_score() < 80:
             return 'B'
-        if 80 <= self.total_score < 90:
+        if 80 <= self.total_score() < 90:
             return 'A'
-        if 90 <= self.total_score < 100:
+        if 90 <= self.total_score() < 100:
             return 'A*'
 
 
