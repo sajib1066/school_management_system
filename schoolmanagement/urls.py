@@ -34,7 +34,6 @@ urlpatterns = [
     path('library/', include('library.urls')),
     path('store/', include('store.urls')),
     path('inventory/', include('inventory.urls')),
-    path("paystack", include(('paystack.urls','paystack'),namespace='paystack')),
     ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
