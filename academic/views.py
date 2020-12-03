@@ -6,6 +6,8 @@ from academic.models import ClassRegistration
 from student.models import EnrolledStudent
 from teacher.models import PersonalInfo
 from account.decorators import teacher_required
+from student.models import AcademicInfo
+from django.contrib import messages
 
 @login_required(login_url='login')
 def add_department(request):
@@ -130,3 +132,28 @@ def view_class(request):
     }
     return render(request, 'academic/view-class.html', context)
     
+
+@login_required(login_url='login')
+def PromoteStudent(request):
+    form = SelectClassForm()
+    class_name = request.GET.get('select_class', None)
+    if request.method == 'POST':
+        student_id = request.POST['id']
+        student = AcademicInfo.objects.get(id=student_id)
+        if student.class_name < 16:
+            student.class_name += 1
+            student.save()
+            messages.success(request, 'Student Promoted Successfully')
+            return redirect('promote-students')
+        else:
+            messages.error(request, 'Student is in final year')
+            return redirect('promote-students')    
+    if class_name:
+        students = AcademicInfo.objects.filter(class_name=class_name)
+    else:
+        students = None
+    context = {
+        'students': students,
+        'form': form
+    }        
+    return render(request, 'academic/promote-students.html', context)

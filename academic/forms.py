@@ -67,3 +67,24 @@ class ChangeSessionForm(forms.ModelForm):
         widgets = {
             'current': forms.Select(attrs={'class': 'form-control'}),
         }
+
+class SelectClassForm(forms.Form):
+    class_select = (
+        (1, 'Playgroup'),
+        (2, 'Pre-nursery'),
+        (3, 'Nursery 1'),
+        (4, 'Nursery 2'),
+        (5, 'Reception Year'),
+        (6, 'Primary 1'),
+        (7, 'Primary 2'),
+        (8, 'Primary 3'),
+        (9, 'Primary 4'),
+        (10, 'Primary 5'),
+        (11, 'JSS 1'),
+        (12, 'JSS 2'),
+        (13, 'JSS 3'),
+        (14, 'SS 1'),
+        (15, 'SS 2'),
+        (16, 'SS 3')
+    )
+    select_class = forms.ChoiceField(choices=class_select, widget=forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select Class'}))

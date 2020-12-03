@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class Select
+    </div>
+    <div class="card-body">
+        <form action="" method="GET">
+            {% block extrahead %}
+            {{form.media}}
+            {% endblock %}
+            {{ form.as_p }}
+            <input type="submit" value="Search">
+            </form>
+    </div>
+  </div>
+    <div class="card">
+        <div class="card-header">
+            Promote Students
+        </div>
+    {% if students %}
+      <div class="card-body">
+          <table class="table table-responsive-sm table-bordered">
+              <thead class="bg-primary">
+                  <tr>
+                      <th>#</th>
+                      <th>Student</th>
+                      <th>Registration No</th>
+                      <th>Class</th>
+                      <th>Status</th>
+                      <th>Promote</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for student in students %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ student.personal_info.name }}</td>
+                        <td>{{ student.registration_no }}</td>
+                        <td>{{ student.get_class_name_display }}</td>
+                        <td>{{ student.status }}</td>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{student.id}}">
+                            <td><input type="submit" class="btn btn-primary" value="Promote"></td>
+                        </form>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      {% else %}
+      <div class="card-body">
+          <h3>No Student Available</h3>
+      </div>
+      {% endif %}
+      </div>
+{% endblock %}
