@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import add_subject, subject_list, mark_entry, mark_table, edit_subject, mark_result, my_subjects, teacher_result, student_result, students_list, student_results_list, approve_students_result, result_view_list, student_result_view, student_subject_result
+from .views import add_subject, subject_list, mark_entry, mark_table, edit_subject, mark_result, my_subjects, teacher_result, student_result, students_list, student_results_list, approve_students_result, result_view_list, student_result_view, student_subject_result, result_render_pdf
 
 urlpatterns = [
     path('add-subject', add_subject, name='add-subject'),
@@ -17,5 +17,6 @@ urlpatterns = [
     path('approve-results', approve_students_result, name='view_student_result'),
     path('student-result-list', result_view_list, name='student_result_view'),
     path('student-result-view/<id>', student_result_view, name='student_view_result'),
+    path('student-result-pdf/<id>', result_render_pdf, name='student_result_pdf'),
     path('student-subject-result/<name>/<registration_no>', student_subject_result, name='student_subject_result')
 ]

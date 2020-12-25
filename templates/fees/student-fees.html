@@ -1,0 +1,185 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>{{student.student.personal_info.name}} Fees
+    </div>
+      <div class="card-body">
+        <div class="card">
+            <div class="card-header" style="display: flex; justify-content: space-between;"><h4>{{ student.student.personal_info.name }} Fees for {{student.session }}</h4>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddFeeModal" value="Add Fee">Add Fee</button>
+             <form action="{% url 'export-invoice' %}" method="post">
+               {% csrf_token %}
+               <input type="hidden" name="id" value="{{student.id}}">
+               <input type="submit" value="Print Pdf" class="btn btn-success">
+             </form> 
+            </div>
+            <div class="card-body">
+              {% if students.fees.count != 0 %}
+              <table class="table table-bordered">
+                <thead class="bg-primary">
+                  <tr>
+                    <th>Name</th>
+                    <th>code</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for fee in student.fees.all %}
+                  <tr>
+                    <td>{{fee.name}}</td>
+                    <td>{{fee.code}}</td>
+                    <td>{{fee.amount}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+                {% else %}
+                <h4>No Current Fees</h4>
+                {% endif %}
+              
+                   <!-- Modal -->
+      <div class="modal fade" id="AddFeeModal" tabindex="-1" role="dialog" aria-labelledby="AddFeeModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add fee for {{student.student.personal_info.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="{% url 'add-fee-student' student.id%}" method="POST">
+                {% csrf_token %}
+                {{fee_form}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <input type="submit" value="Add" class="btn btn-primary">
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--End of modal-->
+            </div>
+          </div>
+          <hr>
+          <!--End of Fee-->
+          <div class="card">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+              <h4>Fees Paid</h4>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddFeePaidModal" value="Add Fee">Add Fees Paid</button>
+            </div>
+            <div class="card-body">
+              {% if student.paid.count != 0 %}
+              <table class="table table-bordered">
+                <thead class="bg-primary">
+                  <tr>
+                    <th></th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for paid in student.paid.all %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{paid.amount}}</td>
+                    <td>{{paid.date}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <h6>No Fees Paid</h6>
+              {% endif %}
+            <!-- Modal -->
+          <div class="modal fade" id="AddFeePaidModal" tabindex="-1" role="dialog" aria-labelledby="AddFeeModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Fees Paid for {{student.student.personal_info.name}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="{% url 'add-paid-fee-student' student.id %}" method="post">
+                    {% csrf_token %}
+                    {{paid_form.media}}
+                    {{paid_form}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" value="Add" class="btn btn-primary">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      <!--End of modal-->
+            </div>
+          </div>
+          <!--End of Paid Fees-->
+          <hr>
+          <div class="card">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+              <h4>All Discount</h4>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddDiscountModal" value="Add Fee">Add Discount</button>
+            </div>
+            <div class="card-body">
+              {% if student.discount.count != 0 %}
+              <table class="table table-bordered">
+                <thead class="bg-primary">
+                  <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for paid in student.discount.all %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{paid.name}}</td>
+                    <td>{{paid.amount}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <h6>No discounts</h6>
+              {% endif %}
+                          <!-- Modal -->
+          <div class="modal fade" id="AddDiscountModal" tabindex="-1" role="dialog" aria-labelledby="AddFeeModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Discount for {{student.student.personal_info.name}}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form action="{% url 'add-discount-student' student.id %}" method="post">
+                    {% csrf_token %}
+                    {{discount_form}}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <input type="submit" value="Add" class="btn btn-primary">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      <!--End of modal-->
+            </div>
+          </div>
+
+          <h5>AMOUNT DUE : {{student.amount_due}}</h5>
+          <!--End of Paid Fees-->
+      </div>
+  </div>
+{% endblock %}

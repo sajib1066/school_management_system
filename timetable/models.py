@@ -59,7 +59,7 @@ class SectionSubject(models.Model):
     name = models.CharField(max_length=60)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='Subject_teacher')
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
-    additional_teacher = models.ManyToManyField(Teacher, blank=True, null=True)
+    additional_teacher = models.ManyToManyField(Teacher, blank=True)
     no_of_times_a_week = models.IntegerField()
     is_before_short_break = models.BooleanField(default=False)
     is_before_long_break = models.BooleanField(default=False)

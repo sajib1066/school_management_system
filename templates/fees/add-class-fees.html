@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+    <div class="card-header"> Fees Form</div>
+    <div class="card-body">
+        <div class="card">
+          <div class="card-header">Add Class Fees for {{session.current}}</div>
+          <div class="card-body">
+            <h6>Session: {{session.current}}</h6><hr>
+           <form class="" action="" method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+          </div>
+        </div>
+      <hr>
+    
+    </div>
+  </div>
+{% endblock %}

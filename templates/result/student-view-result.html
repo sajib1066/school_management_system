@@ -3,25 +3,52 @@
   <div class="card">
       <div class="card-header">
           <i class="fa fa-align-justify"></i>My Subject List</div>
-      <div class="card-body">
-        <h4 class="bg-primary" style="padding: 10px;">{{result.student.session}}</h4><hr>
-        <div class="row" style="margin: 5px;">
-          <div class="col-sm">
-            <h5>Total Points: {{result.total_points}}</h5>
-            <h5>Position: {{result.position}}</h5>
-            <h5>Number of Students: {{result.student.class_name}}</h5>
-
-          </div>
-          <div class="col-sm">
-            <h5>Student Name: {{result.student.student.personal_info.name}}</h5>
-            <h5>Class: {{result.student.class_name}}</h5>
-
-          </div>
-          <div class="col-sm" style="margin-right: 40px;">
-            <img style="height:150px; width:150px; border-radius:50%; margin:auto" src="{{ result.student.student.personal_info.photo.url }}" alt="Photo">
+          <a class="btn btn-primary" href="{% url 'student_result_pdf' result.id %}">Get Pdf</a>
+      <div class="card-body border">
+        <div class="row align-items-center">
+          <div class="col-sm-6">
+          <img src="/media/Concord-School-Logo-3-e1546425983854 (1).png" alt="Concord School logo"></div>
+          <div class="col-sm-6">
+            <h4>The Concord School</h4>
+            <span>No 1, Olubadan avenue, Ring-road, Ibadan</span>
           </div>
         </div>
-          <table class="table table-responsive-sm">
+        <div class="row">
+          <div class="col" style="padding-top: 3rem;"><h4 style="padding: 10px; margin-left: 20rem;">{{result.student.session}}</h4></div>
+          <div class="col"></div>
+          <div class="col"><img style="height:150px; width:150px; margin:auto; padding-left: 2rem;" src="{{ result.student.student.personal_info.photo.url }}" alt="Photo"></div>
+        </div>
+        <div class="row" style="margin-top: 1rem;">
+          <div class="col-sm">
+            <table class="table table-bordered">
+              <tbody>
+                 <tr>
+                   <td>Total Points</td>
+                   <td>{{result.total_points}}</td>
+                 </tr>
+                 <tr>
+                   <td>Name: {{result.student.class_name}}</td>
+                   <td></td>
+                 </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col">
+            <table class="table table-bordered ">
+              <tbody>
+                <tr>
+                  <td><b>Student Name: </b></td>
+                  <td>{{ result.student.student.personal_info.name }}</td>
+                </tr>
+                <tr>
+                  <td><b>Class: </b></td>
+                  <td>{{ result.student.class_name }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+          <table class="table table-responsive-sm table-bordered">
               <thead class="bg-primary">
                   <tr>
                     <th>Subject</th>
@@ -45,6 +72,7 @@
           <hr>
           <div class="row">
             <div class="col-sm">
+              <h5>Position: {{result.position}}</h5>
              <h5>Teacher Comment: {{result.teacher_comment}}</h5> 
             </div>
             <div class="col-sm">

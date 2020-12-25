@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class Fees
+    </div>
+      <div class="card-body">
+          <div style="border: 1px;">
+            <h6>Select Student Class</h6>
+            <form action="" method="GET">
+              {{ form1 }} <br>
+              <input type="submit" value="Search" class="btn btn-primary">
+            </form>
+        </div><hr>
+
+        {% if student %}
+        <h4>Fees paid for {{student.personal_info.name}}</h4>
+        <form action="" method="post">
+          {% csrf_token %}
+          {{ form }} <br>
+          <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+
+        {% else %}
+        <h4>Could not find Student</h4>
+
+        {% endif %}
+      </div>
+  </div>
+{% endblock %}

@@ -204,6 +204,21 @@ def student_result_view(request, id):
     }
     return render(request, 'result/student-view-result.html', context)
 
+@login_required(login_url='login')
+def result_render_pdf(request, id):
+    path = "result/student-view-result.html"
+    context = {"result" : StudentResult.objects.get(id=id)}
+
+    html = render_to_string('result/student-view-result.html',context)
+    io_bytes = BytesIO()
+    
+    pdf = pisa.pisaDocument(BytesIO(html.encode("UTF-8")), io_bytes)
+    
+    if not pdf.err:
+        return HttpResponse(io_bytes.getvalue(), content_type='application/pdf')
+    else:
+        return HttpResponse("Error while rendering PDF", status=400)    
+
 
 @login_required(login_url='login')
 def student_subject_result(request, name, registration_no):

@@ -10,5 +10,6 @@ urlpatterns = [
     path('add-store-categorry', views.AddStoreCategory, name='add-store-category'), 
     path('add-to-cart/', views.add_to_cart, name='add-to-cart'), 
     path('checkout/', views.ViewCheckout, name='view-checkout'),
-    path('order-summary', views.OrderSummary, name='order-summary')  
+    path('order-summary', views.OrderSummary, name='order-summary'), 
+    path('paystack', views.PaystackResponse, name='paystack-response')
 ]

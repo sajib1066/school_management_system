@@ -6,6 +6,7 @@ from .forms import *
 from django.contrib import messages
 from django.utils import timezone
 from account.decorators import student_required, teacher_required
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 
@@ -112,7 +113,7 @@ def remove_from_cart(request):
         id = request.POST['id']
     else:
         messages.error(request, 'Could not perform action')
-        redirect('home')    
+        return redirect('home')    
     item = get_object_or_404(Item, id=id)
     order_qs = Order.objects.filter(
         user=request.user,
@@ -150,3 +151,8 @@ def OrderSummary(request):
     }    
     return render(request, 'store/order-summary.html', context)    
 
+
+@require_POST
+@login_required(login_url='login')
+def PaystackResponse(request):
+    pass

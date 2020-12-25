@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'library',
     'store',
     'inventory',
+    'fees'
 ]
 
 PAYSTACK_PUBLIC_KEY = 'pk_test_700e0926438a00e06ca311f2bb40fa0601a22964'

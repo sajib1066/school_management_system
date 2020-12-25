@@ -384,6 +384,36 @@
           </li>
           <!-- Store Section END --> 
           
+
+          <!-- Fees Section START -->
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="nav-icon icon-puzzle"></i>Fees</a>
+            <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-fees' %}">
+                        <i class="nav-icon icon-puzzle"></i>Create Fee </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create-discount' %}">
+                        <i class="nav-icon icon-puzzle"></i>Create Discount </a>
+                </li>                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-class-fees' %}">
+                        <i class="nav-icon icon-puzzle"></i>Add Fee to Class </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view-class-fees' %}">
+                        <i class="nav-icon icon-puzzle"></i>View Class Fees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'paid-fee' %}">
+                        <i class="nav-icon icon-puzzle"></i>Fee Paid</a>
+                </li>
+            </ul>
+          </li>
+          <!-- Fees Section END -->
+
         <!-- User-Manual Section START -->
         <li class="nav-item nav-dropdown">
          <a class="nav-link" href="#">

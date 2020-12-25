@@ -1,6 +1,5 @@
 from django.db import models
 import random
-
 from academic.models import ClassRegistration, Session, currentsession
 from account.models import Userss
 
@@ -90,6 +89,7 @@ class GuardianInfo(models.Model):
     guardian_name = models.CharField(max_length=100)
     guardian_phone_no = models.CharField(max_length=11)
     guardian_email = models.EmailField(blank=True, null=True)
+    login_details = models.ForeignKey(Userss, blank=True, null=True, on_delete=models.CASCADE)
     relationship_choice = (
         ('Father', 'Father'),
         ('Mother', 'Mother'),

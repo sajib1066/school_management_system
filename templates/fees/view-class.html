@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block content %}
+  <div class="card">
+      <div class="card-header">
+          <i class="fa fa-align-justify"></i>Class Fees
+    </div>
+      <div class="card-body">
+          <div style="border: 1px;">
+            <h6>Select Student Class</h6>
+            <form action="" method="GET">
+              {{ form }} <br>
+              <input type="submit" value="Search">
+            </form>
+        </div><hr>
+
+        {% if students %}
+        <table class="table table-bordered">
+          <thead class="bg-primary">
+            <tr>
+              <th></th>
+              <th>Student</th>
+              <th>View Fees</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for student in students %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{student.personal_info.name}}</td>
+              <td><a href="{% url 'student-fees' student.id %}" class="btn btn-primary">View Fees</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% else %}
+        <h4>No students available</h4>
+
+        {% endif %}
+      </div>
+  </div>
+{% endblock %}

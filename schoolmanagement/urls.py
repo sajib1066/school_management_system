@@ -34,6 +34,7 @@ urlpatterns = [
     path('library/', include('library.urls')),
     path('store/', include('store.urls')),
     path('inventory/', include('inventory.urls')),
+    path('fees/', include('fees.urls')),
     ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
