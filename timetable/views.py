@@ -78,6 +78,7 @@ def GenerateTimetable(request):
             m = 0
             j = 0
             d = 0
+            good_day = True
             if DupNum > len(class_periods):
                 messages.info(request, "Couldn't create Timetable")
                 redirect('home')
@@ -123,10 +124,9 @@ def GenerateTimetable(request):
 
                 subject_conflict = Timetable.objects.filter(school_class=classes,day=days[d], subject__name=subject.name)
 
-                if days[d] in subject.teacher.unavailable_days.all():
-                    good_day = False 
-                else:
-                    good_day = True 
+                for day in subject.teacher.unavailable_days.all():
+                    if day.day == days[d]:
+                        good_day = False  
 
                 if subject.additional_teacher:
                     for s in subject.additional_teacher.all():
