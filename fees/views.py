@@ -180,7 +180,7 @@ def export_invoice(request):
     # See the ReportLab documentation for the full list of functionality.
     p.setFont("Helvetica", 19, leading=None)
     #p.drawString(200, 782, "The Concord School Invoice")
-    p.setTitle(f'The Concord School Invoice For {student.student.personal_info.name}')
+    p.setTitle(f'The Roseville School Invoice For {student.student.personal_info.name}')
     #p.line(0, 780, 1000, 780)
     x1 = 320
     x2= 70
@@ -241,7 +241,7 @@ def export_invoice(request):
     p.line(40, 157, 550, 157)
     p.setFont("Helvetica", 13, leading=None)
     p.drawString(70, 120, 'PLEASE DETACH AND FORWARD WITH YOUR REMITTANCE TO: ')
-    p.drawString(60, 100, 'The Concord School, NO 1, Olubadan Avenue, Ring-road, Ibadan')    
+    p.drawString(60, 100, 'The Roseville  School, Ilorin Kwara state')    
     p.drawString(70, 80, 'Account/Name')
     p.drawString(60,60, f'Fees Should be paid at Stanbic IBTC: 48494')
     p.drawString(70, 40, f'Account/Name: {student.student.registration_no} {student.student.guardian_info.father_name}, {student.student.guardian_info.mother_name}')
