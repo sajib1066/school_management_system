@@ -60,7 +60,7 @@ class Shift(models.Model):
 
 
 class ClassRegistration(models.Model):
-    name = models.CharField(max_length=10, unique=True)
+    name = models.CharField(max_length=80, unique=True)
     class_select = (
         (1, 'Playgroup'),
         (2, 'Pre-nursery'),

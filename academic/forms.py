@@ -26,7 +26,7 @@ class SectionForm(forms.ModelForm):
         model = models.Section
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g. 2018/2019 session'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Primary, Junior Secondary'}),
         }
 
 class SessionForm(forms.ModelForm):
