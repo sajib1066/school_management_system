@@ -89,7 +89,7 @@ class ClassRegistration(models.Model):
     )
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    guide_teacher =  models.OneToOneField('teacher.PersonalInfo', on_delete=models.CASCADE)
+    guide_teacher =  models.OneToOneField('teacher.PersonalInfo', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         unique_together = ['class_name', 'name']
