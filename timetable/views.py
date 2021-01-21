@@ -78,11 +78,11 @@ def GenerateTimetable(request):
             m = 0
             j = 0
             d = 0
-            good_day = True
             if DupNum > len(class_periods):
                 messages.info(request, "Couldn't create Timetable")
                 redirect('home')
             while y < subject.no_of_times_a_week:
+                good_day = True
                 if DupNum > len(class_periods) * 6:
                     messages.info(request, "Could not get a Timetable slot for {}, {} time".format(subject.name, y+1))
                     break
