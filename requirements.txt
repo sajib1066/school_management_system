@@ -4,6 +4,6 @@ chardet==3.0.4
 Django==3.0.7
 djangorestframework==3.11.0
 idna==2.8
-Pillow==7.1.2
+Pillow==8.1.1
 pytz==2019.1
 sqlparse==0.3.0
