@@ -1,5 +1,6 @@
 db.sqlite3
 env/
+.env
 media
 __pycache_/
 # Created by https://www.gitignore.io/api/git,django,python,pycharm,visualstudiocode

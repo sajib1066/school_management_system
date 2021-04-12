@@ -11,16 +11,21 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Add .env variables anywhere before SECRET_KEY
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'aw=%fl(=n$r@bci1ct$^wxnc-w#i_lr$jx_b9%(^6&j%^5l-v1'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -55,8 +60,8 @@ INSTALLED_APPS = [
     'inventory',
 ]
 
-PAYSTACK_PUBLIC_KEY = 'pk_test_700e0926438a00e06ca311f2bb40fa0601a22964'
-PAYSTACK_SCRET_KEY = 'sk_test_fb186f1ff7130fd8dcf498573eb65b6a2f6ae8f1'
+PAYSTACK_PUBLIC_KEY = os.getenv('PAYSTACK_PUBLIC_KEY')
+PAYSTACK_SCRET_KEY = os.getenv('PAYSTACK_SCRET_KEY')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
