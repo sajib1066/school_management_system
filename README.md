@@ -2,7 +2,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;![GitHub All Releases](https://img.shields.io/github/downloads/sajib1066/school_management_system/total?style=plastic)
 &nbsp;&nbsp;&nbsp;&nbsp;![dependencies](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=dependencies&query=dependencies&style=plastic&labelColor=grey&color=darkgreen)
 &nbsp;&nbsp;&nbsp;&nbsp;![build](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=build&query=build&style=plastic&labelColor=grey&color=darkgreen)
-
+[![](https://badges.pufler.dev/visits/sajib1066/school_management_system?label=visitors&color=blue)](https://badges.pufler.dev)
 # Project Name: School Management System Software
 
 ## How To Setup On Linux
