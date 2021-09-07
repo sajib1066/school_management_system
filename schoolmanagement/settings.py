@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'flatpickr',
+
 
     'administration',
     'teacher',
@@ -49,11 +51,11 @@ INSTALLED_APPS = [
     'result',
     'account',
     'attendance',
-    'flatpickr',
     'timetable',
     'library',
     'store',
     'inventory',
+    'fees',
 ]
 
 PAYSTACK_PUBLIC_KEY = 'pk_test_700e0926438a00e06ca311f2bb40fa0601a22964'
