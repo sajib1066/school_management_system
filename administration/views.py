@@ -21,7 +21,7 @@ def admin_login(request):
 
 def admin_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 
 def add_designation(request):

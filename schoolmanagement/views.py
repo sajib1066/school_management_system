@@ -8,7 +8,7 @@ import academic
 @login_required(login_url='login')
 def home_page(request):
     total_student = student.models.AcademicInfo.objects.count()
-    total_teacher= teacher.models.PersonalInfo.objects.count()
+    total_teacher = teacher.models.PersonalInfo.objects.count()
     total_employee = employee.models.PersonalInfo.objects.count()
     total_class = academic.models.ClassRegistration.objects.count()
     context = {
