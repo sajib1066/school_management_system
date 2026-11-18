@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from academic.models import ClassRegistration
 from .forms import *
 from .models import *
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def load_upazilla(request):
     district_id = request.GET.get('district')
     upazilla = Upazilla.objects.filter(district_id=district_id).order_by('name')
@@ -16,11 +18,13 @@ def load_upazilla(request):
     return render(request, 'others/upazilla_dropdown_list_options.html', context)
 
 
+@login_required(login_url='login')
 def class_wise_student_registration(request):
     register_class = ClassRegistration.objects.all()
     context = {'register_class': register_class}
     return render(request, 'student/class-wise-student-registration.html', context)
 
+@login_required(login_url='login')
 def student_registration(request):
     academic_info_form = AcademicInfoForm(request.POST or None)
     personal_info_form = PersonalInfoForm(request.POST or None, request.FILES or None)
@@ -59,11 +63,13 @@ def student_registration(request):
     }
     return render(request, 'student/student-registration.html', context)
 
+@login_required(login_url='login')
 def student_list(request):
     student = AcademicInfo.objects.filter(is_delete=False).order_by('-id')
     context = {'student': student}
     return render(request, 'student/student-list.html', context)
 
+@login_required(login_url='login')
 def student_profile(request, reg_no):
     student = AcademicInfo.objects.get(registration_no=reg_no)
     context = {
@@ -71,6 +77,7 @@ def student_profile(request, reg_no):
     }
     return render(request, 'student/student-profile.html', context)
 
+@login_required(login_url='login')
 def student_edit(request, reg_no):
     student = AcademicInfo.objects.get(registration_no=reg_no)
     academic_info_form = AcademicInfoForm(instance=student)
@@ -117,12 +124,14 @@ def student_edit(request, reg_no):
     }
     return render(request, 'student/student-edit.html', context)
 
+@login_required(login_url='login')
 def student_delete(request, reg_no):
     student = AcademicInfo.objects.get(registration_no=reg_no)
     student.is_delete = True
     student.save()
     return redirect('student-list')
 
+@login_required(login_url='login')
 def student_search(request):
     forms = StudentSearchForm()
     cls_name = request.GET.get('class_info', None)
@@ -150,6 +159,7 @@ def student_search(request):
     return render(request, 'student/student-search.html', context)
 
 
+@login_required(login_url='login')
 def enrolled_student(request):
     forms = EnrolledStudentForm()
     cls = request.GET.get('class_name', None)
@@ -160,6 +170,7 @@ def enrolled_student(request):
     }
     return render(request, 'student/enrolled.html', context)
 
+@login_required(login_url='login')
 def student_enrolled(request, reg):
     student = AcademicInfo.objects.get(registration_no=reg)
     forms = StudentEnrollForm()
@@ -178,6 +189,7 @@ def student_enrolled(request, reg):
     }
     return render(request, 'student/student-enrolled.html', context)
 
+@login_required(login_url='login')
 def enrolled_student_list(request):
     student = EnrolledStudent.objects.all()
     forms = SearchEnrolledStudentForm()
