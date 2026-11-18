@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 
 from . import forms
 from .models import District, Upazilla, Union, PersonalInfo
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='login')
 def load_upazilla(request):
     district_id = request.GET.get('district')
     upazilla = Upazilla.objects.filter(district_id=district_id).order_by('name')
@@ -18,6 +20,7 @@ def load_upazilla(request):
     return render(request, 'others/upazilla_dropdown_list_options.html', context)
 
 
+@login_required(login_url='login')
 def teacher_registration(request):
     form = forms.PersonalInfoForm()
     address_forms = forms.AddressInfoForm()
@@ -58,11 +61,13 @@ def teacher_registration(request):
     return render(request, 'teacher/teacher-registration.html', context)
 
 
+@login_required(login_url='login')
 def teacher_list(request):
     teacher = PersonalInfo.objects.filter(is_delete=False)
     context = {'teacher': teacher}
     return render(request, 'teacher/teacher-list.html', context)
 
+@login_required(login_url='login')
 def teacher_profile(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     context = {
@@ -70,12 +75,14 @@ def teacher_profile(request, teacher_id):
     }
     return render(request, 'teacher/teacher-profile.html', context)
 
+@login_required(login_url='login')
 def teacher_delete(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     teacher.is_delete = True
     teacher.save()
     return redirect('teacher-list')
 
+@login_required(login_url='login')
 def teacher_edit(request, teacher_id):
     teacher = PersonalInfo.objects.get(id=teacher_id)
     form = forms.PersonalInfoForm(instance=teacher)
